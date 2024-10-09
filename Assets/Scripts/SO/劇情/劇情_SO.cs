@@ -12,4 +12,5 @@ public class 劇情s
 {
     public string 名稱;
     public string 文字內容;
+    public int 攝影機位置;
 }

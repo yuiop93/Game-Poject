@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dc239d744b164384e81ea54cacc35d8b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - "\u5287\u60C51": {instanceID: 0}
+  - "\u5287\u60C5SO": {instanceID: 0}
+  - "\u6309\u9215": {fileID: 2829036317704566491, guid: 0238e240e1f419641ade28f8461d2263, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
