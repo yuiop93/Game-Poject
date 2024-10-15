@@ -6,14 +6,21 @@ using UnityEngine.InputSystem;
 public class 坐下 : MonoBehaviour
 {
     public Transform sitpoint;
-    public Animator animator;
+    private Animator animator;
+    private GameObject player;
     bool isSitting = false;
 
+    void Start()
+    {
+        player = GameObject.Find("Player");
+        animator = FindObjectOfType<PlayerInput>().GetComponent<Animator>();
+    }
     public void sit()
     {
-        this.transform.SetPositionAndRotation(sitpoint.transform.position, sitpoint.transform.rotation);
-        this.GetComponent<CharacterController>().enabled = false;
-        this.GetComponent<PlayerInput>().enabled = false;
+
+        player.transform.SetPositionAndRotation(sitpoint.transform.position, sitpoint.transform.rotation);
+        player.GetComponent<CharacterController>().enabled = false;
+        player.GetComponent<PlayerInput>().enabled = false;
         animator.SetTrigger("Sit");
         Invoke("isSit", 2);
 
@@ -21,19 +28,18 @@ public class 坐下 : MonoBehaviour
     public void stand()
     {
         Invoke("Standing", .2f);
-        sitpoint = null;
         animator.SetTrigger("Stand");
     }
     void isSit()
     {
         isSitting = true;
     }
-    
+
     void Standing()
     {
-        this.GetComponent<CharacterController>().enabled = true;
-        this.GetComponent<PlayerInput>().enabled = true;
-        
+        player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<PlayerInput>().enabled = true;
+
     }
     void Update()
     {
@@ -45,5 +51,6 @@ public class 坐下 : MonoBehaviour
                 isSitting = false;
             }
         }
+        
     }
 }

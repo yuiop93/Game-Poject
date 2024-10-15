@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2829036317704566486}
   - component: {fileID: 2829036317704566489}
   m_Layer: 5
-  m_Name: "\u5287\u60C5\u6309\u9215"
+  m_Name: "\u6309\u9215"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,16 +201,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2829036317704566486}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2829036317704566491}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
