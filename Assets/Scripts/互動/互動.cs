@@ -59,7 +59,7 @@ public class 互動 : MonoBehaviour
     }
     void Update()
     {
-        if (Keyboard.current.fKey.wasPressedThisFrame && 按鈕 != null)
+        if (Keyboard.current.fKey.wasPressedThisFrame && 按鈕 != null&&按鈕.activeSelf==true)
         {
             for (int i = 0; i < 按鈕.transform.childCount; i++)
             {

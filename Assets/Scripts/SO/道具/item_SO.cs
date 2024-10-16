@@ -9,20 +9,9 @@ public class item_SO : ScriptableObject
 [System.Serializable]
 public class item
 {
-    
-    [Header("基本資料")]
+    public int itemID;
     public string itemName;
     public Sprite itemIcon;
-
-    public Statetype 類型;
-    public enum Statetype
-    {
-        消耗品,
-        一般道具,
-
-
-    }
-    [Header("物品內容")]
     public int itemAmount;
     public string itemDescription;
     public bool CanUse = false;

@@ -13,9 +13,27 @@ MonoBehaviour:
   m_Name: "\u80CC\u5305"
   m_EditorClassIdentifier: 
   itemList:
-  - itemName: 
+  - itemID: 101
+    itemName: 
     itemIcon: {fileID: 0}
-    "\u985E\u578B": 1
+    itemAmount: 0
+    itemDescription: 
+    CanUse: 0
+  - itemID: 102
+    itemName: 
+    itemIcon: {fileID: 0}
+    itemAmount: 0
+    itemDescription: 
+    CanUse: 0
+  - itemID: 103
+    itemName: 
+    itemIcon: {fileID: 0}
+    itemAmount: 0
+    itemDescription: 
+    CanUse: 0
+  - itemID: 104
+    itemName: 
+    itemIcon: {fileID: 0}
     itemAmount: 0
     itemDescription: 
     CanUse: 0

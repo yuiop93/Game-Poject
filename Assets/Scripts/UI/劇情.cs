@@ -27,7 +27,10 @@ public class 劇情 : MonoBehaviour
     }
     public void 顯示劇情()
     {
-        互動UI.SetActive(false);
+        foreach (Transform child in 互動UI.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
         劇情UI.SetActive(true);
         index = 0;
         名稱.text = 劇情SO.劇情[index].名稱;
@@ -66,16 +69,19 @@ public class 劇情 : MonoBehaviour
     public void 結束()
     {
         if (攝影機 != null)
+        {
+            for (int i = 0; i < 攝影機.Length; i++)
             {
-                for (int i = 0; i < 攝影機.Length; i++)
-                {
-                    攝影機[i].SetActive(false);
-                }
-                攝影機 = null;
+                攝影機[i].SetActive(false);
             }
-            互動UI.SetActive(true);
-            劇情UI.SetActive(false);
-            控制.CursorLock();
+            攝影機 = null;
+        }
+        foreach (Transform child in 互動UI.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+        劇情UI.SetActive(false);
+        控制.CursorLock();
     }
 
 }
