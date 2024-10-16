@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c701688cac76a73478df45bd480ff1ab, type: 3}
   m_Name: "\u80CC\u5305"
   m_EditorClassIdentifier: 
+  itemList:
+  - itemName: 
+    itemIcon: {fileID: 0}
+    "\u985E\u578B": 1
+    itemAmount: 0
+    itemDescription: 
+    CanUse: 0

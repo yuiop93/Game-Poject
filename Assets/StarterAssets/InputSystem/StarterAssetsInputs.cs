@@ -65,8 +65,13 @@ public void CursorUnLock()
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			move = newMoveDirection;
-		} 
+			if (坐下.isSitting)
+			{
+				newMoveDirection = Vector2.zero;
+			}
+			else { move = newMoveDirection; }
+
+		}
 
 		public void LookInput(Vector2 newLookDirection)
 		{
@@ -93,5 +98,5 @@ public void CursorUnLock()
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
 	}
-	
+
 }

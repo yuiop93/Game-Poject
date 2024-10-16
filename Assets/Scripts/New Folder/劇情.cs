@@ -44,20 +44,10 @@ public class 劇情 : MonoBehaviour
     }
     public void 下一個()
     {
-
         index++;
         if (index >= 劇情SO.劇情.Length)
         {
-            if (攝影機 != null)
-            {
-                for (int i = 0; i < 攝影機.Length; i++)
-                {
-                    攝影機[i].SetActive(false);
-                }
-                攝影機 = null;
-            }
-            互動UI.SetActive(true);
-            跳過按鈕.onClick.Invoke();
+            結束();
         }
         else
         {
@@ -72,6 +62,20 @@ public class 劇情 : MonoBehaviour
                 攝影機[劇情SO.劇情[index].攝影機位置].SetActive(true);
             }
         }
+    }
+    public void 結束()
+    {
+        if (攝影機 != null)
+            {
+                for (int i = 0; i < 攝影機.Length; i++)
+                {
+                    攝影機[i].SetActive(false);
+                }
+                攝影機 = null;
+            }
+            互動UI.SetActive(true);
+            劇情UI.SetActive(false);
+            控制.CursorLock();
     }
 
 }

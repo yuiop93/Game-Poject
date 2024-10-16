@@ -8,7 +8,7 @@ public class 坐下 : MonoBehaviour
     public Transform sitpoint;
     private Animator animator;
     private GameObject player;
-    bool isSitting = false;
+    public static bool isSitting = false;
 
     void Start()
     {
@@ -17,28 +17,19 @@ public class 坐下 : MonoBehaviour
     }
     public void sit()
     {
-
         player.transform.SetPositionAndRotation(sitpoint.transform.position, sitpoint.transform.rotation);
         player.GetComponent<CharacterController>().enabled = false;
-        player.GetComponent<PlayerInput>().enabled = false;
         animator.SetTrigger("Sit");
-        Invoke("isSit", 2);
-
+        isSitting = true;
     }
     public void stand()
     {
         Invoke("Standing", .2f);
         animator.SetTrigger("Stand");
     }
-    void isSit()
-    {
-        isSitting = true;
-    }
-
     void Standing()
     {
         player.GetComponent<CharacterController>().enabled = true;
-        player.GetComponent<PlayerInput>().enabled = true;
 
     }
     void Update()
@@ -51,6 +42,6 @@ public class 坐下 : MonoBehaviour
                 isSitting = false;
             }
         }
-        
+
     }
 }

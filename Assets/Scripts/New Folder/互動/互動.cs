@@ -9,11 +9,12 @@ public class 互動 : MonoBehaviour
     private Transform 互動UI;
     [SerializeField]
     private GameObject 預置按鈕;
-    private GameObject 按鈕;
+    public GameObject 按鈕;
     private Text 按鈕文字;
     private GameObject player;
     private 對話 對話1;
     private 坐下 坐下1;
+    private 打開 打開1;
 
     void Start()
     {
@@ -24,6 +25,10 @@ public class 互動 : MonoBehaviour
         if (this.GetComponent<坐下>() != null)
         {
             坐下1 = this.GetComponent<坐下>();
+        }
+        if (this.GetComponent<打開>() != null)
+        {
+            打開1 = this.GetComponent<打開>();
         }
         互動UI = GameObject.Find("互動").transform;
         player = GameObject.Find("Player");
@@ -70,6 +75,10 @@ public class 互動 : MonoBehaviour
                     {
                         坐下1.sit();
                         Destroy(按鈕.gameObject);
+                    }
+                    else if (打開1 != null)
+                    {
+                        打開1.Open();
                     }
                 }
             }

@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class 背包 : MonoBehaviour
 {
-    public GameObject 背包UI;
-    public Button 背包按鈕;
-    public 控制 f1;
+    [SerializeField]
+    private GameObject 背包UI;
+    private 控制 f1;
     public void 顯示背包()
     {
         背包UI.SetActive(true);
@@ -21,6 +21,7 @@ public class 背包 : MonoBehaviour
     }
     void Start()
     {
+        f1 = FindObjectOfType<控制>();
         背包UI.SetActive(false);
     }
 
