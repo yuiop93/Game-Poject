@@ -12,28 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c701688cac76a73478df45bd480ff1ab, type: 3}
   m_Name: "\u80CC\u5305"
   m_EditorClassIdentifier: 
-  itemList:
-  - itemID: 101
-    itemName: 
-    itemIcon: {fileID: 0}
-    itemAmount: 0
-    itemDescription: 
+  "\u7269\u54C1":
+  - "\u7269\u54C1ID": 1001
+    "\u540D\u7A31": "\u623F\u5361"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": "\u6C92\u6709"
     CanUse: 0
-  - itemID: 102
-    itemName: 
-    itemIcon: {fileID: 0}
-    itemAmount: 0
-    itemDescription: 
-    CanUse: 0
-  - itemID: 103
-    itemName: 
-    itemIcon: {fileID: 0}
-    itemAmount: 0
-    itemDescription: 
-    CanUse: 0
-  - itemID: 104
-    itemName: 
-    itemIcon: {fileID: 0}
-    itemAmount: 0
-    itemDescription: 
+  - "\u7269\u54C1ID": 1002
+    "\u540D\u7A31": "\u6587\u4EF6"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": "\u6C92\u6709"
     CanUse: 0

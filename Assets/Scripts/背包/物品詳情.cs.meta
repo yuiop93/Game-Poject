@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f2f65ce530d180d45970cfc982edda45
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - "\u7269\u54C1\u540D\u7A31": {instanceID: 0}
+  - "\u7269\u54C1\u6578\u91CF": {instanceID: 0}
+  - "\u7269\u54C1\u63CF\u8FF0": {instanceID: 0}
+  - "\u7269\u54C1\u5716\u7247": {instanceID: 0}
+  - "\u7269\u54C1": {fileID: 11400000, guid: d063e7606cfe8444f8741bd8bb3d409f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
