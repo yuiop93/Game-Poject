@@ -9,6 +9,7 @@ public class 互動 : MonoBehaviour
     private Transform 互動UI;
     [SerializeField]
     private GameObject 預置按鈕;
+    [HideInInspector]
     public GameObject 按鈕;
     private Text 按鈕文字;
     private GameObject player;

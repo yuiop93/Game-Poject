@@ -11,30 +11,37 @@ public class 物品詳情 : MonoBehaviour
     [SerializeField]
     private Image 物品圖片;
     public item_SO 物品SO;
+    [SerializeField]
     private GameObject 使用按鈕;
-    public void 物品內容(int 物品ID ,bool CanUse)
+    public GameObject 欄位;
+
+    public void 物品內容(int 物品ID, bool CanUse)
     {
+        欄位.SetActive(true);
         for (int i = 0; i < 物品SO.物品.Count; i++)
-               {
+        {
             if (物品SO.物品[i].物品ID == 物品ID)
             {
                 物品名稱.text = 物品SO.物品[i].名稱;
                 物品描述.text = 物品SO.物品[i].描述;
-                if(物品SO.物品[i].圖片!=null){
+                if (物品SO.物品[i].圖片 != null)
+                {
                     物品圖片.sprite = 物品SO.物品[i].圖片;
                 }
-                else{
+                else
+                {
                     物品圖片.sprite = null;
                 }
-                if(CanUse){
+                if (CanUse)
+                {
                     使用按鈕.SetActive(true);
                 }
-                else{
+                else
+                {
                     使用按鈕.SetActive(false);
                 }
                 break;
             }
         }
-
     }
 }

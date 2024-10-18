@@ -25,3 +25,21 @@ MonoBehaviour:
     "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u6C92\u6709"
     CanUse: 0
+  - "\u7269\u54C1ID": 1003
+    "\u540D\u7A31": "\u4E00\u4E9B\u66F8"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": "\u6C92\u6709"
+    CanUse: 0
+  - "\u7269\u54C1ID": 1101
+    "\u540D\u7A31": "\u624B\u96FB\u7B52"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": "\u6C92\u6709"
+    CanUse: 1
+  - "\u7269\u54C1ID": 1102
+    "\u540D\u7A31": "\u76F8\u6A5F"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": "\u6C92\u6709"
+    CanUse: 1

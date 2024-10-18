@@ -9,8 +9,11 @@ public class 背包 : MonoBehaviour
     [SerializeField]
     private GameObject 背包UI;
     private 控制 f1;
+    [SerializeField]
+    private 物品顯示 物品顯示1;
     public void 顯示背包()
     {
+        物品顯示1.更新背包();
         背包UI.SetActive(true);
         f1.CursorUnLock();
     }
