@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class 撿起 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private int count = 0;
+    [SerializeField]
+    private int 物品ID = 0;
+    private item_SO 物品SO;
+    public void 獲取()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        物品SO = Resources.Load<item_SO>("ScriptableObjects/道具/背包");
+        for (int i = 0; i < 物品SO.物品.Count; i++)
+        {
+            if (物品SO.物品[i].物品ID == 物品ID){
+                物品SO.物品[i].數量 += count;
+                break;
+            }
+        }
+        Destroy(gameObject);
     }
 }

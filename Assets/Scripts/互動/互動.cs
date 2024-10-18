@@ -13,24 +13,11 @@ public class 互動 : MonoBehaviour
     public GameObject 按鈕;
     private Text 按鈕文字;
     private GameObject player;
-    private 對話 對話1;
-    private 坐下 坐下1;
-    private 打開 打開1;
+
+
 
     void Start()
     {
-        if (this.GetComponent<對話>() != null)
-        {
-            對話1 = this.GetComponent<對話>();
-        }
-        if (this.GetComponent<坐下>() != null)
-        {
-            坐下1 = this.GetComponent<坐下>();
-        }
-        if (this.GetComponent<打開>() != null)
-        {
-            打開1 = this.GetComponent<打開>();
-        }
         互動UI = GameObject.Find("互動").transform;
         player = GameObject.Find("Player");
     }
@@ -45,7 +32,7 @@ public class 互動 : MonoBehaviour
             }
             按鈕 = Instantiate(預置按鈕);
             按鈕文字 = 按鈕.transform.GetChild(0).GetComponent<Text>();
-            按鈕文字.text =this.gameObject.name;
+            按鈕文字.text = this.gameObject.name;
             按鈕.transform.SetParent(互動UI, false);
         }
     }
@@ -60,7 +47,7 @@ public class 互動 : MonoBehaviour
     }
     void Update()
     {
-        if (Keyboard.current.fKey.wasPressedThisFrame && 按鈕 != null&&按鈕.activeSelf==true)
+        if (Keyboard.current.fKey.wasPressedThisFrame && 按鈕 != null && 按鈕.activeSelf == true)
         {
             for (int i = 0; i < 按鈕.transform.childCount; i++)
             {
@@ -68,23 +55,32 @@ public class 互動 : MonoBehaviour
 
                 if (child.gameObject.name == "選擇UI")
                 {
-                    if (對話1 != null)
+                    if (this.GetComponent<對話>() != null)
                     {
-                        對話1.播放劇情();
+                        this.GetComponent<對話>().播放劇情();
+                        break;
                     }
-                    else if (坐下1 != null)
+                    else if (this.GetComponent<坐下>() != null)
                     {
-                        坐下1.sit();
+                        this.GetComponent<坐下>().sit();
                         Destroy(按鈕.gameObject);
+                        break;
                     }
-                    else if (打開1 != null)
+                    else if (this.GetComponent<打開>() != null)
                     {
-                        打開1.Open();
+                        this.GetComponent<打開>().Open();
+                        break;
+                    }
+                    else if (this.GetComponent<撿起>() != null)
+                    {
+                        this.GetComponent<撿起>().獲取();
+                        Destroy(按鈕.gameObject);
+                        break;
                     }
                 }
+
             }
-
         }
-    }
 
+    }
 }

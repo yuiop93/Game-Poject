@@ -10,9 +10,8 @@ public class 物品 : MonoBehaviour
     public Text 數量;
     [HideInInspector]
     public Image 圖片;
-    public bool CanUse;
     public void 內容()
     {
-       GameObject.Find("物品資訊").GetComponent<物品詳情>().物品內容(物品ID, CanUse);
+       GameObject.Find("物品資訊").GetComponent<物品詳情>().物品內容(物品ID);
     }
 }

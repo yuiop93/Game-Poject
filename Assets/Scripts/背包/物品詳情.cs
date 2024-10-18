@@ -14,8 +14,8 @@ public class 物品詳情 : MonoBehaviour
     [SerializeField]
     private GameObject 使用按鈕;
     public GameObject 欄位;
-
-    public void 物品內容(int 物品ID, bool CanUse)
+    
+    public void 物品內容(int 物品ID )
     {
         欄位.SetActive(true);
         for (int i = 0; i < 物品SO.物品.Count; i++)
@@ -32,7 +32,7 @@ public class 物品詳情 : MonoBehaviour
                 {
                     物品圖片.sprite = null;
                 }
-                if (CanUse)
+                if (物品SO.物品[i].CanUse == true)
                 {
                     使用按鈕.SetActive(true);
                 }

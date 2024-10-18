@@ -9,6 +9,16 @@ public class 物品顯示 : MonoBehaviour
     private GameObject 物品prefab;
     [SerializeField]
     private Transform 物品父物件;
+    [SerializeField]
+    private GameObject 空物品;
+    public Statetype 物品類型;
+    public enum Statetype
+    {
+        武器,
+        一般道具,
+        消耗品,
+        
+    }
     public void 更新背包()
     {
         foreach (Transform child in 物品父物件)
@@ -17,13 +27,25 @@ public class 物品顯示 : MonoBehaviour
         }
         for (int i = 0; i < itemSO.物品.Count; i++)
         {
-            if (itemSO.物品[i].數量 > 0)
+            if (itemSO.物品[i].數量 > 0&&itemSO.物品[i].物品ID/1000==(int)物品類型)
             {
                 GameObject item = Instantiate(物品prefab, 物品父物件);
                 item.GetComponent<物品>().物品ID = itemSO.物品[i].物品ID;
                 item.GetComponent<物品>().圖片.sprite = itemSO.物品[i].圖片;
                 item.GetComponent<物品>().數量.text = itemSO.物品[i].數量.ToString();
             }
+        }
+        判斷背包();
+    }
+    public void 判斷背包()
+    {
+        if (物品父物件.childCount == 0)
+        {
+            空物品.SetActive(true);
+        }
+        else
+        {
+            空物品.SetActive(false);
         }
     }
 }
