@@ -8,6 +8,7 @@ public class 背包 : MonoBehaviour
 {
     [SerializeField]
     private GameObject 背包UI;
+    [SerializeField]
     private 控制 f1;
     [SerializeField]
     private 物品顯示 物品顯示1;
@@ -24,7 +25,6 @@ public class 背包 : MonoBehaviour
     }
     void Start()
     {
-        f1 = FindObjectOfType<控制>();
         背包UI.SetActive(false);
     }
 

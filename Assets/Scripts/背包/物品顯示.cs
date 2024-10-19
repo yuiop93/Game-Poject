@@ -31,8 +31,7 @@ public class 物品顯示 : MonoBehaviour
             {
                 GameObject item = Instantiate(物品prefab, 物品父物件);
                 item.GetComponent<物品>().物品ID = itemSO.物品[i].物品ID;
-                item.GetComponent<物品>().圖片.sprite = itemSO.物品[i].圖片;
-                item.GetComponent<物品>().數量.text = itemSO.物品[i].數量.ToString();
+                item.GetComponent<物品>().更新數量();
             }
         }
         判斷背包();

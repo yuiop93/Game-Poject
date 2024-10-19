@@ -77,6 +77,11 @@ public class 互動 : MonoBehaviour
                         Destroy(按鈕.gameObject);
                         break;
                     }
+                    else if (this.GetComponent<提交道具>() != null)
+                    {
+                        this.GetComponent<提交道具>().提交();
+                        break;
+                    }
                 }
 
             }

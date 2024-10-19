@@ -16,30 +16,30 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1001
     "\u540D\u7A31": "\u623F\u5361"
     "\u5716\u7247": {fileID: 0}
-    "\u6578\u91CF": 0
-    "\u63CF\u8FF0": "\u6C92\u6709"
+    "\u6578\u91CF": 1
+    "\u63CF\u8FF0": "\u7528\u4F86\u89E3\u9396\u4E00\u4E9B\u623F\u9580"
     CanUse: 0
   - "\u7269\u54C1ID": 1002
     "\u540D\u7A31": "\u6587\u4EF6"
     "\u5716\u7247": {fileID: 0}
-    "\u6578\u91CF": 0
-    "\u63CF\u8FF0": "\u6C92\u6709"
+    "\u6578\u91CF": 1
+    "\u63CF\u8FF0": "\u6587\u4EF6\u88E1\u6C92\u6709\u5167\u5BB9"
     CanUse: 0
   - "\u7269\u54C1ID": 1003
     "\u540D\u7A31": "\u4E00\u4E9B\u66F8"
     "\u5716\u7247": {fileID: 0}
     "\u6578\u91CF": 0
-    "\u63CF\u8FF0": "\u6C92\u6709"
+    "\u63CF\u8FF0": "\u4E0D\u77E5\u9053\u88E1\u9762\u5BEB\u8457\u751A\u9EBC\u5167\u5BB9"
     CanUse: 0
   - "\u7269\u54C1ID": 1101
     "\u540D\u7A31": "\u624B\u96FB\u7B52"
     "\u5716\u7247": {fileID: 0}
     "\u6578\u91CF": 0
-    "\u63CF\u8FF0": "\u6C92\u6709"
+    "\u63CF\u8FF0": "\u5F88\u666E\u901A\u7684\u7167\u660E\u7CFB\u7D71"
     CanUse: 1
   - "\u7269\u54C1ID": 1102
     "\u540D\u7A31": "\u76F8\u6A5F"
     "\u5716\u7247": {fileID: 0}
     "\u6578\u91CF": 0
-    "\u63CF\u8FF0": "\u6C92\u6709"
+    "\u63CF\u8FF0": "\u7528\u4F86\u62CD\u7167\u4E0D\u904E\u6C92\u6709\u4F5C\u7528"
     CanUse: 1

@@ -42,7 +42,10 @@ public class 打開 : MonoBehaviour
         是否開啟 = true;
         foreach (GameObject item in 物品)
         {
-            item.SetActive(true);
+            if (item != null)
+            {
+                item.SetActive(true);
+            }
         }
     }
     private System.Collections.IEnumerator 關門()

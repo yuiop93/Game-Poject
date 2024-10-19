@@ -266,9 +266,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   "\u7269\u54C1ID": 0
-  "\u6578\u91CF": {fileID: 2837826594851075062}
-  "\u5716\u7247": {fileID: 6946986469300032097}
-  CanUse: 0
+  itemSO: {fileID: 11400000, guid: d063e7606cfe8444f8741bd8bb3d409f, type: 2}
+  "\u7269\u54C1\u6578\u91CF": {fileID: 2837826594851075062}
+  "\u9700\u8981\u6578\u91CF": {fileID: 0}
+  "\u7070\u8272\u80CC\u666F": {fileID: 0}
 --- !u!1 &2837826595342704051
 GameObject:
   m_ObjectHideFlags: 0
