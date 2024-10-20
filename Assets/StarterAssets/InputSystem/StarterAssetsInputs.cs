@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+
 #endif
 
 namespace StarterAssets
@@ -26,6 +27,8 @@ public void CursorUnLock()
 			cursorLocked = false;
 			cursorInputForLook = false;
 			SetCursorState(false);
+			move = Vector2.zero;
+			look = Vector2.zero;
 		}
 		public void Cursorlock()
 		{
@@ -40,6 +43,11 @@ public void CursorUnLock()
 		}
 		public void OnMove(InputValue value)
 		{
+			if(坐下.isSitting)
+			{
+				move = Vector2.zero;
+				return;
+			}else
 			MoveInput(value.Get<Vector2>());
 		}
 
@@ -65,12 +73,12 @@ public void CursorUnLock()
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			if (坐下.isSitting)
+			if(坐下.isSitting)
 			{
-				newMoveDirection = Vector2.zero;
-			}
-			else { move = newMoveDirection; }
-
+				move = Vector2.zero;
+				return;
+			}else
+			move = newMoveDirection;
 		}
 
 		public void LookInput(Vector2 newLookDirection)
