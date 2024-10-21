@@ -8,6 +8,9 @@ public class 撿起 : MonoBehaviour
     private int count = 0;
     [SerializeField]
     private int 物品ID = 0;
+    [SerializeField]
+    [Range(0, 999)]
+    private int 次數 = 1;
     private item_SO 物品SO;
     public void 獲取()
     {
@@ -16,9 +19,11 @@ public class 撿起 : MonoBehaviour
         {
             if (物品SO.物品[i].物品ID == 物品ID){
                 物品SO.物品[i].數量 += count;
+                次數--;
                 break;
             }
         }
+        if (次數==0)
         Destroy(gameObject);
     }
 }

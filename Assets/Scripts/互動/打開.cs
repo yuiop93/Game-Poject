@@ -26,43 +26,55 @@ public class 打開 : MonoBehaviour
     {
         初始旋轉 = transform.rotation;
         是否開啟 = false;
+        foreach (GameObject item in 物品)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Collider>().enabled = false;
+            }
+        }
     }
 
     private System.Collections.IEnumerator 開門()
     {
         正在旋轉 = true;
         Quaternion 目標旋轉 = 初始旋轉 * Quaternion.Euler(0, 0, 開啟範圍);
+        this.GetComponent<Collider>().enabled = false;
+        foreach (GameObject item in 物品)
+        {
+            if (item != null)
+            {
+                item.GetComponent<Collider>().enabled = true;
+            }
+        }
         while (Quaternion.Angle(transform.rotation, 目標旋轉) > 0.1f)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, 目標旋轉, Time.deltaTime * 旋轉速度);
             yield return null;
         }
+        this.GetComponent<Collider>().enabled = true;
         transform.rotation = 目標旋轉;
         正在旋轉 = false;
         是否開啟 = true;
-        foreach (GameObject item in 物品)
-        {
-            if (item != null)
-            {
-                item.SetActive(true);
-            }
-        }
     }
     private System.Collections.IEnumerator 關門()
     {
         正在旋轉 = true;
+        foreach (GameObject item in 物品)
+        {
+            item.GetComponent<Collider>().enabled = false;
+        }
+        this.GetComponent<Collider>().enabled = false;
         while (Quaternion.Angle(transform.rotation, 初始旋轉) > 0.1f)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, 初始旋轉, Time.deltaTime * 旋轉速度);
             yield return null;
         }
+        this.GetComponent<Collider>().enabled = true;
         transform.rotation = 初始旋轉;
         正在旋轉 = false;
         是否開啟 = false;
-        foreach (GameObject item in 物品)
-        {
-            item.SetActive(false);
-        }
+        
     }
     public void Open()
     {

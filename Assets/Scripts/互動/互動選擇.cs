@@ -20,23 +20,30 @@ public class 互動選擇 : MonoBehaviour
                 instance.name = "選擇UI";
             }
         }
-        if (instance != null && instance.activeSelf)
+        else
         {
-            float scrollData = Input.GetAxis("Mouse ScrollWheel");
-            if (scrollData != 0)
+            Destroy(instance);
+
+        }
+        if (instance != null)
+        {
+            if (instance.activeSelf)
             {
-                value -= (scrollData > 0 ? changeAmount : -changeAmount);
-                if (value < 0)
+                float scrollData = Input.GetAxis("Mouse ScrollWheel");
+                if (scrollData != 0)
                 {
-                    value = 0;
+                    value -= (scrollData > 0 ? changeAmount : -changeAmount);
+                    if (value < 0)
+                    {
+                        value = 0;
+                    }
+                    if (value > this.transform.childCount - 1)
+                    {
+                        value = this.transform.childCount - 1;
+                    }
+                    instance.transform.SetParent(this.transform.GetChild(value), false);
                 }
-                if (value > this.transform.childCount - 1)
-                {
-                    value = this.transform.childCount - 1;
-                }
-                instance.transform.SetParent(this.transform.GetChild(value), false);
             }
         }
-
     }
 }
