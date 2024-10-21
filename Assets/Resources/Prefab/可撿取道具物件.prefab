@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7672330146505109531}
   - component: {fileID: 7672330146505109530}
   - component: {fileID: 7672330146505109529}
+  - component: {fileID: 6425589657895951085}
   m_Layer: 0
   m_Name: "\u53EF\u64BF\u53D6\u9053\u5177\u7269\u4EF6"
   m_TagString: Untagged
@@ -128,3 +129,17 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1001
   "\u6B21\u6578": 1
+--- !u!114 &6425589657895951085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672330146505109527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236cd8b447cc769428f88d9245a74be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineColor: {r: 0, g: 1, b: 0, a: 1}
+  outlineWidth: 0.01

@@ -16,7 +16,7 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1001
     "\u540D\u7A31": "\u623F\u5361"
     "\u5716\u7247": {fileID: 0}
-    "\u6578\u91CF": 0
+    "\u6578\u91CF": 1
     "\u63CF\u8FF0": "\u7528\u4F86\u89E3\u9396\u4E00\u4E9B\u623F\u9580"
     CanUse: 0
   - "\u7269\u54C1ID": 1002
@@ -42,4 +42,40 @@ MonoBehaviour:
     "\u5716\u7247": {fileID: 0}
     "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u5927\u6982\u662F\u7528\u4F86\u62CD\u7167\u4E0D\u904E\u597D\u50CF\u6C92\u6709\u4F5C\u7528"
+    CanUse: 1
+  - "\u7269\u54C1ID": 2001
+    "\u540D\u7A31": "\u71DF\u990A\u6DB2"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": "\u6062\u5FA9\u9AD4\u529B\u53CA\u8840\u91CF"
+    CanUse: 1
+  - "\u7269\u54C1ID": 2002
+    "\u540D\u7A31": "\u5F37\u5065\u85E5\u6C34"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": 
+    CanUse: 1
+  - "\u7269\u54C1ID": 2003
+    "\u540D\u7A31": "XX\u85E5\u6C34"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": 
+    CanUse: 1
+  - "\u7269\u54C1ID": 2004
+    "\u540D\u7A31": "Xx\u85E5\u5291"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": 
+    CanUse: 1
+  - "\u7269\u54C1ID": 2005
+    "\u540D\u7A31": "\u98DF\u7269"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": "\u6062\u5FA9\u9AD4\u529B\u53CA\u8840\u91CF"
+    CanUse: 1
+  - "\u7269\u54C1ID": 2006
+    "\u540D\u7A31": "\u91AB\u7642\u7528\u54C1"
+    "\u5716\u7247": {fileID: 0}
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": 
     CanUse: 1
