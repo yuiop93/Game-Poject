@@ -14,6 +14,10 @@ public class 物品詳情 : MonoBehaviour
     [SerializeField]
     private GameObject 使用按鈕;
     public GameObject 欄位;
+    void Start()
+    {
+        欄位.SetActive(false);
+    }
     
     public void 物品內容(int 物品ID )
     {

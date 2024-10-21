@@ -15,35 +15,42 @@ public class 互動選擇 : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = Instantiate(選擇UI);
-                instance.transform.SetParent(this.transform.GetChild(0), false);
-                instance.name = "選擇UI";
+                CreateSelectionUI();
             }
         }
         else
         {
-            Destroy(instance);
-
+            DestroySelectionUI();
         }
+
+        if (instance != null && instance.activeSelf)
+        {
+            HandleMouseScroll();
+        }
+    }
+    private void CreateSelectionUI()
+    {
+        instance = Instantiate(選擇UI);
+        instance.transform.SetParent(this.transform.GetChild(0), false);
+        instance.name = "選擇UI";
+    }
+    private void DestroySelectionUI()
+    {
         if (instance != null)
         {
-            if (instance.activeSelf)
-            {
-                float scrollData = Input.GetAxis("Mouse ScrollWheel");
-                if (scrollData != 0)
-                {
-                    value -= (scrollData > 0 ? changeAmount : -changeAmount);
-                    if (value < 0)
-                    {
-                        value = 0;
-                    }
-                    if (value > this.transform.childCount - 1)
-                    {
-                        value = this.transform.childCount - 1;
-                    }
-                    instance.transform.SetParent(this.transform.GetChild(value), false);
-                }
-            }
+            Destroy(instance);
+            instance = null;
+        }
+    }
+    private void HandleMouseScroll()
+    {
+        float scrollData = Input.GetAxis("Mouse ScrollWheel");
+        if (scrollData != 0)
+        {
+            value += (scrollData > 0 ? -changeAmount : changeAmount);
+            value = Mathf.Clamp(value, 0, this.transform.childCount - 1);
+
+            instance.transform.SetParent(this.transform.GetChild(value), false);
         }
     }
 }

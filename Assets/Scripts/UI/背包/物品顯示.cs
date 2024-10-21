@@ -17,7 +17,7 @@ public class 物品顯示 : MonoBehaviour
         武器,
         一般道具,
         消耗品,
-        
+
     }
     public void 更新背包()
     {
@@ -27,7 +27,7 @@ public class 物品顯示 : MonoBehaviour
         }
         for (int i = 0; i < itemSO.物品.Count; i++)
         {
-            if (itemSO.物品[i].數量 > 0&&itemSO.物品[i].物品ID/1000==(int)物品類型)
+            if (itemSO.物品[i].數量 > 0 && itemSO.物品[i].物品ID / 1000 == (int)物品類型)
             {
                 GameObject item = Instantiate(物品prefab, 物品父物件);
                 item.GetComponent<物品>().物品ID = itemSO.物品[i].物品ID;
@@ -38,13 +38,17 @@ public class 物品顯示 : MonoBehaviour
     }
     public void 判斷背包()
     {
-        if (物品父物件.childCount == 0)
+        if (gameObject.activeSelf == true)
         {
-            空物品.SetActive(true);
+            if (物品父物件.childCount == 0)
+            {
+                空物品.SetActive(true);
+            }
+            else
+            {
+                空物品.SetActive(false);
+            }
         }
-        else
-        {
-            空物品.SetActive(false);
-        }
+
     }
 }

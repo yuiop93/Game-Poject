@@ -13,14 +13,32 @@ public class 提交畫面 : MonoBehaviour
     private GameObject 道具預置物;
     [SerializeField]
     private 控制 f1;
-    public Button 確定提交;
+    public Button 提交按鈕;
     private bool[] 是否滿足;
+    private 提交道具 提交道具;
     void Start()
     {
         提交道具UI.SetActive(false);
     }
-    public void 顯示提交道具(int[] ID, int[] 數量, bool 是否消耗)
+    public void 消耗道具(int[] ID, int[] 數量)
     {
+        for (int i = 0; i < item.物品.Count; i++)
+        {
+            if (item.物品[i].物品ID == ID[i])
+            {
+                item.物品[i].數量 -= 數量[i];
+                if (item.物品[i].數量 <= 0)
+                {
+                    item.物品[i].數量 = 0;
+                }
+            }
+        }
+    }
+    public void 顯示提交道具(int[] ID, int[] 數量,提交道具 f2)
+    {
+        提交道具 = f2;
+        提交按鈕.onClick.RemoveAllListeners();
+        提交按鈕.onClick.AddListener(提交道具.確定提交);
         f1.CursorUnLock();
         提交道具UI.SetActive(true);
         是否滿足 = new bool[ID.Length];
@@ -40,17 +58,19 @@ public class 提交畫面 : MonoBehaviour
         {
             if (是否滿足[i] == false)
             {
-                確定提交.interactable = false;
+                提交按鈕.interactable = false;
                 break;
             }
             else
             {
-                確定提交.interactable = true;
+                提交按鈕.interactable = true;
             }
         }
     }
     public void 隱藏提交道具()
     {
         提交道具UI.SetActive(false);
+        提交道具 = null;
+        f1.CursorLock();
     }
 }

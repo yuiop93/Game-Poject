@@ -12,11 +12,14 @@ public class 背包 : MonoBehaviour
     private 控制 f1;
     [SerializeField]
     private 物品顯示 物品顯示1;
+    [SerializeField]
+    private 物品顯示 物品顯示2;
     private item_SO 物品SO;
 
     public void 顯示背包()
     {
         物品顯示1.更新背包();
+        物品顯示2.更新背包();
         背包UI.SetActive(true);
         f1.CursorUnLock();
     }

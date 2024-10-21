@@ -44,53 +44,57 @@ public class 互動 : MonoBehaviour
     }
     void Update()
     {
-        if (按鈕 != null)
+
+        if (按鈕 != null && 按鈕.activeSelf == true)
         {
-            if (this.GetComponent<Collider>().enabled == false)
+            if (!this.GetComponent<Collider>().enabled)
             {
-                Destroy(按鈕.gameObject);
+                Destroy(按鈕);
                 按鈕 = null;
             }
-            if (Keyboard.current.fKey.wasPressedThisFrame && 按鈕.activeSelf == true)
+            if (Keyboard.current.fKey.wasPressedThisFrame)
             {
-                for (int i = 0; i < 按鈕.transform.childCount; i++)
-                {
-                    Transform child = 按鈕.transform.GetChild(i);
-
-                    if (child.gameObject.name == "選擇UI")
-                    {
-                        if (this.GetComponent<對話>() != null)
-                        {
-                            this.GetComponent<對話>().播放劇情();
-                            break;
-                        }
-                        else if (this.GetComponent<坐下>() != null)
-                        {
-                            this.GetComponent<坐下>().sit();
-                            Destroy(按鈕.gameObject);
-                            break;
-                        }
-                        else if (this.GetComponent<打開>() != null)
-                        {
-                            this.GetComponent<打開>().Open();
-                            Destroy(按鈕.gameObject);
-                            break;
-                        }
-                        else if (this.GetComponent<撿起>() != null)
-                        {
-                            this.GetComponent<撿起>().獲取();
-                            Destroy(按鈕.gameObject);
-                            break;
-                        }
-                        else if (this.GetComponent<提交道具>() != null)
-                        {
-                            this.GetComponent<提交道具>().提交();
-                            break;
-                        }
-                    }
-
-                }
+                HandleInteraction();
             }
         }
+    }
+    private void HandleInteraction()
+    {
+        bool hasSelectionUI = false;
+        foreach (Transform child in 按鈕.transform)
+        {
+            if (child.name == "選擇UI")
+            {
+                hasSelectionUI = true;
+                break;
+            }
+        }
+        if (hasSelectionUI)
+        {
+            if (this.GetComponent<對話>() != null)
+            {
+                this.GetComponent<對話>().播放劇情();
+            }
+            else if (this.GetComponent<坐下>() != null)
+            {
+                this.GetComponent<坐下>().sit();
+                Destroy(按鈕.gameObject);
+            }
+            else if (this.GetComponent<打開>() != null)
+            {
+                this.GetComponent<打開>().Open();
+                Destroy(按鈕.gameObject);
+            }
+            else if (this.GetComponent<撿起>() != null)
+            {
+                this.GetComponent<撿起>().獲取();
+                Destroy(按鈕.gameObject);
+            }
+            else if (this.GetComponent<提交道具>() != null)
+            {
+                this.GetComponent<提交道具>().提交();
+            }
+        }
+
     }
 }

@@ -23,7 +23,6 @@ public class 物品 : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
     public GameObject 顯示物品名稱;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Enter");
         if (顯示物品名稱 != null)
         {
             顯示物品名稱.SetActive(true);
