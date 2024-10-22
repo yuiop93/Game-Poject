@@ -4184,7 +4184,7 @@ Animator:
   m_GameObject: {fileID: 5360326923143050270}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2ceaa9d9bca87c84fbca1d06da22e3e9, type: 3}
-  m_Controller: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -4220,8 +4220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagToControl: wink
-  blinkDuration: 0.2
-  blinkInterval: 2
+  duration: 1
+  waitTime: 2
 --- !u!1 &5374749788706733422
 GameObject:
   m_ObjectHideFlags: 0
