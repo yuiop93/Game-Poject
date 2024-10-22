@@ -19,7 +19,7 @@ public class 撿起 : MonoBehaviour
     {
         位置 = GameObject.Find("獲得").transform;
         物品SO = Resources.Load<item_SO>("ScriptableObjects/道具/背包");
-        文字 = Resources.Load<GameObject>("Prefab/獲取道具文字");
+        文字 = Resources.Load<GameObject>("Prefab/panel/獲取道具文字");
         for (int i = 0; i < 物品SO.物品.Count; i++)
         {
             if (物品SO.物品[i].物品ID == 物品ID)

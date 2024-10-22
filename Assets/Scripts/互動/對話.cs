@@ -13,7 +13,7 @@ public class 對話 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        劇情1 = GameObject.Find("劇情").GetComponent<劇情>();
+        劇情1 = GameObject.Find("UI控制/劇情").GetComponent<劇情>();
     }
     public void 播放劇情()
     {

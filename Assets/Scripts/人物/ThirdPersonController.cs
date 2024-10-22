@@ -158,7 +158,8 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
-            Move();
+            if(!坐下.isSitting){Move();}
+            
         }
 
         private void LateUpdate()

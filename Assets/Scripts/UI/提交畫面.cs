@@ -19,6 +19,7 @@ public class 提交畫面 : MonoBehaviour
     void Start()
     {
         提交道具UI.SetActive(false);
+        f1 = GameObject.Find("程式/控制").GetComponent<控制>();
     }
     public void 消耗道具(int[] ID, int[] 數量)
     {

@@ -30,6 +30,7 @@ public class 背包 : MonoBehaviour
     }
     void Start()
     {
+        f1 = GameObject.Find("程式/控制").GetComponent<控制>();
         物品SO = Resources.Load<item_SO>("ScriptableObjects/道具/背包");
         背包UI.SetActive(false);
         for (int i = 0; i < 物品SO.物品.Count; i++)

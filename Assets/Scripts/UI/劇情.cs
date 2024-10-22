@@ -24,6 +24,7 @@ public class 劇情 : MonoBehaviour
     void Start()
     {
         劇情UI.SetActive(false);
+        控制 = GameObject.Find("程式/控制").GetComponent<控制>();
     }
     public void 顯示劇情()
     {

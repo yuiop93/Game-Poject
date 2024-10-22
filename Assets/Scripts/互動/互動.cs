@@ -15,7 +15,7 @@ public class 互動 : MonoBehaviour
     private GameObject player;
     void Start()
     {
-        互動UI = GameObject.Find("互動").transform;
+        互動UI = GameObject.Find("UI控制/互動").transform;
         player = GameObject.Find("Player");
     }
 
@@ -25,7 +25,7 @@ public class 互動 : MonoBehaviour
         {
             if (預置按鈕 == null)
             {
-                預置按鈕 = Resources.Load<GameObject>("Prefab/按鈕");
+                預置按鈕 = Resources.Load<GameObject>("Prefab/panel/互動/按鈕");
             }
             按鈕 = Instantiate(預置按鈕);
             按鈕文字 = 按鈕.transform.GetChild(0).GetComponent<Text>();
