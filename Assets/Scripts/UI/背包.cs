@@ -8,7 +8,6 @@ public class 背包 : MonoBehaviour
 {
     [SerializeField]
     private GameObject 背包UI;
-    [SerializeField]
     private 控制 f1;
     [SerializeField]
     private 物品顯示 物品顯示1;

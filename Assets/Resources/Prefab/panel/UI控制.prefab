@@ -343,7 +343,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   "\u80CC\u5305UI": {fileID: 6745626951551323196}
+<<<<<<< Updated upstream
   f1: {fileID: 0}
+=======
+>>>>>>> Stashed changes
   "\u7269\u54C1\u986F\u793A1": {fileID: 5732194945428675605}
   "\u7269\u54C1\u986F\u793A2": {fileID: 5568452563213373222}
 --- !u!1 &6745626949954697671
@@ -2886,9 +2889,35 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 264773819532959100, guid: 8752559bddebd5f47a26b01954c96cbb, type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 0}
+=======
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 264773819532959100, guid: 8752559bddebd5f47a26b01954c96cbb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 264773819532959100, guid: 8752559bddebd5f47a26b01954c96cbb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6745626949949575380}
+    - target: {fileID: 264773819532959100, guid: 8752559bddebd5f47a26b01954c96cbb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 264773819532959100, guid: 8752559bddebd5f47a26b01954c96cbb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: "\u96B1\u85CF\u80CC\u5305"
+      objectReference: {fileID: 0}
+    - target: {fileID: 264773819532959100, guid: 8752559bddebd5f47a26b01954c96cbb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: "\u80CC\u5305, Assembly-CSharp"
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 264773820030908104, guid: 8752559bddebd5f47a26b01954c96cbb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
