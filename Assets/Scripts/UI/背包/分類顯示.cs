@@ -25,7 +25,7 @@ public class 分類顯示 : MonoBehaviour
     private GameObject[] 分類按鈕;
     public Text 分類名稱;
 
-    void Start()
+    void Awake()
     {
         分類按鈕 = new GameObject[道具分類.Length];
         for (int i = 0; i < 道具分類.Length; i++)
@@ -42,19 +42,21 @@ public class 分類顯示 : MonoBehaviour
                 child.gameObject.SetActive(false);
             }
         }
+        開啟();
+    }
+    public void 開啟()
+    {
         分類名稱.text = "/ " + 道具分類[0].分類名稱;
         道具分類[0].分類UI.SetActive(true);
         if (道具分類[0].分類UI.GetComponent<物品顯示>() != null)
         {
             道具分類[0].分類UI.GetComponent<物品顯示>().更新背包(0);
         }
-
         foreach (Transform child in 分類按鈕[0].transform)
         {
             child.gameObject.SetActive(true);
         }
     }
-
     public void 顯示分類(int index)
     {
         for (int i = 0; i < 道具分類.Length; i++)
