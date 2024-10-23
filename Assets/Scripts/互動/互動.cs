@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Events;
 public class 互動 : MonoBehaviour
 {
     private Transform 互動UI;
@@ -15,6 +16,7 @@ public class 互動 : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private Transform playerTransform;
+    public UnityEvent onSubmitConfirmed;
     void Start()
     {
         互動UI = GameObject.Find("UI控制/互動").transform;
@@ -49,7 +51,7 @@ public class 互動 : MonoBehaviour
 
         if (按鈕 != null && 按鈕.activeSelf == true)
         {
-            if (!this.GetComponent<Collider>().enabled||坐下.isSitting)
+            if (!this.GetComponent<Collider>().enabled || 坐下.isSitting)
             {
                 Destroy(按鈕);
                 按鈕 = null;
@@ -57,7 +59,7 @@ public class 互動 : MonoBehaviour
             if (Keyboard.current.fKey.wasPressedThisFrame)
             {
                 if (按鈕 != null && 按鈕.activeSelf == true)
-                HandleInteraction();
+                    HandleInteraction();
             }
         }
     }
@@ -74,8 +76,8 @@ public class 互動 : MonoBehaviour
         }
         if (hasSelectionUI)
         {
-            if(playerTransform!=null)
-            player.GetComponent<CharacterMovement>().MoveTo(playerTransform);
+            if (playerTransform != null)
+                player.GetComponent<CharacterMovement>().MoveTo(playerTransform);
             if (this.GetComponent<對話>() != null)
             {
                 this.GetComponent<對話>().播放劇情();
@@ -98,6 +100,10 @@ public class 互動 : MonoBehaviour
             else if (this.GetComponent<提交道具>() != null)
             {
                 this.GetComponent<提交道具>().提交();
+            }
+            if (onSubmitConfirmed.GetPersistentEventCount() > 0)
+            {
+                onSubmitConfirmed.Invoke();
             }
         }
 
