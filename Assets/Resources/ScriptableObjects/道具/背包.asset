@@ -28,13 +28,13 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1003
     "\u540D\u7A31": "\u4E00\u4E9B\u66F8"
     "\u5716\u7247": {fileID: 0}
-    "\u6578\u91CF": 0
+    "\u6578\u91CF": 1
     "\u63CF\u8FF0": "\u4E0D\u77E5\u9053\u88E1\u9762\u5BEB\u8457\u751A\u9EBC\u5167\u5BB9"
     CanUse: 0
   - "\u7269\u54C1ID": 1101
     "\u540D\u7A31": "\u624B\u96FB\u7B52"
     "\u5716\u7247": {fileID: 0}
-    "\u6578\u91CF": 1
+    "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u5F88\u666E\u901A\u7684\u7167\u660E\u7CFB\u7D71"
     CanUse: 1
   - "\u7269\u54C1ID": 1102
@@ -77,5 +77,5 @@ MonoBehaviour:
     "\u540D\u7A31": "\u91AB\u7642\u7528\u54C1"
     "\u5716\u7247": {fileID: 0}
     "\u6578\u91CF": 0
-    "\u63CF\u8FF0": 
+    "\u63CF\u8FF0": "\u56DE\u5FA9\u8840\u91CF"
     CanUse: 1

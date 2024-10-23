@@ -9,6 +9,8 @@ public class 對話 : MonoBehaviour
     private 劇情_SO 劇情SO;
     private Transform 互動;
     public GameObject[] 攝影機;
+    [SerializeField]
+    private bool 是否控制=true;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,6 @@ public class 對話 : MonoBehaviour
     {
         劇情1.劇情SO = 劇情SO;
         劇情1.攝影機 = 攝影機;
-        劇情1.顯示劇情();
+        劇情1.顯示劇情(是否控制);
     }
 }
