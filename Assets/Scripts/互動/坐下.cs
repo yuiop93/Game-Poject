@@ -75,11 +75,12 @@ public class 坐下 : MonoBehaviour
     }
     void Update()
     {
-        if (isSitting && !sittingdown)
+        if (isSitting && !sittingdown && sitUI.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 onSubmitConfirmed.Invoke();
+                sitUI.SetActive(false);
             }
             if (Keyboard.current.fKey.wasPressedThisFrame)
             {
