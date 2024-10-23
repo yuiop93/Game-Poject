@@ -8,7 +8,10 @@ using UnityEngine.Events;
 
 public class 坐下 : MonoBehaviour
 {
-    public Transform sitpoint;
+    [SerializeField]
+    private Transform sitpoint;
+    [SerializeField]
+    private Transform standpoint;
     private Animator animator;
     private GameObject player;
     private StarterAssetsInputs inputs;
@@ -36,10 +39,10 @@ public class 坐下 : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         sittingdown = false;
         sitUI.SetActive(true);
-        if(onSubmitConfirmed.GetPersistentEventCount() > 0)
+        if (onSubmitConfirmed.GetPersistentEventCount() > 0)
         {
             eventhit.SetActive(true);
-            eventhit.GetComponent<Text>().text = "按下空白鍵"+eventtext; 
+            eventhit.GetComponent<Text>().text = "按下空白鍵" + eventtext;
         }
         else
         {
@@ -66,6 +69,8 @@ public class 坐下 : MonoBehaviour
     {
         inputs.jump = false;
         player.GetComponent<CharacterController>().enabled = true;
+        if(sitpoint != null)
+        player.GetComponent<CharacterMovement>().MoveTo(standpoint);
         isSitting = false;
     }
     void Update()

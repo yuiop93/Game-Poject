@@ -9,6 +9,11 @@ public class 互動選擇 : MonoBehaviour
     private GameObject instance;
     private int value = 0;
     private int changeAmount = 1;
+    public static bool isSelecting = false;
+    void Start()
+    {
+        選擇UI = Resources.Load<GameObject>("Prefab/panel/互動/選擇UI");
+    }
     void Update()
     {
         if (this.transform.childCount > 0)
@@ -30,6 +35,8 @@ public class 互動選擇 : MonoBehaviour
     }
     private void CreateSelectionUI()
     {
+        isSelecting = true;
+        value = 0;
         instance = Instantiate(選擇UI);
         instance.transform.SetParent(this.transform.GetChild(0), false);
         instance.name = "選擇UI";
@@ -41,6 +48,7 @@ public class 互動選擇 : MonoBehaviour
             Destroy(instance);
             instance = null;
         }
+        isSelecting = false;
     }
     private void HandleMouseScroll()
     {
@@ -49,7 +57,6 @@ public class 互動選擇 : MonoBehaviour
         {
             value += (scrollData > 0 ? -changeAmount : changeAmount);
             value = Mathf.Clamp(value, 0, this.transform.childCount - 1);
-
             instance.transform.SetParent(this.transform.GetChild(value), false);
         }
     }

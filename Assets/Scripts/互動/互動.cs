@@ -13,6 +13,8 @@ public class 互動 : MonoBehaviour
     public GameObject 按鈕;
     private Text 按鈕文字;
     private GameObject player;
+    [SerializeField]
+    private Transform playerTransform;
     void Start()
     {
         互動UI = GameObject.Find("UI控制/互動").transform;
@@ -47,13 +49,14 @@ public class 互動 : MonoBehaviour
 
         if (按鈕 != null && 按鈕.activeSelf == true)
         {
-            if (!this.GetComponent<Collider>().enabled)
+            if (!this.GetComponent<Collider>().enabled||坐下.isSitting)
             {
                 Destroy(按鈕);
                 按鈕 = null;
             }
             if (Keyboard.current.fKey.wasPressedThisFrame)
             {
+                if (按鈕 != null && 按鈕.activeSelf == true)
                 HandleInteraction();
             }
         }
@@ -71,6 +74,8 @@ public class 互動 : MonoBehaviour
         }
         if (hasSelectionUI)
         {
+            if(playerTransform!=null)
+            player.GetComponent<CharacterMovement>().MoveTo(playerTransform);
             if (this.GetComponent<對話>() != null)
             {
                 this.GetComponent<對話>().播放劇情();
