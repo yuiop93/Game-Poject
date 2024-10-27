@@ -48,6 +48,8 @@ public class 提交道具 : MonoBehaviour
         if (onSubmitConfirmed != null)
         {
             onSubmitConfirmed.Invoke();
+            this.GetComponent<互動>().清除按鈕();
+            Destroy(this.GetComponent<互動>());
         }
         if (是否消耗)
         {

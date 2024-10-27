@@ -51,6 +51,10 @@ public class 坐下 : MonoBehaviour
     }
     public void sit()
     {
+        if (this.GetComponent<互動>() != null)
+            {
+                this.GetComponent<互動>().清除按鈕();
+            }
         isSitting = true;
         sittingdown = true;
         StartCoroutine(WaitAndPrint(2f));

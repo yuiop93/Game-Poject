@@ -107,6 +107,10 @@ public class 打開 : MonoBehaviour
     public void Open()
     {
         清除遺失物品();
+        if (this.GetComponent<互動>() != null)
+            {
+                this.GetComponent<互動>().清除按鈕();
+            }
         if (!正在使用)
         {
             if (!是否開啟)

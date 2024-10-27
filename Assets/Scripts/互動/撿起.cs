@@ -33,6 +33,14 @@ public class 撿起 : MonoBehaviour
             }
         }
         if (次數 == 0)
+        {
+            if (this.GetComponent<互動>() != null)
+            {
+                this.GetComponent<互動>().清除按鈕();
+            }
             Destroy(gameObject);
+        }
+
+
     }
 }

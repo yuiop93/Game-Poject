@@ -42,9 +42,13 @@ public class 互動 : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Destroy(按鈕.gameObject);
-            按鈕 = null;
+            清除按鈕();
         }
+    }
+    public void 清除按鈕()
+    {
+        Destroy(按鈕.gameObject);
+        按鈕 = null;
     }
     void Update()
     {
@@ -53,8 +57,7 @@ public class 互動 : MonoBehaviour
         {
             if (!this.GetComponent<Collider>().enabled || 坐下.isSitting)
             {
-                Destroy(按鈕);
-                按鈕 = null;
+                清除按鈕();
             }
             if (Keyboard.current.fKey.wasPressedThisFrame)
             {
@@ -78,32 +81,14 @@ public class 互動 : MonoBehaviour
         {
             if (playerTransform != null)
                 player.GetComponent<CharacterMovement>().MoveTo(playerTransform);
-            if (this.GetComponent<對話>() != null)
-            {
-                this.GetComponent<對話>().播放劇情();
-            }
-            else if (this.GetComponent<坐下>() != null)
-            {
-                this.GetComponent<坐下>().sit();
-                Destroy(按鈕.gameObject);
-            }
-            else if (this.GetComponent<打開>() != null)
-            {
-                this.GetComponent<打開>().Open();
-                Destroy(按鈕.gameObject);
-            }
-            else if (this.GetComponent<撿起>() != null)
-            {
-                this.GetComponent<撿起>().獲取();
-                Destroy(按鈕.gameObject);
-            }
-            else if (this.GetComponent<提交道具>() != null)
-            {
-                this.GetComponent<提交道具>().提交();
-            }
+            
             if (onSubmitConfirmed.GetPersistentEventCount() > 0)
             {
                 onSubmitConfirmed.Invoke();
+            }else
+            {
+                清除按鈕();
+                Debug.Log("No event assigned to this button");
             }
         }
 

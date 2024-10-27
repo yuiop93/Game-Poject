@@ -541,6 +541,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 62559951125357707}
+        m_TargetAssemblyTypeName: "\u5C0D\u8A71, Assembly-CSharp"
+        m_MethodName: "\u64AD\u653E\u5287\u60C5"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &62559951125357707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +566,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   "\u5287\u60C5SO": {fileID: 11400000, guid: 014fc26e15fc0954cafdc84d07d83646, type: 2}
-  "\u651D\u5F71\u6A5F": []
+  "\u651D\u5F71\u6A5F":
+  - {fileID: 0}
   "\u662F\u5426\u63A7\u5236": 0
 --- !u!65 &62559951125357684
 BoxCollider:
@@ -966,7 +979,19 @@ MonoBehaviour:
   playerTransform: {fileID: 2596840075941095173}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 62559951753949672}
+        m_TargetAssemblyTypeName: "\u6253\u958B, Assembly-CSharp"
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &62559951753949672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,7 +1284,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 62559952451033020}
+        m_TargetAssemblyTypeName: "\u64BF\u8D77, Assembly-CSharp"
+        m_MethodName: "\u7372\u53D6"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &62559952451033020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1763,7 +1800,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8200163382236955682}
+        m_TargetAssemblyTypeName: "\u63D0\u4EA4\u9053\u5177, Assembly-CSharp"
+        m_MethodName: "\u63D0\u4EA4"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8200163382236955682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2307,7 +2356,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7247370783513205818}
+        m_TargetAssemblyTypeName: "\u64BF\u8D77, Assembly-CSharp"
+        m_MethodName: "\u7372\u53D6"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7247370783513205818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3729,7 +3790,19 @@ MonoBehaviour:
   playerTransform: {fileID: 62559951394157165}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6994031709963986614}
+        m_TargetAssemblyTypeName: "\u5750\u4E0B, Assembly-CSharp"
+        m_MethodName: sit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6994031709963986614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3877,7 +3950,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1189038428819327582}
+        m_TargetAssemblyTypeName: "\u64BF\u8D77, Assembly-CSharp"
+        m_MethodName: "\u7372\u53D6"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1189038428819327582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6083,7 +6168,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7117751937349790385}
+        m_TargetAssemblyTypeName: "\u5C0D\u8A71, Assembly-CSharp"
+        m_MethodName: "\u64AD\u653E\u5287\u60C5"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2148118575389257533
 GameObject:
   m_ObjectHideFlags: 0
@@ -8005,7 +8102,19 @@ MonoBehaviour:
   playerTransform: {fileID: 2344916146313994960}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8564220727107154552}
+        m_TargetAssemblyTypeName: "\u6253\u958B, Assembly-CSharp"
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8564220727107154552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9386,7 +9495,19 @@ MonoBehaviour:
   playerTransform: {fileID: 2596840075941095173}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5869876825611636171}
+        m_TargetAssemblyTypeName: "\u6253\u958B, Assembly-CSharp"
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5869876825611636171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10451,7 +10572,19 @@ MonoBehaviour:
   playerTransform: {fileID: 2596840075941095173}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3152355449135903914}
+        m_TargetAssemblyTypeName: "\u6253\u958B, Assembly-CSharp"
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3152355449135903914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10533,7 +10666,19 @@ MonoBehaviour:
   playerTransform: {fileID: 2596840075941095173}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3152355448490137993}
+        m_TargetAssemblyTypeName: "\u6253\u958B, Assembly-CSharp"
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3152355448490137993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12172,7 +12317,19 @@ MonoBehaviour:
   playerTransform: {fileID: 7243243896878869305}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6062071470883345677}
+        m_TargetAssemblyTypeName: "\u6253\u958B, Assembly-CSharp"
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6062071470883345677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14845,7 +15002,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7685347063646275980}
+        m_TargetAssemblyTypeName: "\u64BF\u8D77, Assembly-CSharp"
+        m_MethodName: "\u7372\u53D6"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7685347063646275980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14994,7 +15163,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7685347063852218466}
+        m_TargetAssemblyTypeName: "\u64BF\u8D77, Assembly-CSharp"
+        m_MethodName: "\u7372\u53D6"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7685347063852218466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15143,7 +15324,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7685347064959451275}
+        m_TargetAssemblyTypeName: "\u64BF\u8D77, Assembly-CSharp"
+        m_MethodName: "\u7372\u53D6"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7685347064959451275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15292,7 +15485,19 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   onSubmitConfirmed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7685347065635688326}
+        m_TargetAssemblyTypeName: "\u64BF\u8D77, Assembly-CSharp"
+        m_MethodName: "\u7372\u53D6"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7685347065635688326
 MonoBehaviour:
   m_ObjectHideFlags: 0

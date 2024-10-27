@@ -250,6 +250,34 @@ PrefabInstance:
       propertyPath: onSubmitConfirmed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7390532745951778613, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
+      propertyPath: onSubmitConfirmed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390532745951778613, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
+      propertyPath: onSubmitConfirmed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390532745951778613, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
+      propertyPath: onSubmitConfirmed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 673096980}
+    - target: {fileID: 7390532745951778613, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
+      propertyPath: onSubmitConfirmed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390532745951778613, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
+      propertyPath: onSubmitConfirmed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: "\u7372\u53D6"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390532745951778613, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
+      propertyPath: onSubmitConfirmed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: "\u64BF\u8D77, Assembly-CSharp"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390532745951778613, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
+      propertyPath: onSubmitConfirmed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
 --- !u!1 &134502788
@@ -399,6 +427,17 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &673096980 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7390532745951778634, guid: 224bfa6734c94434fad0fbf3843daf72, type: 3}
+  m_PrefabInstance: {fileID: 78870584}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1200532d2bb41cc4fa9e6d6d3a399348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &844029986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1151,10 @@ PrefabInstance:
     - target: {fileID: 2906124996500258910, guid: f694a75aa7986ac499bb0958e44df7d0, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118225815019615341, guid: f694a75aa7986ac499bb0958e44df7d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6850884
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f694a75aa7986ac499bb0958e44df7d0, type: 3}

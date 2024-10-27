@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     // 协程用于处理平滑移动
     private System.Collections.IEnumerator MoveCoroutine()
     {
+        this.GetComponent<CharacterController>().enabled = false;
         while (isMoving)
         {
             if (target != null)
@@ -37,7 +38,9 @@ public class CharacterMovement : MonoBehaviour
                     isMoving = false;
                 }
             }
-            yield return null; // 等待下一帧
+            yield return null;
+            
         }
+        this.GetComponent<CharacterController>().enabled = true;
     }
 }
