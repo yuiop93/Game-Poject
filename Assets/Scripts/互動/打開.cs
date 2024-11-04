@@ -122,7 +122,6 @@ public class 打開 : MonoBehaviour
                 StartCoroutine(關門());
             }
         }
-
     }
     public void 清除遺失物品()
     {

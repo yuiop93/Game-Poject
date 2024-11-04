@@ -80,7 +80,7 @@ public class 互動 : MonoBehaviour
         if (hasSelectionUI)
         {
             if (playerTransform != null)
-                player.GetComponent<CharacterMovement>().MoveTo(playerTransform);
+                player.transform.SetPositionAndRotation(playerTransform.transform.position, playerTransform.transform.rotation);
             
             if (onSubmitConfirmed.GetPersistentEventCount() > 0)
             {

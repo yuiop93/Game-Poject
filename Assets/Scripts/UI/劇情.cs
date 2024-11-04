@@ -36,6 +36,9 @@ public class 劇情 : MonoBehaviour
     private Transform 歷史紀錄;
     [SerializeField]
     private GameObject 歷史紀錄內容;
+    [SerializeField]
+    [Range(1, 100)]
+    private int 文字速度=10;
     void Start()
     {
         劇情UI.SetActive(false);
@@ -95,7 +98,7 @@ public class 劇情 : MonoBehaviour
         foreach (char letter in dialogue)
         {
             對話內容.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(1f/文字速度);
         }
         顯示完成 = true;
         yield return new WaitForSeconds(1f);
@@ -127,7 +130,7 @@ public class 劇情 : MonoBehaviour
     }
     public void 暫停()
     {
-        自動按鈕.GetComponentInChildren<Text>().text = "■";
+        自動按鈕.GetComponentInChildren<Text>().text = "▷";
         自動播放 = false;
     }
     public void 繼續()

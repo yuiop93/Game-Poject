@@ -42,7 +42,10 @@ public class 背包 : MonoBehaviour
         }
         if (背包UI.activeSelf == false & Keyboard.current.bKey.wasPressedThisFrame)
         {
-            顯示背包();
+            if (控制.互動中 == false)
+            {
+                顯示背包();
+            }
         }
     }
 }

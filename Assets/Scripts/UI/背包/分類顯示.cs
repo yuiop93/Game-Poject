@@ -20,10 +20,15 @@ public class 道具分類
 
 public class 分類顯示 : MonoBehaviour
 {
-    public GameObject 預置按鈕;
-    public 道具分類[] 道具分類;
+    [SerializeField]
+    private GameObject 預置按鈕;
+    [SerializeField]
+    private 道具分類[] 道具分類;
     private GameObject[] 分類按鈕;
-    public Text 分類名稱;
+    [SerializeField]
+    private Text 分類名稱;
+    [SerializeField]
+    private GameObject 物品詳情UI;
 
     void Awake()
     {
@@ -59,6 +64,7 @@ public class 分類顯示 : MonoBehaviour
     }
     public void 顯示分類(int index)
     {
+        物品詳情UI.SetActive(false);
         for (int i = 0; i < 道具分類.Length; i++)
         {
             道具分類[i].分類UI.SetActive(false);
