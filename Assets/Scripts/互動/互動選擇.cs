@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class 互動選擇 : MonoBehaviour
 {
-    [SerializeField]
     private GameObject 選擇UI;
     private GameObject instance;
     private int value = 0;

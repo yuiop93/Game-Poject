@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,8 +22,8 @@ public class 分類顯示 : MonoBehaviour
     [SerializeField]
     private GameObject 預置按鈕;
     [SerializeField]
-    private 道具分類[] 道具分類;
-    private GameObject[] 分類按鈕;
+    private List<道具分類> 道具分類;
+    private List<GameObject> 分類按鈕 = new List<GameObject>();
     [SerializeField]
     private Text 分類名稱;
     [SerializeField]
@@ -32,57 +31,60 @@ public class 分類顯示 : MonoBehaviour
 
     void Awake()
     {
-        分類按鈕 = new GameObject[道具分類.Length];
-        for (int i = 0; i < 道具分類.Length; i++)
+        初始化按鈕();
+        開啟(); // 預設開啟第一個分類
+    }
+
+    private void 初始化按鈕()
+    {
+        for (int i = 0; i < 道具分類.Count; i++)
         {
-            分類按鈕[i] = Instantiate(預置按鈕, transform);
-            分類按鈕[i].name = 道具分類[i].分類名稱;
-            if (分類按鈕[i].GetComponent<Image>() != null)
-                分類按鈕[i].GetComponent<Image>().sprite = 道具分類[i].分類圖片;
+            GameObject newButton = Instantiate(預置按鈕, transform);
+            newButton.name = 道具分類[i].分類名稱;
+
+            Image buttonImage = newButton.GetComponent<Image>();
+            if (buttonImage != null)
+            {
+                buttonImage.sprite = 道具分類[i].分類圖片;
+            }
 
             int currentIndex = i;
-            分類按鈕[i].GetComponent<Button>().onClick.AddListener(delegate { 顯示分類(currentIndex); });
-            foreach (Transform child in 分類按鈕[i].transform)
-            {
-                child.gameObject.SetActive(false);
-            }
+            newButton.GetComponent<Button>().onClick.AddListener(() => 顯示分類(currentIndex));
+            ToggleButtonChildren(newButton, false);
+            分類按鈕.Add(newButton);
         }
-        開啟();
     }
+
     public void 開啟()
     {
-        分類名稱.text = "/ " + 道具分類[0].分類名稱;
-        道具分類[0].分類UI.SetActive(true);
-        if (道具分類[0].分類UI.GetComponent<物品顯示>() != null)
-        {
-            道具分類[0].分類UI.GetComponent<物品顯示>().更新背包(0);
-        }
-        foreach (Transform child in 分類按鈕[0].transform)
-        {
-            child.gameObject.SetActive(true);
-        }
+        if (道具分類.Count == 0) return;
+        顯示分類(0);
     }
+
     public void 顯示分類(int index)
     {
         物品詳情UI.SetActive(false);
-        for (int i = 0; i < 道具分類.Length; i++)
+        for (int i = 0; i < 道具分類.Count; i++)
         {
-            道具分類[i].分類UI.SetActive(false);
-            foreach (Transform child in 分類按鈕[i].transform)
-            {
-                child.gameObject.SetActive(false);
-            }
-        }
-        道具分類[index].分類UI.SetActive(true);
-        分類名稱.text = "/ " + 道具分類[index].分類名稱;
-        if (道具分類[index].分類UI.GetComponent<物品顯示>() != null)
-        {
-            道具分類[index].分類UI.GetComponent<物品顯示>().更新背包(index);
+            bool isSelected = i == index;
+            道具分類[i].分類UI.SetActive(isSelected);
+            ToggleButtonChildren(分類按鈕[i], isSelected);
         }
 
-        foreach (Transform child in 分類按鈕[index].transform)
+        分類名稱.text = "/ " + 道具分類[index].分類名稱;
+        
+        var 物品顯示 = 道具分類[index].分類UI.GetComponent<物品顯示>();
+        if (物品顯示 != null)
         {
-            child.gameObject.SetActive(true);
+            物品顯示.更新背包(index);
+        }
+    }
+
+    private void ToggleButtonChildren(GameObject button, bool isActive)
+    {
+        foreach (Transform child in button.transform)
+        {
+            child.gameObject.SetActive(isActive);
         }
     }
 }

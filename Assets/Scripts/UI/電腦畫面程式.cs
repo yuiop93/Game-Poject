@@ -8,7 +8,6 @@ public class 電腦畫面程式 : MonoBehaviour
     private GameObject 電腦畫面;
     private GameObject 攝影機1;
     private 控制 取得控制程式;
-    [SerializeField]
     private GameObject situi;
     void Start()
     {

@@ -1313,7 +1313,6 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1101
   "\u6B21\u6578": 1
-  "\u6587\u5B57": {fileID: 0}
   "\u4F4D\u7F6E": {fileID: 0}
 --- !u!114 &5827291048712756513
 MonoBehaviour:
@@ -2385,7 +2384,6 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1003
   "\u6B21\u6578": 1
-  "\u6587\u5B57": {fileID: 0}
   "\u4F4D\u7F6E": {fileID: 0}
 --- !u!65 &7247370783513205796
 BoxCollider:
@@ -3236,7 +3234,6 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1002
   "\u6B21\u6578": 1
-  "\u6587\u5B57": {fileID: 0}
   "\u4F4D\u7F6E": {fileID: 0}
 --- !u!114 &1778785986764456551
 MonoBehaviour:
@@ -3978,7 +3975,6 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1001
   "\u6B21\u6578": 1
-  "\u6587\u5B57": {fileID: 0}
   "\u4F4D\u7F6E": {fileID: 0}
 --- !u!114 &2582110728998248618
 MonoBehaviour:
@@ -15028,9 +15024,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 1
-  "\u7269\u54C1ID": 2003
+  "\u7269\u54C1ID": 2002
   "\u6B21\u6578": 1
-  "\u6587\u5B57": {fileID: 0}
   "\u4F4D\u7F6E": {fileID: 0}
 --- !u!114 &6481249746798289784
 MonoBehaviour:
@@ -15188,10 +15183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1200532d2bb41cc4fa9e6d6d3a399348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 1
+  count: 3
   "\u7269\u54C1ID": 2001
   "\u6B21\u6578": 1
-  "\u6587\u5B57": {fileID: 0}
   "\u4F4D\u7F6E": {fileID: 0}
 --- !u!114 &6481249746458137238
 MonoBehaviour:
@@ -15352,7 +15346,6 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1102
   "\u6B21\u6578": 1
-  "\u6587\u5B57": {fileID: 0}
   "\u4F4D\u7F6E": {fileID: 0}
 --- !u!114 &6481249747507423871
 MonoBehaviour:
@@ -15510,10 +15503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1200532d2bb41cc4fa9e6d6d3a399348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 1
+  count: 5
   "\u7269\u54C1ID": 2003
   "\u6B21\u6578": 1
-  "\u6587\u5B57": {fileID: 0}
   "\u4F4D\u7F6E": {fileID: 0}
 --- !u!114 &6481249747099493746
 MonoBehaviour:
