@@ -81,7 +81,7 @@ public class 坐下 : MonoBehaviour
     {
         if (isSitting && !sittingdown && sitUI.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 onSubmitConfirmed.Invoke();
                 sitUI.SetActive(false);

@@ -3817,13 +3817,13 @@ MonoBehaviour:
   onSubmitConfirmed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 550006f5d802d34468287e4d61247cd5, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: "\u96FB\u8166\u756B\u9762\u7A0B\u5F0F, Assembly-CSharp"
+        m_MethodName: "\u958B\u555F"
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 3628391513158711940}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-
+using UnityEngine.InputSystem;
 public class 消耗品 : MonoBehaviour
 {
     [SerializeField] private item_SO item_SO;
@@ -135,9 +135,10 @@ public class 消耗品 : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             使用道具();
+            Debug.Log("使用道具");
         }
     }
 }
