@@ -11,7 +11,7 @@ public class 物品 : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private item_SO itemSO;
     [SerializeField] private Text 物品數量;
     [SerializeField] private Text 物品名稱;
-    [SerializeField] private Image 圖片;
+    [SerializeField] private Image 物品圖片;
     [SerializeField] private Text 需要數量;
     [SerializeField] private GameObject 灰色背景;
     [HideInInspector] public bool 是否滿足 = false;
@@ -32,10 +32,7 @@ public class 物品 : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         var item = itemSO.物品.FirstOrDefault(i => i.物品ID == 物品ID);
         if (item != null)
         {
-            if (item.圖片 != null && 圖片 != null)
-            {
-                圖片.sprite = item.圖片;
-            }
+            物品圖片.sprite = item.圖片;
             物品數量.text = item.數量.ToString();
             物品名稱.text = item.名稱;
         }

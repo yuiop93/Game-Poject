@@ -19,6 +19,7 @@ public class 消耗品 : MonoBehaviour
 
     void Start()
     {
+
         道具顯示(0);
         冷卻進度條.fillAmount = 0; // 初始化進度條
 
@@ -50,6 +51,7 @@ public class 消耗品 : MonoBehaviour
         }
         else
         {
+            道具耗盡();
             image.sprite = null;
             數量UI.text = "未使用";
         }
@@ -60,7 +62,6 @@ public class 消耗品 : MonoBehaviour
         // 檢查是否在冷卻狀態
         if (是否冷卻中)
         {
-            Debug.Log("道具正在冷卻中！");
             return; // 如果還在冷卻，則退出
         }
 
