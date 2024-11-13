@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -117,7 +117,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
                 return _playerInput.currentControlScheme == "KeyboardMouse";
 #else
-				return false;
+                return false;
 #endif
             }
         }
@@ -135,14 +135,14 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM 
+#if ENABLE_INPUT_SYSTEM
             _playerInput = GetComponent<PlayerInput>();
 #else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+            Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
             AssignAnimationIDs();
@@ -158,8 +158,22 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
-            if(!坐下.isSitting){Move();}
-            
+            if (!坐下.isSitting)
+            {
+                if (!_input.aim)
+                {
+                    Move();
+                }
+                else
+                {
+                    AimMove();
+                }
+            }
+            else
+            {
+                _input.aim = false;
+            }
+
         }
 
         private void LateUpdate()
@@ -211,6 +225,51 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }
+        private void AimMove()
+        {
+            float targetSpeed = _input.move == Vector2.zero ? 0.0f : MoveSpeed;
+            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            // 使用 Lerp 平滑过渡当前速度到目标速度
+            if (_input.move.y < 0)
+            {
+                _speed = Mathf.Lerp(_speed, -targetSpeed, Time.deltaTime * SpeedChangeRate);
+            }
+            else
+            {
+                _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * SpeedChangeRate);
+            }
+            // 计算输入方向
+            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+
+            // 计算镜头的方向
+            Vector3 cameraForward = _mainCamera.transform.forward;
+            cameraForward.y = 0;  // 确保只在水平面上计算
+
+            // 计算背对镜头的方向
+            Vector3 targetDirection = cameraForward.normalized;
+
+            // 计算目标旋转角度，使角色始终朝向背对镜头的方向
+            float targetRotation = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0.0f, targetRotation, 0.0f);
+
+            // 将输入方向转换为角色的本地方向
+            Vector3 moveDirection = transform.TransformDirection(inputDirection);
+
+            // 计算角色的移动速度
+            Vector3 velocity = moveDirection * (Mathf.Abs(_speed) * Time.deltaTime);
+
+            // 应用垂直速度（例如跳跃或重力影响）
+            velocity.y = _verticalVelocity * Time.deltaTime;
+
+            // 使用 CharacterController 移动角色
+            _controller.Move(velocity);
+            if (_hasAnimator)
+            {
+                _animator.SetFloat(_animIDSpeed, _speed);
+                _animator.SetFloat(_animIDMotionSpeed, _input.move.magnitude);
+            }
+        }
+
 
         private void Move()
         {
@@ -378,9 +437,9 @@ namespace StarterAssets
                 if (FootstepAudioClips.Length > 0)
                 {
                     var index = Random.Range(0, FootstepAudioClips.Length);
-                    if(volume > 0.0f) AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), volume);
+                    if (volume > 0.0f) AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), volume);
                     else
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                        AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
                 }
             }
         }

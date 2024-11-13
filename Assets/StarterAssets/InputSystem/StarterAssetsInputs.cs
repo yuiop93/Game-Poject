@@ -13,6 +13,8 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool crouch;
+		public bool aim;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -27,27 +29,16 @@ public void CursorUnLock()
 			cursorLocked = false;
 			cursorInputForLook = false;
 			SetCursorState(false);
-			move = Vector2.zero;
-			look = Vector2.zero;
+			aim = false;
 		}
 		public void Cursorlock()
 		{
 			cursorLocked = true;
 			cursorInputForLook = true;
 			SetCursorState(true);
-			jump = false;
-			move = Vector2.zero;
-			look = Vector2.zero;
-			sprint = false;
-
 		}
 		public void OnMove(InputValue value)
 		{
-			if(坐下.isSitting)
-			{
-				move = Vector2.zero;
-				return;
-			}else
 			MoveInput(value.Get<Vector2>());
 		}
 
@@ -68,16 +59,19 @@ public void CursorUnLock()
 		{
 			SprintInput(value.isPressed);
 		}
+		public void OnCrouch(InputValue value)
+		{
+			CrouchInput(value.isPressed);
+		}
+		public void OnAim(InputValue value)
+		{
+			AimInput(value.isPressed);
+		}
 #endif
 
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
-			if(坐下.isSitting)
-			{
-				move = Vector2.zero;
-				return;
-			}else
 			move = newMoveDirection;
 		}
 
@@ -95,7 +89,15 @@ public void CursorUnLock()
 		{
 			sprint = newSprintState;
 		}
-
+		public void CrouchInput(bool newCrouchState)
+		{
+			crouch = !crouch;
+		}
+		public void AimInput(bool newAimState)
+		{
+			if(!坐下.isSitting)
+			aim = !aim;
+		}
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);

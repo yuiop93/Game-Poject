@@ -138,7 +138,6 @@ public class 消耗品 : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             使用道具();
-            Debug.Log("使用道具");
         }
     }
 }

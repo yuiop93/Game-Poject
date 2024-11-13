@@ -4,10 +4,14 @@ using Cinemachine;
 public class 滑鼠滾輪視野 : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
-    public float zoomSpeed = 10f;  // 调整FOV的速度
-    public float minFOV = 20f;     // 最小FOV
-    public float maxFOV = 40f;     // 最大FOV
+    public float zoomSpeed = 1f;
+    public float minDistance = 1f;
+    public float maxDistance = 5f;
 
+    private void Start()
+    {
+        virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = maxDistance;
+    }
     void Update()
     {
         if (互動選擇.isSelecting)
@@ -16,16 +20,18 @@ public class 滑鼠滾輪視野 : MonoBehaviour
         }
         if (坐下.isSitting)
         {
-            virtualCamera.m_Lens.FieldOfView = maxFOV;
+            virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = maxDistance;
             return;
         }
+
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
         if (scrollInput != 0)
         {
-            float currentFOV = virtualCamera.m_Lens.FieldOfView;
-            currentFOV -= scrollInput * zoomSpeed;
-            currentFOV = Mathf.Clamp(currentFOV, minFOV, maxFOV);
-            virtualCamera.m_Lens.FieldOfView = currentFOV;
+            var thirdPersonFollow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+            float currentDistance = thirdPersonFollow.CameraDistance;
+            currentDistance -= scrollInput * zoomSpeed;
+            currentDistance = Mathf.Clamp(currentDistance, minDistance, maxDistance);
+            thirdPersonFollow.CameraDistance = currentDistance;
         }
     }
 }
