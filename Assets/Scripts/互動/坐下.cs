@@ -57,8 +57,8 @@ public class 坐下 : MonoBehaviour
             }
         isSitting = true;
         sittingdown = true;
+        inputs.Cursorlock();
         StartCoroutine(WaitAndPrint(2f));
-        inputs.move = Vector2.zero;
         player.transform.SetPositionAndRotation(sitpoint.transform.position, sitpoint.transform.rotation);
         player.GetComponent<CharacterController>().enabled = false;
         animator.SetTrigger("Sit");

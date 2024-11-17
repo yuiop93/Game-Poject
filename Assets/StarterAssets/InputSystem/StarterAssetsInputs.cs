@@ -13,7 +13,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public bool crouch;
+		public bool fire;
 		public bool aim;
 
 		[Header("Movement Settings")]
@@ -36,6 +36,7 @@ public void CursorUnLock()
 			cursorLocked = true;
 			cursorInputForLook = true;
 			SetCursorState(true);
+			aim = false;
 		}
 		public void OnMove(InputValue value)
 		{
@@ -59,13 +60,13 @@ public void CursorUnLock()
 		{
 			SprintInput(value.isPressed);
 		}
-		public void OnCrouch(InputValue value)
-		{
-			CrouchInput(value.isPressed);
-		}
 		public void OnAim(InputValue value)
 		{
 			AimInput(value.isPressed);
+		}
+		public void OnFire(InputValue value)
+		{
+			FireInput(value.isPressed);
 		}
 #endif
 
@@ -89,14 +90,16 @@ public void CursorUnLock()
 		{
 			sprint = newSprintState;
 		}
-		public void CrouchInput(bool newCrouchState)
-		{
-			crouch = !crouch;
-		}
 		public void AimInput(bool newAimState)
 		{
 			if(!坐下.isSitting)
 			aim = !aim;
+			fire = false;
+		}
+		public void FireInput(bool newFireState)
+		{
+			if(aim)
+			fire = newFireState;
 		}
 		private void OnApplicationFocus(bool hasFocus)
 		{
