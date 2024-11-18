@@ -38,10 +38,11 @@ public class 雷射 : MonoBehaviour
     }
     void Fire()
     {
+        laserLineRenderer.enabled = true; // 顯示雷射
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 從鼠標位置發射射線
         if (Physics.Raycast(ray, out RaycastHit hit, laserMaxLength)) // 如果射線碰撞到物體
         {
-            laserLineRenderer.enabled = true; // 顯示雷射
+
             if (grabbedObject == null) // 如果還沒有抓取物體
             {
                 // 嘗試抓取物體
@@ -49,6 +50,7 @@ public class 雷射 : MonoBehaviour
                 {
                     grabbedObject = rb; // 設置為抓取的物體
                 }
+
             }
         }
 
