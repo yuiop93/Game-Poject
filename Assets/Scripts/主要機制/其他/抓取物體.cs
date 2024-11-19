@@ -6,6 +6,8 @@ public class 抓取物體 : MonoBehaviour
     public Transform attachPoint; // 抓取的連接點
     private 可被抓取 _currentGrabbable;
     private StarterAssetsInputs _input;
+    [SerializeField]
+    private float grabDistance = 10f; // 抓取距離
     
     void Start()
     {
@@ -16,26 +18,10 @@ public class 抓取物體 : MonoBehaviour
             Debug.LogError("缺少 StarterAssetsInputs 組件！");
         }
     }
-
-    void Update()
-    {
-        if (_input.fire) // 判斷是否按下 Fire 按鍵（通常是滑鼠左鍵或觸屏按鈕）
-        {
-            if (_currentGrabbable == null) // 尚未抓取
-            {
-                TryGrab();
-            }
-        }
-        else if (_currentGrabbable != null) // 放開 Fire 按鍵時釋放
-        {
-            Release();
-        }
-    }
-
-    private void TryGrab()
+    public void TryGrab()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit,grabDistance))
         {
             可被抓取 可被抓取 = hit.collider.GetComponent<可被抓取>();
             if (可被抓取 != null)
@@ -55,7 +41,7 @@ public class 抓取物體 : MonoBehaviour
         }
     }
 
-    private void Release()
+    public void Release()
     {
         if (_currentGrabbable != null)
         {

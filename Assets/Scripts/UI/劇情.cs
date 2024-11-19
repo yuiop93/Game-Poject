@@ -8,7 +8,8 @@ public class 劇情 : MonoBehaviour
 {
     [HideInInspector]
     public 劇情_SO 劇情SO;
-    public GameObject 劇情UI;
+    [SerializeField]
+    private GameObject 劇情UI;
     private int index;
     [SerializeField]
     private Text 名稱;
@@ -38,7 +39,8 @@ public class 劇情 : MonoBehaviour
     private GameObject 歷史紀錄內容;
     [SerializeField]
     [Range(1, 100)]
-    private int 文字速度=10;
+    private int 文字速度 = 10;
+    bool Control = false;
     void Start()
     {
         劇情UI.SetActive(false);
@@ -49,6 +51,8 @@ public class 劇情 : MonoBehaviour
 
     public void 顯示劇情(bool 是否控制)
     {
+        
+        Control = 是否控制;
         foreach (Transform child in 歷史紀錄)
         {
             Destroy(child.gameObject);
@@ -56,6 +60,7 @@ public class 劇情 : MonoBehaviour
         歷史紀錄面板.SetActive(false);
         if (是否控制)
         {
+            劇情UI.GetComponent<Image>().enabled = true;
             自動播放 = false;
             自動按鈕.GetComponentInChildren<Text>().text = "▷";
             互動欄位.gameObject.SetActive(true);
@@ -68,15 +73,25 @@ public class 劇情 : MonoBehaviour
             顯示當前劇情();
             控制.CursorUnLock();
             切換攝影機();
+            SetAlignment(TextAnchor.UpperLeft);
         }
         else
         {
+            劇情UI.GetComponent<Image>().enabled = false;
             攝影機 = null;
             自動播放 = true;
             互動欄位.gameObject.SetActive(false);
             劇情UI.SetActive(true);
             index = 0;
             顯示當前劇情();
+            SetAlignment(TextAnchor.MiddleCenter);
+        }
+    }
+    public void SetAlignment(TextAnchor alignment)
+    {
+        if (對話內容 != null)
+        {
+            對話內容.alignment = alignment;
         }
     }
 
@@ -98,7 +113,7 @@ public class 劇情 : MonoBehaviour
         foreach (char letter in dialogue)
         {
             對話內容.text += letter;
-            yield return new WaitForSeconds(1f/文字速度);
+            yield return new WaitForSeconds(1f / 文字速度);
         }
         顯示完成 = true;
         yield return new WaitForSeconds(1f);
@@ -196,7 +211,8 @@ public class 劇情 : MonoBehaviour
             child.gameObject.SetActive(true);
         }
         劇情UI.SetActive(false);
-        控制.CursorLock();
+        if (Control)
+            控制.CursorLock();
     }
 
 }

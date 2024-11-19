@@ -7,8 +7,6 @@ public class 提交畫面 : MonoBehaviour
 {
     public item_SO item; // 存储所有物品
     [SerializeField]
-    private GameObject 提交道具UI; // 提交界面
-    [SerializeField]
     private GameObject 欄位; // 显示道具的父物体
     [SerializeField]
     private GameObject 道具預置物; // 道具预设物
@@ -19,7 +17,7 @@ public class 提交畫面 : MonoBehaviour
 
     void Start()
     {
-        提交道具UI.SetActive(false);
+        this.GetComponent<UIScaleEffectWithClose>().CloseUI();
         f1 = GameObject.Find("程式/控制").GetComponent<控制>();
     }
 
@@ -53,7 +51,7 @@ public class 提交畫面 : MonoBehaviour
         提交按鈕.onClick.RemoveAllListeners();
         提交按鈕.onClick.AddListener(提交道具.確定提交);
         f1.CursorUnLock();
-        提交道具UI.SetActive(true);
+        this.GetComponent<UIScaleEffectWithClose>().OpenUI();
         是否滿足 = new bool[ID.Length];
 
         // 清空之前的道具显示
@@ -90,8 +88,7 @@ public class 提交畫面 : MonoBehaviour
     // 隐藏提交道具界面
     public void 隱藏提交道具()
     {
-        提交道具UI.SetActive(false);
-        提交道具 = null;
+        this.GetComponent<UIScaleEffectWithClose>().CloseUI();
         f1.CursorLock();
     }
 }

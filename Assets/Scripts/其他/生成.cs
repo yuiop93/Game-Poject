@@ -16,7 +16,7 @@ public class 生成 : MonoBehaviour
 
     void Start()
     {
-        Invoke("生成怪物", 1);
+        //Invoke("生成怪物", 1);
     }
     public void 生成怪物()
 {

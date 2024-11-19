@@ -17,6 +17,7 @@ public class 互動 : MonoBehaviour
     [SerializeField]
     private Transform playerTransform;
     public UnityEvent onSubmitConfirmed;
+    [SerializeField] private bool 強制互動 = false;
     void Start()
     {
         互動UI = GameObject.Find("UI控制/互動").transform;
@@ -27,15 +28,31 @@ public class 互動 : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (預置按鈕 == null)
+            if (強制互動)
             {
-                預置按鈕 = Resources.Load<GameObject>("Prefab/panel/互動/按鈕");
+                if (onSubmitConfirmed.GetPersistentEventCount() > 0)
+                {
+                    onSubmitConfirmed.Invoke();
+                }
+                return;
             }
-            按鈕 = Instantiate(預置按鈕);
-            按鈕文字 = 按鈕.transform.GetChild(0).GetComponent<Text>();
-            按鈕文字.text = this.gameObject.name;
-            按鈕.transform.SetParent(互動UI, false);
+            else
+            {
+                生成按鈕();
+            }
+
         }
+    }
+    void 生成按鈕()
+    {
+        if (預置按鈕 == null)
+        {
+            預置按鈕 = Resources.Load<GameObject>("Prefab/panel/互動/按鈕");
+        }
+        按鈕 = Instantiate(預置按鈕);
+        按鈕文字 = 按鈕.transform.GetChild(0).GetComponent<Text>();
+        按鈕文字.text = this.gameObject.name;
+        按鈕.transform.SetParent(互動UI, false);
     }
 
     void OnTriggerExit(Collider other)
@@ -52,17 +69,19 @@ public class 互動 : MonoBehaviour
     }
     void Update()
     {
-
         if (按鈕 != null && 按鈕.activeSelf == true)
         {
             if (!this.GetComponent<Collider>().enabled || 坐下.isSitting)
             {
                 清除按鈕();
             }
-            if (Keyboard.current.fKey.wasPressedThisFrame)
+            if (!控制.互動中)
             {
-                if (按鈕 != null && 按鈕.activeSelf == true)
-                    HandleInteraction();
+                if (Keyboard.current.fKey.wasPressedThisFrame)
+                {
+                    if (按鈕 != null && 按鈕.activeSelf == true)
+                        HandleInteraction();
+                }
             }
         }
     }
@@ -85,7 +104,8 @@ public class 互動 : MonoBehaviour
             if (onSubmitConfirmed.GetPersistentEventCount() > 0)
             {
                 onSubmitConfirmed.Invoke();
-            }else
+            }
+            else
             {
                 清除按鈕();
                 Debug.Log("No event assigned to this button");

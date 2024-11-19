@@ -41,13 +41,11 @@ public class 分類顯示 : MonoBehaviour
         {
             GameObject newButton = Instantiate(預置按鈕, transform);
             newButton.name = 道具分類[i].分類名稱;
-
             Image buttonImage = newButton.GetComponent<Image>();
             if (buttonImage != null)
             {
                 buttonImage.sprite = 道具分類[i].分類圖片;
             }
-
             int currentIndex = i;
             newButton.GetComponent<Button>().onClick.AddListener(() => 顯示分類(currentIndex));
             ToggleButtonChildren(newButton, false);

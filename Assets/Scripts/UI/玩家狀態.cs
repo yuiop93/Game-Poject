@@ -9,8 +9,7 @@ public class 玩家狀態 : MonoBehaviour
     public enum Statetype
     {
         正常,
-        遠程,
-        近戰,
+        瞄準,
         死亡,
     }
 
@@ -50,14 +49,45 @@ public class 玩家狀態 : MonoBehaviour
             能量 = 能量上限;
         }
     }
+    public static bool 能量使用中 = false;
+    [SerializeField]
+    private int 能量回復速度 = 1;
+    private Coroutine 能量回復協程;
+    public void 開始能量回復()
+    {
+        if (能量回復協程 == null && !能量使用中)
+        {
+            能量回復協程 = StartCoroutine(能量回復());
+        }
+    }
+    private IEnumerator 能量回復()
+    {
+        yield return new WaitForSeconds(2f);
+        while (!能量使用中)
+        {
+            if (能量 < 能量上限)
+            {
+                能量 += 能量回復速度;
+                yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                break; // 當能量達到上限時跳出循環
+            }
+        }
+        // 協程結束時設置為 null
+        能量回復協程 = null;
+    }
+    public void 受傷(int 傷害)
+    {
+        血量 -= 傷害;
+    }
     void Update()
     {
         上限();
-        
         血條.fillAmount = (float)血量 / 血量上限;
         體力條.fillAmount = (float)體力 / 體力上限;
         能量條.fillAmount = (float)能量 / 能量上限;
-
         if (血量 <= 0)
         {
             狀態 = Statetype.死亡;
@@ -70,11 +100,7 @@ public class 玩家狀態 : MonoBehaviour
                 體力條UI.SetActive(false);
                 能量條UI.SetActive(false);
                 break;
-            case Statetype.近戰:
-                體力條UI.SetActive(true);
-                能量條UI.SetActive(false);
-                break;
-            case Statetype.遠程:
+            case Statetype.瞄準:
                 體力條UI.SetActive(false);
                 能量條UI.SetActive(true);
                 break;

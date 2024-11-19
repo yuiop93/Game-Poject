@@ -14,17 +14,18 @@ public class 背包 : MonoBehaviour
 
     public void 顯示背包()
     {
-        背包UI.SetActive(true);
+        this.GetComponent<UIScaleEffectWithClose>().OpenUI();
         狀態.開啟();
         f1.CursorUnLock();
     }
     public void 隱藏背包()
     {
-        背包UI.SetActive(false);
+        this.GetComponent<UIScaleEffectWithClose>().CloseUI();
         f1.CursorLock();
     }
     void Start()
     {
+        
         f1 = GameObject.Find("程式/控制").GetComponent<控制>();
         物品SO = Resources.Load<item_SO>("ScriptableObjects/道具/背包");
         背包UI.SetActive(false);

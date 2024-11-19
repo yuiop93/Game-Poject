@@ -36,17 +36,18 @@ public class Aim : MonoBehaviour
     }
     void Distance()
     {
-        if (_input.aim)
+        if (!_input.fire) { fixedDistance = 5f; }
+        else
         {
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 if (fixedDistance < 7f)
-                fixedDistance += 0.5f;
+                    fixedDistance += 0.5f;
             }
             if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
-                if (fixedDistance >2f)
-                fixedDistance -= 0.5f;
+                if (fixedDistance > 3f)
+                    fixedDistance -= 0.5f;
             }
         }
     }
@@ -71,5 +72,6 @@ public class Aim : MonoBehaviour
             }
         }
         rig.weight = isActive ? 1.0f : 0.0f;
+        玩家狀態.狀態=isActive ? 玩家狀態.Statetype.瞄準:玩家狀態.Statetype.正常;
     }
 }

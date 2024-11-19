@@ -5228,6 +5228,7 @@ GameObject:
   - component: {fileID: 211038415856883224}
   - component: {fileID: 7866538388881278138}
   - component: {fileID: 7866538388881278133}
+  - component: {fileID: 1766041771393228498}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -5395,7 +5396,7 @@ MonoBehaviour:
   GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 577
   CinemachineCameraTarget: {fileID: 166556130080223692}
   TopClamp: 30
   BottomClamp: -60
@@ -5586,6 +5587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 0}
+  grabDistance: 10
 --- !u!114 &7866538388881278133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5603,6 +5605,28 @@ MonoBehaviour:
   laserWidth: 0.1
   laserMaxLength: 50
   grabbedObject: {fileID: 0}
+--- !u!114 &1766041771393228498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5200545985184930293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66d7de3f23593b4ba0ed7dd09caac5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "\u8840\u91CF\u4E0A\u9650": 100
+  "\u9AD4\u529B\u4E0A\u9650": 100
+  "\u80FD\u91CF\u4E0A\u9650": 100
+  "\u8840\u689D": {fileID: 0}
+  "\u9AD4\u529B\u689D": {fileID: 0}
+  "\u80FD\u91CF\u689D": {fileID: 0}
+  "\u8840\u689DUI": {fileID: 0}
+  "\u9AD4\u529B\u689DUI": {fileID: 0}
+  "\u80FD\u91CF\u689DUI": {fileID: 0}
+  "\u80FD\u91CF\u56DE\u5FA9\u901F\u5EA6": 3
 --- !u!1 &5249309984408670341
 GameObject:
   m_ObjectHideFlags: 0

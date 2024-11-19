@@ -16,6 +16,8 @@ public class 可被抓取 : MonoBehaviour
     private float grabSpringForce = 20f;   // SpringJoint 的彈力
     [SerializeField]
     private float grabDrag = 5f;          // 抓取時的阻力
+    [SerializeField]
+    private int 能量消耗 = 10;         // 抓取時消耗的能量
     private float _originalDrag;         // 原始阻力
     private RigidbodyConstraints _originalConstraints; // 保存原始剛體約束
     private bool _wasGravityEnabled;     // 是否原本開啟了重力
@@ -68,8 +70,26 @@ public class 可被抓取 : MonoBehaviour
 
         _rigidbody.isKinematic = false;
         onGrabbed.Invoke(); // 觸發抓取事件
+        if (_能量消耗中 == null)
+        {
+            _能量消耗中 =StartCoroutine(能量消耗中());
+        }
     }
-
+    private Coroutine _能量消耗中; // 用來存儲協程引用，方便停止
+    private IEnumerator 能量消耗中()
+    {
+        玩家狀態.能量使用中 = true;
+        while (玩家狀態.能量使用中)
+        {
+            玩家狀態.能量 -= 1;
+            yield return new WaitForSeconds(1f/(float)能量消耗);
+            if (玩家狀態.能量 <= 0)
+            {
+                玩家狀態.能量 = 0;
+                Release();
+            }
+        }
+    }
     /// <summary>
     /// 釋放抓取
     /// </summary>
@@ -77,6 +97,12 @@ public class 可被抓取 : MonoBehaviour
 
     public void Release()
     {
+        if (_能量消耗中 != null)
+        {
+            StopCoroutine(_能量消耗中);
+            _能量消耗中 = null;
+        }
+        
         if (_springJoint != null)
         {
             Destroy(_springJoint);
@@ -95,31 +121,41 @@ public class 可被抓取 : MonoBehaviour
             _checkCoroutine = StartCoroutine(CheckIfStopped());
         }
     }
+     
 
     private IEnumerator CheckIfStopped()
     {
-        float elapsedTime = 0f;
-        if (_navMeshAgent == null)
+        float elapsedTime;
+        if (_navMeshAgent != null)
         {
-            while (elapsedTime < 1f)
-            {
-                // 如果物體移動，重置計時器
-                if (_rigidbody.velocity.magnitude > 0.1f)
-                {
-                    elapsedTime = 0f; // 物體移動，重置時間
-                }
-
-                elapsedTime += Time.deltaTime; // 累加靜止時間
-                yield return null; // 等待下一幀
-            }
+            elapsedTime = 0.8f;
         }
         else
         {
-            while (_rigidbody.velocity.magnitude > 0.1f)
+            elapsedTime = 0f;
+        }
+        while (elapsedTime < 1f)
+        {
+            // 如果物體移動，重置計時器
+            if (_rigidbody.velocity.magnitude > 0.1f)
             {
-                yield return null; // 等待下一幀
+                if (_navMeshAgent != null)
+                {
+                    elapsedTime = 0.8f;
+                }
+                else
+                {
+                    elapsedTime = 0f;
+                } // 物體移動，重置時間
             }
-            _navMeshAgent.enabled = true;
+
+            elapsedTime += Time.deltaTime; // 累加靜止時間
+            yield return null; // 等待下一幀
+        }
+
+        if (_navMeshAgent != null)
+        {
+            _navMeshAgent.enabled = true; // 啟用 NavMeshAgent
         }
         _rigidbody.isKinematic = _isKinematic;
         _checkCoroutine = null; // 協程結束後清空引用
