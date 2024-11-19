@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.Events;
 public class 可被抓取 : MonoBehaviour
 {
+    [SerializeField]
+    private UnityEvent onGrabbed; // 抓取時觸發的事件
+    [SerializeField]
+    private UnityEvent onReleased; // 釋放時觸發的事件
     private Rigidbody _rigidbody;
     private SpringJoint _springJoint;
 
@@ -62,6 +67,7 @@ public class 可被抓取 : MonoBehaviour
         }
 
         _rigidbody.isKinematic = false;
+        onGrabbed.Invoke(); // 觸發抓取事件
     }
 
     /// <summary>
@@ -93,24 +99,31 @@ public class 可被抓取 : MonoBehaviour
     private IEnumerator CheckIfStopped()
     {
         float elapsedTime = 0f;
-        // 檢查物體是否靜止並計算靜止時間
-        while (elapsedTime < 1f)
+        if (_navMeshAgent == null)
         {
-            // 如果物體移動，重置計時器
-            if (_rigidbody.velocity.magnitude > 0.1f)
+            while (elapsedTime < 1f)
             {
-                elapsedTime = 0f; // 物體移動，重置時間
-            }
+                // 如果物體移動，重置計時器
+                if (_rigidbody.velocity.magnitude > 0.1f)
+                {
+                    elapsedTime = 0f; // 物體移動，重置時間
+                }
 
-            elapsedTime += Time.deltaTime; // 累加靜止時間
-            yield return null; // 等待下一幀
+                elapsedTime += Time.deltaTime; // 累加靜止時間
+                yield return null; // 等待下一幀
+            }
         }
-        if (_navMeshAgent != null)
+        else
         {
+            while (_rigidbody.velocity.magnitude > 0.1f)
+            {
+                yield return null; // 等待下一幀
+            }
             _navMeshAgent.enabled = true;
         }
         _rigidbody.isKinematic = _isKinematic;
         _checkCoroutine = null; // 協程結束後清空引用
+        onReleased.Invoke(); // 觸發釋放事件
     }
 
     public void StopCheckingIfStopped()

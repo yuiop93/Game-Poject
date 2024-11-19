@@ -42,7 +42,6 @@ public class 雷射 : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // 從鼠標位置發射射線
         if (Physics.Raycast(ray, out RaycastHit hit, laserMaxLength)) // 如果射線碰撞到物體
         {
-
             if (grabbedObject == null) // 如果還沒有抓取物體
             {
                 // 嘗試抓取物體

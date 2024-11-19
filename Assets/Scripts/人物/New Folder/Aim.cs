@@ -28,9 +28,27 @@ public class Aim : MonoBehaviour
         if (_input.aim) // 如果 aim 为 true
         {
             ray(); // 调用 ray 方法
+            Distance();
         }
         float myFloat = _input.aim ? 1.0f : 0.0f;
         animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), myFloat, Time.deltaTime * 10)); // 设置动画层权重
+
+    }
+    void Distance()
+    {
+        if (_input.aim)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                if (fixedDistance < 7f)
+                fixedDistance += 0.5f;
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                if (fixedDistance >2f)
+                fixedDistance -= 0.5f;
+            }
+        }
     }
     void ray()
     {

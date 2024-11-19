@@ -5799,6 +5799,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a40deb417439641bdabeea4195921a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  onReleased:
+    m_PersistentCalls:
+      m_Calls: []
   grabSpringForce: 20
   grabDrag: 5
 --- !u!65 &712555987
@@ -10142,6 +10148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a40deb417439641bdabeea4195921a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  onReleased:
+    m_PersistentCalls:
+      m_Calls: []
   grabSpringForce: 49.39
   grabDrag: 5
 --- !u!1 &1657315495
@@ -31178,6 +31190,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a40deb417439641bdabeea4195921a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  onReleased:
+    m_PersistentCalls:
+      m_Calls: []
   grabSpringForce: 20
   grabDrag: 5
 --- !u!65 &8042921883897537951
