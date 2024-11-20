@@ -555,6 +555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4113561931436360047}
+  - component: {fileID: 828804241775362230}
   m_Layer: 0
   m_Name: "\u5F48\u51FA\u8996\u7A97"
   m_TagString: Untagged
@@ -580,6 +581,22 @@ Transform:
   m_Father: {fileID: 7278311563130840518}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &828804241775362230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391319006112247105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a482c1175558c9d4782bef692647c1e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiTransform:
+  - {fileID: 7278311561320516278}
+  - {fileID: 7278311562672899886}
+  - {fileID: 3108106679319941737}
 --- !u!1 &2613266483836260985
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +997,19 @@ MonoBehaviour:
   disableOnClose: 1
   onClosed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8009457088157741872}
+        m_TargetAssemblyTypeName: "\u96FB\u8166\u756B\u9762\u7A0B\u5F0F, Assembly-CSharp"
+        m_MethodName: "\u96B1\u85CF\u756B\u9762"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5143994467058321418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,9 +1289,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8009457088157741872}
-        m_TargetAssemblyTypeName: "\u96FB\u8166\u756B\u9762\u7A0B\u5F0F, Assembly-CSharp"
-        m_MethodName: "\u96B1\u85CF\u756B\u9762"
+      - m_Target: {fileID: 6921671709318457157}
+        m_TargetAssemblyTypeName: UIScaleEffectWithClose, Assembly-CSharp
+        m_MethodName: CloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3958,9 +3987,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7278311562672899884}
-        m_TargetAssemblyTypeName: "\u63D0\u4EA4\u756B\u9762, Assembly-CSharp"
-        m_MethodName: "\u96B1\u85CF\u63D0\u4EA4\u9053\u5177"
+      - m_Target: {fileID: 687495745460301260}
+        m_TargetAssemblyTypeName: UIScaleEffectWithClose, Assembly-CSharp
+        m_MethodName: CloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4092,9 +4121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7278311561320516276}
-        m_TargetAssemblyTypeName: "\u80CC\u5305, Assembly-CSharp"
-        m_MethodName: "\u96B1\u85CF\u80CC\u5305"
+      - m_Target: {fileID: 3721011276463367098}
+        m_TargetAssemblyTypeName: UIScaleEffectWithClose, Assembly-CSharp
+        m_MethodName: CloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

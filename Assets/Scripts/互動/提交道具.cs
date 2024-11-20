@@ -55,6 +55,6 @@ public class 提交道具 : MonoBehaviour
         {
             提交畫面.消耗道具(道具ID, 道具數量);
         }
-        提交畫面.隱藏提交道具();
+        
     }
 }

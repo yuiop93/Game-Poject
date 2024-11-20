@@ -172,6 +172,7 @@ namespace StarterAssets
             else
             {
                 _input.aim = false;
+                _input.jump = false;
             }
 
         }

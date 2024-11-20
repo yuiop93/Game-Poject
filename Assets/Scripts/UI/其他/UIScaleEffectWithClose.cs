@@ -13,9 +13,10 @@ public class UIScaleEffectWithClose : MonoBehaviour
     [SerializeField] private UnityEvent onClosed; // UI 關閉後的回調
 
     private bool isOpen = false; // UI 是否開啟
-
+    private 控制 f1;
     private void Start()
     {
+        f1 = GameObject.Find("程式/控制").GetComponent<控制>();
         // 初始設置為關閉狀態
         uiTransform.transform.localScale = Vector3.zero;
         if (disableOnClose)
@@ -27,39 +28,43 @@ public class UIScaleEffectWithClose : MonoBehaviour
     /// </summary>
     public void OpenUI()
     {
-        if (isOpen) return; // 防止重複執行
-        isOpen = true;
-
-        // 確保物件激活
-        uiTransform.SetActive(true);
-        StartCoroutine(ScaleUI(Vector3.one));
+        if (a == null)
+        {
+            if (isOpen) return; // 防止重複執行
+            isOpen = true;
+            uiTransform.SetActive(true);
+            a = StartCoroutine(ScaleUI(Vector3.one));
+            f1.CursorUnLock();
+        }
     }
-
     /// <summary>
     /// 關閉 UI
     /// </summary>
     public void CloseUI()
     {
-        if (!isOpen) return; // 防止重複執行
-        isOpen = false;
-
-        StartCoroutine(ScaleUI(Vector3.zero, () =>
+        if (a == null)
         {
-            // 動畫結束後執行
-            if (disableOnClose)
-                uiTransform.SetActive(false);
-        }));
-        if (onClosed != null)
-            onClosed.Invoke();
+            if (!isOpen) return; // 防止重複執行
+            isOpen = false;
+            a = StartCoroutine(ScaleUI(Vector3.zero, () =>
+            {
+                // 動畫結束後執行
+                if (disableOnClose)
+                    uiTransform.SetActive(false);
+                if (onClosed != null)
+                    onClosed.Invoke();
+                f1.CursorLock();
+            }));
+        }
     }
-
+    private Coroutine a;
     /// <summary>
     /// 縮放 UI
     /// </summary>
     /// <param name="targetScale">目標大小</param>
     /// <param name="onComplete">動畫完成後的回調 (可選)</param>
     /// <returns></returns>
-    private IEnumerator ScaleUI(Vector3 targetScale, System.Action onComplete = null)
+    private IEnumerator ScaleUI(Vector3 targetScale, UnityAction onComplete = null)
     {
         float elapsedTime = 0f;
         Vector3 initialScale = uiTransform.transform.localScale;
@@ -73,8 +78,7 @@ public class UIScaleEffectWithClose : MonoBehaviour
         }
 
         uiTransform.transform.localScale = targetScale;
-
-        // 動畫完成後的回調
         onComplete?.Invoke();
+        a = null;
     }
 }
