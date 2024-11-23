@@ -932,8 +932,8 @@ GameObject:
   - component: {fileID: 4660907538322195950}
   - component: {fileID: 969404403320406211}
   - component: {fileID: 3341505750245036154}
-  - component: {fileID: 6663085975514363631}
   - component: {fileID: 101751317925457312}
+  - component: {fileID: 6663085975514363631}
   m_Layer: 0
   m_Name: "\u96F7\u5C04\u602A"
   m_TagString: Monster
@@ -1135,6 +1135,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36f6d55c2535ab4bb00ae7bb0f18509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &101751317925457312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2497083204282778188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad34fcb3709fed640a685302374ad3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "\u8840\u689DUI": {fileID: 0}
+  "\u602A\u7269\u8840\u91CF\u689D": {fileID: 0}
+  "\u602A\u7269\u8840\u91CF\u6700\u5927\u503C": 100
 --- !u!114 &6663085975514363631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,21 +1207,7 @@ MonoBehaviour:
   grabSpringForce: 20
   grabDrag: 5
   "\u80FD\u91CF\u6D88\u8017": 10
---- !u!114 &101751317925457312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2497083204282778188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad34fcb3709fed640a685302374ad3fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  "\u8840\u689DUI": {fileID: 0}
-  "\u602A\u7269\u8840\u91CF\u689D": {fileID: 0}
-  "\u602A\u7269\u8840\u91CF\u6700\u5927\u503C": 100
+  centerOfMass: {x: 0, y: 2, z: 0}
 --- !u!1 &2546743987829592596
 GameObject:
   m_ObjectHideFlags: 0

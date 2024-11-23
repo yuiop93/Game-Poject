@@ -5587,7 +5587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 0}
-  grabDistance: 10
+  grabDistance: 5
 --- !u!114 &7866538388881278133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5602,8 +5602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunMuzzle: {fileID: 166556129700376960}
   laserLineRenderer: {fileID: 0}
-  laserWidth: 0.1
-  laserMaxLength: 50
+  laserWidth: 0.01
+  laserMaxLength: 5
   grabbedObject: {fileID: 0}
 --- !u!114 &1766041771393228498
 MonoBehaviour:

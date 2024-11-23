@@ -11,10 +11,9 @@ public class 撿起 : MonoBehaviour
     [SerializeField]
     private int 物品ID = 0; // 物品ID
     [SerializeField]
-    [Range(0, 999)]
+    [Range(1, 999)]
     private int 次數 = 1; // 剩余拾取次数
     private item_SO 物品SO; // 物品脚本able对象
-    [SerializeField]
     private Transform 位置; // 文本位置
 
     // 获取物品
