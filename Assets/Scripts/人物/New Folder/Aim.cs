@@ -17,7 +17,7 @@ public class Aim : MonoBehaviour
         SetObjectsActive(false);       // 初始化时禁用物件
         _previousAimState = _input.aim;
     }
-
+    float sp;
     void Update()
     {
         if (_previousAimState != _input.aim) // 检测 aim 状态是否变化
@@ -31,7 +31,11 @@ public class Aim : MonoBehaviour
             Distance();
         }
         float myFloat = _input.aim ? 1.0f : 0.0f;
-        animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), myFloat, Time.deltaTime * 10)); // 设置动画层权重
+        sp = Mathf.Lerp(sp, myFloat, Time.deltaTime * 5);
+        if (sp < 0.01f) sp = 0;
+        if (sp > 0.99f) sp = 1;
+        rig.weight = sp;
+        animator.SetLayerWeight(1,sp); // 设置动画层权重
 
     }
     void Distance()
@@ -71,7 +75,7 @@ public class Aim : MonoBehaviour
                 item.SetActive(isActive);
             }
         }
-        rig.weight = isActive ? 1.0f : 0.0f;
+        
         玩家狀態.狀態=isActive ? 玩家狀態.Statetype.瞄準:玩家狀態.Statetype.正常;
     }
 }

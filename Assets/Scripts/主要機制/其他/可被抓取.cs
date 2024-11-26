@@ -14,7 +14,6 @@ public class 可被抓取 : MonoBehaviour
     [Header("抓取設置")]
     [SerializeField]
     private float grabSpringForce = 20f;   // SpringJoint 的彈力
-    [SerializeField]
     private float grabDrag = 5f;          // 抓取時的阻力
     [SerializeField]
     private int 能量消耗 = 10;         // 抓取時消耗的能量
@@ -23,6 +22,8 @@ public class 可被抓取 : MonoBehaviour
     private bool _wasGravityEnabled;     // 是否原本開啟了重力
     private bool _isKinematic;           // 是否原本是運動學
     private NavMeshAgent _navMeshAgent;
+    [SerializeField]
+    private int 傷害 = 10;
     private void Awake()
     {
         // 確保物件上有 Rigidbody
@@ -72,7 +73,7 @@ public class 可被抓取 : MonoBehaviour
         onGrabbed.Invoke(); // 觸發抓取事件
         if (_能量消耗中 == null)
         {
-            _能量消耗中 =StartCoroutine(能量消耗中());
+            _能量消耗中 = StartCoroutine(能量消耗中());
         }
     }
     private Coroutine _能量消耗中; // 用來存儲協程引用，方便停止
@@ -82,7 +83,7 @@ public class 可被抓取 : MonoBehaviour
         while (玩家狀態.能量使用中)
         {
             玩家狀態.能量 -= 1;
-            yield return new WaitForSeconds(1f/(float)能量消耗);
+            yield return new WaitForSeconds(1f / (float)能量消耗);
             if (玩家狀態.能量 <= 0)
             {
                 玩家狀態.能量 = 0;
@@ -102,7 +103,7 @@ public class 可被抓取 : MonoBehaviour
             StopCoroutine(_能量消耗中);
             _能量消耗中 = null;
         }
-        
+
         if (_springJoint != null)
         {
             Destroy(_springJoint);
@@ -121,7 +122,7 @@ public class 可被抓取 : MonoBehaviour
             _checkCoroutine = StartCoroutine(CheckIfStopped());
         }
     }
-     
+
 
     private IEnumerator CheckIfStopped()
     {
@@ -170,5 +171,15 @@ public class 可被抓取 : MonoBehaviour
             _checkCoroutine = null; // 清空引用
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_rigidbody.velocity.magnitude > 3f)
+        {
+            if (other.CompareTag("Monster"))
+            {
+                if (other.GetComponent<怪物身體部位>() != null)
+                    other.GetComponent<怪物身體部位>().受傷(傷害);
+            }
+        }
+    }
 }

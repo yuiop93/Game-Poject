@@ -7,7 +7,6 @@ TagManager:
   - CinemachineTarget
   - wink
   - Monster
-  - ' Monster'
   layers:
   - Default
   - TransparentFX

@@ -5906,7 +5906,8 @@ MonoBehaviour:
       m_Calls: []
   grabSpringForce: 20
   grabDrag: 5
-  "\u80FD\u91CF\u6D88\u8017": 10
+  "\u80FD\u91CF\u6D88\u8017": 0
+  "\u50B7\u5BB3": 10
 --- !u!65 &712555987
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22490,6 +22491,10 @@ PrefabInstance:
     - target: {fileID: 7273035400917268238, guid: 9d0b2900cdfc2ab4c98345ed9cd0ee86, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273035400917268238, guid: 9d0b2900cdfc2ab4c98345ed9cd0ee86, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00024414062
       objectReference: {fileID: 0}
     - target: {fileID: 7278311561176276746, guid: 9d0b2900cdfc2ab4c98345ed9cd0ee86, type: 3}
       propertyPath: m_SizeDelta.y
