@@ -19,4 +19,16 @@ public class 怪物動畫 : MonoBehaviour
     {
         _animator.SetBool("Floating", false); // 設置被控制為 false
     }
+    public void 死亡()
+    {
+        _animator.SetBool("Dead", true); // 設置死亡為 true
+    }
+    public void 受擊()
+    {
+        _animator.SetTrigger("Hit"); // 設置受擊為 true
+    }
+    public void 攻擊()
+    {
+        _animator.SetTrigger("Attack"); // 設置攻擊為 true
+    }
 }

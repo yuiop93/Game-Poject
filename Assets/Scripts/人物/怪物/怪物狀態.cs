@@ -43,10 +43,12 @@ public class 怪物狀態 : MonoBehaviour
         else
         {
             血條.GetComponent<BossHealthBar>().SetHealth(當前血量);
+            this.GetComponent<怪物動畫>().受擊();
         }
     }
     public void 死亡()
     {
+        this.GetComponent<怪物動畫>().死亡();
         是否死亡 = true;
         血條.SetActive(false);
         Destroy(gameObject);

@@ -5904,8 +5904,7 @@ MonoBehaviour:
   onReleased:
     m_PersistentCalls:
       m_Calls: []
-  grabSpringForce: 20
-  grabDrag: 5
+  grabSpringForce: 50
   "\u80FD\u91CF\u6D88\u8017": 0
   "\u50B7\u5BB3": 10
 --- !u!65 &712555987

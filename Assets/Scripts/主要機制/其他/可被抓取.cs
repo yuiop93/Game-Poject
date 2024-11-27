@@ -171,14 +171,14 @@ public class 可被抓取 : MonoBehaviour
             _checkCoroutine = null; // 清空引用
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter (Collision other)
     {
-        if (_rigidbody.velocity.magnitude > 3f)
+        if (other.relativeVelocity.magnitude > 10f)
         {
-            if (other.CompareTag("Monster"))
+            if (other.gameObject.CompareTag("Monster"))
             {
-                if (other.GetComponent<怪物身體部位>() != null)
-                    other.GetComponent<怪物身體部位>().受傷(傷害);
+                if (other.gameObject.GetComponent<怪物身體部位>() != null)
+                    other.gameObject.GetComponent<怪物身體部位>().受傷(傷害);
             }
         }
     }
