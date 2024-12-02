@@ -33,6 +33,7 @@ public class 互動 : MonoBehaviour
                 if (onSubmitConfirmed.GetPersistentEventCount() > 0)
                 {
                     onSubmitConfirmed.Invoke();
+                    Destroy(this.GetComponent<Collider>());
                 }
                 return;
             }

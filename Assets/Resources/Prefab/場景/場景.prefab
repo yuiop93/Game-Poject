@@ -529,18 +529,6 @@ MonoBehaviour:
   onSubmitConfirmed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 62559951125357684}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 62559951125357707}
         m_TargetAssemblyTypeName: "\u5C0D\u8A71, Assembly-CSharp"
         m_MethodName: "\u64AD\u653E\u5287\u60C5"
@@ -16346,8 +16334,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   grabSpringForce: 20
-  grabDrag: 5
   "\u80FD\u91CF\u6D88\u8017": 10
+  "\u50B7\u5BB3": 10
 --- !u!1 &8310398525482408813
 GameObject:
   m_ObjectHideFlags: 0
