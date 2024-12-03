@@ -15,7 +15,7 @@ MonoBehaviour:
   mVariableData:
     variableStartIndex: 
     JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"current
-      speed","IsShared":true,"IsGlobal":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"player","IsShared":true,"IsGlobal":true}]}'
+      speed","IsShared":true,"IsGlobal":true,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"player","IsShared":true,"IsGlobal":true},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"distance","IsShared":true,"IsGlobal":true,"SinglemValue":0}]}'
     fieldSerializationData:
       typeName: []
       fieldNameHash: 

@@ -155,7 +155,6 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
             JumpAndGravity();
             GroundedCheck();
             if (!坐下.isSitting)
@@ -266,7 +265,7 @@ namespace StarterAssets
             _controller.Move(velocity);
             if (_hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, _speed);
+                _animator.SetFloat(_animIDSpeed, _speed/2);
                 _animator.SetFloat(_animIDMotionSpeed, _input.move.magnitude);
             }
         }
@@ -276,7 +275,7 @@ namespace StarterAssets
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
-
+            targetSpeed = _input.walk ? 2 : targetSpeed;
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
             // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude

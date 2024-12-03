@@ -35,7 +35,12 @@ namespace BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent
             
             storeValue.Value = navMeshAgent.isStopped;
 
-            return TaskStatus.Success;
+            if (storeValue.Value) {
+                return TaskStatus.Success;
+            }
+            else {
+                return TaskStatus.Failure;
+            }
         }
 
         public override void OnReset()

@@ -34,7 +34,9 @@ namespace BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent
             }
 
             storeValue.Value = navMeshAgent.remainingDistance;
-
+            if (storeValue.Value == 0) {
+                return TaskStatus.Failure;
+            }
             return TaskStatus.Success;
         }
 

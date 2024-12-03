@@ -15,6 +15,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool fire;
 		public bool aim;
+		public bool walk;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -68,6 +69,10 @@ public void CursorUnLock()
 		{
 			FireInput(value.isPressed);
 		}
+		public void OnWalk(InputValue value)
+		{
+			WalkInput(value.isPressed);
+		}
 #endif
 
 
@@ -85,10 +90,14 @@ public void CursorUnLock()
 		{
 			jump = newJumpState;
 		}
-
+		public void WalkInput(bool newWalkState)
+		{
+			walk = !walk;
+		}
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+			walk = false;
 		}
 		public void AimInput(bool newAimState)
 		{
@@ -110,6 +119,7 @@ public void CursorUnLock()
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
+
 	}
 
 }

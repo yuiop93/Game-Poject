@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviorDesigner.Runtime;
 
 public class 怪物動畫 : MonoBehaviour
 {
@@ -30,5 +31,16 @@ public class 怪物動畫 : MonoBehaviour
     public void 攻擊()
     {
         _animator.SetTrigger("Attack"); // 設置攻擊為 true
+    }
+    public GameObject bulletPrefab; // 子彈Prefab
+    public Transform spawnPoint; // 子彈生成位置
+    
+    // 動畫事件觸發的方法
+    public void SpawnBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation); // 生成子彈
+        var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
+        var target = behaviorTree.GetVariable("Player") as SharedGameObject; // 獲取目標
+        bullet.GetComponent<Bullet>().Initialize(target.Value.transform.position); // 初始化子彈
     }
 }
