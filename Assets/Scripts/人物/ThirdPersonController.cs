@@ -265,7 +265,7 @@ namespace StarterAssets
             _controller.Move(velocity);
             if (_hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, _speed/2);
+                _animator.SetFloat(_animIDSpeed, _speed*2);
                 _animator.SetFloat(_animIDMotionSpeed, _input.move.magnitude);
             }
         }
