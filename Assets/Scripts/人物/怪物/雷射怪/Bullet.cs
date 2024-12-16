@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
     public void Initialize(Vector3 targetPosition)
     {
         direction = (targetPosition - transform.position).normalized;
-        direction.y = 0; // 子彈只在水平面移動
         Destroy(gameObject, lifetime); // 5秒後自動銷毀
     }
 
@@ -24,7 +23,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            玩家狀態.血量 -= damage; // 扣除玩家血量
+            other.GetComponent<玩家狀態>().受傷(damage); // 玩家受傷
         }
         Destroy(gameObject);
     }

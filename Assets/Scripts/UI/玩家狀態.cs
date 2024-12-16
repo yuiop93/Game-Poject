@@ -78,6 +78,10 @@ public class 玩家狀態 : MonoBehaviour
         // 協程結束時設置為 null
         能量回復協程 = null;
     }
+    public void 受傷(int 傷害)
+    {
+        血量 -= 傷害;
+    }
     void Update()
     {
         上限();

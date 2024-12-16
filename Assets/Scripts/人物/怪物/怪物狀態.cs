@@ -20,12 +20,16 @@ public class 怪物狀態 : MonoBehaviour
     void Start()
     {
         當前血量 = 怪物血量;
-        血條 = Instantiate(血條);
-        血條.name = 怪物名稱 + "血條";
-        血條.transform.SetParent(GameObject.Find("UI控制/BOSS血條").transform, false);
-        血條.GetComponent<BossHealthBar>().ReSetHealth(怪物名稱, 怪物血量);
-        血條.GetComponent<BossHealthBar>().SetHealth(當前血量);
-        血條.SetActive(true);
+        if (血條 != null)
+        {
+            血條 = Instantiate(血條);
+            血條.name = 怪物名稱 + "血條";
+            血條.transform.SetParent(GameObject.Find("UI控制/BOSS血條").transform, false);
+            血條.GetComponent<BossHealthBar>().ReSetHealth(怪物名稱, 怪物血量);
+            血條.GetComponent<BossHealthBar>().SetHealth(當前血量);
+            血條.SetActive(true);
+        }
+
         for (int i = 0; i < 身體部位.Length; i++)
         {
             if (身體部位[i] == null) continue;
@@ -42,7 +46,10 @@ public class 怪物狀態 : MonoBehaviour
         }
         else
         {
-            血條.GetComponent<BossHealthBar>().SetHealth(當前血量);
+            if (血條 != null)
+            {
+                血條.GetComponent<BossHealthBar>().SetHealth(當前血量);
+            }
             this.GetComponent<怪物動畫>().受擊();
         }
     }
@@ -50,8 +57,10 @@ public class 怪物狀態 : MonoBehaviour
     {
         this.GetComponent<怪物動畫>().死亡();
         是否死亡 = true;
-        血條.SetActive(false);
+        if (血條 != null)
+        {
+            血條.SetActive(false);
+        }
         Destroy(gameObject);
     }
-
 }

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime;
-
 public class 怪物動畫 : MonoBehaviour
 {
     private Animator _animator; // 動畫控制器
@@ -24,6 +23,10 @@ public class 怪物動畫 : MonoBehaviour
     {
         _animator.SetBool("Dead", true); // 設置死亡為 true
     }
+    public void _死亡()
+    {
+        Destroy(gameObject); // 刪除物件
+    }
     public void 受擊()
     {
         _animator.SetTrigger("Hit"); // 設置受擊為 true
@@ -34,6 +37,7 @@ public class 怪物動畫 : MonoBehaviour
     }
     public GameObject bulletPrefab; // 子彈Prefab
     public Transform spawnPoint; // 子彈生成位置
+    public GameObject _collider; // 碰撞器
     
     // 動畫事件觸發的方法
     public void SpawnBullet()
@@ -42,5 +46,14 @@ public class 怪物動畫 : MonoBehaviour
         var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
         var target = behaviorTree.GetVariable("Player") as SharedGameObject; // 獲取目標
         bullet.GetComponent<Bullet>().Initialize(target.Value.transform.position); // 初始化子彈
+    }
+    public void AttackStart()
+    {
+        _collider.GetComponent<Collider>().enabled = true; // 啟用碰撞器
+    }
+    public void AttackEnd()
+    {
+        if(_collider.GetComponent<Collider>().enabled)
+            _collider.GetComponent<Collider>().enabled = false; // 禁用碰撞器
     }
 }
