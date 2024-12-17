@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 40bd12213e72ff24b8085154db8f1383
+guid: 5295b33037bb17e468d67d0ca89c5282
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -80,7 +80,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9504208
+      - time: 1
         functionName: "\u53D7\u64CA\u7D50\u675F"
         data: 
         objectReferenceParameter: {instanceID: 0}

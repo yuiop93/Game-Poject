@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using BehaviorDesigner.Runtime;
+
 public class 怪物動畫 : MonoBehaviour
 {
     private Animator _animator; // 動畫控制器
@@ -30,6 +32,11 @@ public class 怪物動畫 : MonoBehaviour
     public void 受擊()
     {
         _animator.SetTrigger("Hit"); // 設置受擊為 true
+        this.GetComponent<NavMeshAgent>().isStopped = true; // 停止移動
+    }
+    public void 受擊結束()
+    {
+        this.GetComponent<NavMeshAgent>().isStopped = false; // 開始移動
     }
     public void 攻擊()
     {

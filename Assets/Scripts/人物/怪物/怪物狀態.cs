@@ -18,6 +18,7 @@ public class 怪物狀態 : MonoBehaviour
     private bool 是否死亡 = false;
     [SerializeField]
     private GameObject[] 身體部位;
+    public bool Canhit = true; // 是否可以被攻擊
     void Start()
     {
         當前血量 = 怪物血量;
@@ -51,6 +52,7 @@ public class 怪物狀態 : MonoBehaviour
             {
                 血條.GetComponent<BossHealthBar>().SetHealth(當前血量);
             }
+            if(Canhit)
             this.GetComponent<怪物動畫>().受擊();
         }
     }
