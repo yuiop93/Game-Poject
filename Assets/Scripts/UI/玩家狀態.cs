@@ -92,7 +92,6 @@ public class 玩家狀態 : MonoBehaviour
         {
             狀態 = Statetype.死亡;
         }
-
         // 根據不同狀態顯示不同的條
         switch (狀態)
         {

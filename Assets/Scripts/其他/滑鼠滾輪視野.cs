@@ -12,6 +12,10 @@ public class 滑鼠滾輪視野 : MonoBehaviour
     {
         virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = maxDistance;
     }
+    void OnEnable()
+    {
+        virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = maxDistance;
+    }
     void Update()
     {
         if (互動選擇.isSelecting)

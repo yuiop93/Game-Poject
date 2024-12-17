@@ -238,6 +238,7 @@ namespace StarterAssets
             {
                 _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * SpeedChangeRate);
             }
+            _speed = Mathf.Round(_speed * 1000f) / 1000f;
             // 计算输入方向
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
@@ -265,8 +266,7 @@ namespace StarterAssets
             _controller.Move(velocity);
             if (_hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, _speed*2);
-                _animator.SetFloat(_animIDMotionSpeed, _input.move.magnitude);
+                _animator.SetFloat(_animIDSpeed, _speed);
             }
         }
 

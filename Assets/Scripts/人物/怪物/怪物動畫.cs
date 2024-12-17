@@ -44,8 +44,17 @@ public class 怪物動畫 : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation); // 生成子彈
         var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
-        var target = behaviorTree.GetVariable("Player") as SharedGameObject; // 獲取目標
-        bullet.GetComponent<Bullet>().Initialize(target.Value.transform.position); // 初始化子彈
+        BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
+        foreach (var bt in behaviorTrees)
+        {
+            if (bt.Group == 3)
+            {
+                behaviorTree = bt;
+                var target = behaviorTree.GetVariable("Player") as SharedGameObject; // 獲取目標
+                bullet.GetComponent<Bullet>().Initialize(target.Value.transform.position); // 初始化子彈
+                break;
+            }
+        }
     }
     public void AttackStart()
     {

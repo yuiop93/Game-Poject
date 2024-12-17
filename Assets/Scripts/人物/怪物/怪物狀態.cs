@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 public class 怪物狀態 : MonoBehaviour
 {
     [SerializeField]
@@ -56,11 +57,11 @@ public class 怪物狀態 : MonoBehaviour
     public void 死亡()
     {
         this.GetComponent<怪物動畫>().死亡();
+        this.GetComponent<NavMeshAgent>().enabled = false;
         是否死亡 = true;
         if (血條 != null)
         {
             血條.SetActive(false);
         }
-        Destroy(gameObject);
     }
 }
