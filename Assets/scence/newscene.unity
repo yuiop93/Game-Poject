@@ -3387,6 +3387,7 @@ MonoBehaviour:
   targetObject: {fileID: 5702325975768218376}
   fixedDistance: 24.5
   rig: {fileID: 1767019956868000068}
+  weaponNameText: {fileID: 1703694084}
   weaponComponents:
   - holdStyle: 1
     gunName: "\u79FB\u52D5\u69CD"
@@ -3410,7 +3411,6 @@ MonoBehaviour:
     Script: {fileID: 8026601006319047705}
     gunMuzzle: {fileID: 800776493}
     gunSound: {fileID: 8300000, guid: a632a8967ec472d45be00bdcc50cefa6, type: 3}
-  text: {fileID: 1703694084}
 --- !u!23 &61085193924752755
 MeshRenderer:
   m_ObjectHideFlags: 0
