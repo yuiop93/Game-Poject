@@ -27,6 +27,9 @@ public class 雷射 : MonoBehaviour
         laserLineRenderer.endWidth = laserWidth;
         laserLineRenderer.enabled = false; // 初始關閉雷射
     }
+    void  OnDisable(){
+        Release();
+    }
     void Update()
     {
         if (_input.fire) // 判斷是否按下 Fire 按鍵（通常是滑鼠左鍵或觸屏按鈕）
