@@ -25,9 +25,9 @@ public class Bullet : MonoBehaviour
         {
             other.GetComponent<玩家狀態>().受傷(damage); // 玩家受傷
         }
-        if (other.CompareTag("Monster"))
+        if (other.CompareTag("Mosters"))
         {
-            other.GetComponent<怪物身體部位>().受傷(damage); // 怪物受傷
+            other.GetComponent<怪物身體部位>().受傷(damage,true); // 怪物受傷
         }
         Destroy(gameObject);
     }

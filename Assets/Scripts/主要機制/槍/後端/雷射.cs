@@ -13,10 +13,8 @@ public class 雷射 : MonoBehaviour
     private float laserMaxLength = 100f; // 雷射的最大長度
     public Rigidbody grabbedObject; // 命中物體
     private Vector3 aimWorldPos; // 目標世界位置
-    private 玩家狀態 _playerState;
     void Awake()
     {
-        _playerState = GetComponent<玩家狀態>();
         // 確保有 StarterAssetsInputs，否則嘗試獲取
         _input = GetComponent<StarterAssetsInputs>();
         if (_input == null)

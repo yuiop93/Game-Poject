@@ -14,6 +14,8 @@ public class 怪物狀態 : MonoBehaviour
 
     [SerializeField]
     private GameObject 血條;
+    [SerializeField]
+    private Image 冰凍條;
     private int 當前血量;
     private bool 是否死亡 = false;
     [SerializeField]
@@ -29,19 +31,30 @@ public class 怪物狀態 : MonoBehaviour
     private float 冰凍下降速度 = 1.0f;
 
     private bool 是否冰凍 = false;
-    private int 當前冰凍條;
-
+    public int 當前冰凍條;
+    public bool 小怪物 = false;
     void Start()
     {
         當前血量 = 怪物血量;
         if (血條 != null)
         {
-            血條 = Instantiate(血條);
-            血條.name = 怪物名稱 + "血條";
-            血條.transform.SetParent(GameObject.Find("UI控制/BOSS血條").transform, false);
-            血條.GetComponent<BossHealthBar>().ReSetHealth(怪物名稱, 怪物血量);
-            血條.GetComponent<BossHealthBar>().SetHealth(當前血量);
-            血條.SetActive(true);
+            if (!小怪物)
+            {
+                血條 = Instantiate(血條);
+                血條.name = 怪物名稱 + "血條";
+                血條.transform.SetParent(GameObject.Find("UI控制/BOSS血條").transform, false);
+                血條.GetComponent<HealthBar>().ReSetHealth(怪物名稱, 怪物血量);
+                血條.GetComponent<HealthBar>().SetHealth(當前血量);
+                冰凍條 = 血條.transform.Find("冰凍條").GetComponent<Image>();
+                血條.SetActive(true);
+            }
+            else
+            {
+                血條.GetComponent<HealthBar>().ReSetHealth(怪物名稱, 怪物血量);
+                血條.GetComponent<HealthBar>().SetHealth(當前血量);
+                血條.SetActive(false);
+            }
+
         }
 
         for (int i = 0; i < 身體部位.Length; i++)
@@ -53,29 +66,43 @@ public class 怪物狀態 : MonoBehaviour
     private Coroutine 冰凍協程;
     public void 冰凍值(int 冰凍點數)
     {
-        if (是否死亡) return;
+
         當前冰凍條 += 冰凍點數;
-        if (當前冰凍條 >= 冰凍條上限&& !是否冰凍)
+        冰凍條.fillAmount = (float)當前冰凍條 / (float)冰凍條上限;
+        if (當前冰凍條 >= 冰凍條上限)
         {
             當前冰凍條 = 冰凍條上限;
             是否冰凍 = true;
-            if (冰凍協程 == null){
-                冰凍協程 =StartCoroutine(冰凍回復());
+            冰凍();
+            if (冰凍協程 == null)
+            {
+                冰凍協程 = StartCoroutine(冰凍回復());
             }
         }
+        Debug.Log("當前冰凍條:" + 當前冰凍條);
     }
     private IEnumerator 冰凍回復()
     {
         while (當前冰凍條 > 0)
         {
-            當前冰凍條 -= (int)(冰凍下降速度 * Time.deltaTime);
-            if (當前冰凍條 <= 0)
+            if (!是否死亡)
             {
-                當前冰凍條 = 0;
-                是否冰凍 = false;
+                當前冰凍條 -= (int)(冰凍下降速度 * Time.deltaTime);
+                冰凍條.fillAmount = (float)當前冰凍條 / (float)冰凍條上限;
+                if (當前冰凍條 <= 0)
+                {
+                    當前冰凍條 = 0;
+                    是否冰凍 = false;
+                    冰凍();
+                    break;
+                }
+                yield return new WaitForSeconds(1f);
+            }
+            else
+            {
                 break;
             }
-            yield return new WaitForSeconds(0.2f);
+
         }
         while (當前冰凍條 < 0)
         {
@@ -85,12 +112,18 @@ public class 怪物狀態 : MonoBehaviour
                 當前冰凍條 = 0;
                 break;
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(1f);
         }
         冰凍協程 = null;
     }
-    public void 受傷(int 傷害)
+    void 冰凍()
     {
+        this.GetComponent<怪物動畫>().冰凍(是否冰凍);
+    }
+    public void 受傷(int 傷害, bool 受擊效果)
+    {
+        if (血條 != null)
+            血條.SetActive(true);
         if (是否死亡) return;
         傷害 = 是否冰凍 ? (int)(傷害 * 冰凍傷害倍率) : 傷害;
         當前血量 -= 傷害;
@@ -102,21 +135,30 @@ public class 怪物狀態 : MonoBehaviour
         {
             if (血條 != null)
             {
-                血條.GetComponent<BossHealthBar>().SetHealth(當前血量);
+                血條.GetComponent<HealthBar>().SetHealth(當前血量);
             }
-            if (Canhit && !是否冰凍)
+            if (Canhit && !是否冰凍 && 受擊效果)
+            {
                 this.GetComponent<怪物動畫>().受擊();
+            }
         }
     }
     public void 死亡()
     {
-        if (是否冰凍)
-            this.GetComponent<怪物動畫>().死亡();
-        this.GetComponent<NavMeshAgent>().enabled = false;
+        Debug.Log("怪物死亡");
         是否死亡 = true;
+        if (是否冰凍)
+        {
+            this.GetComponent<怪物動畫>().冰凍死亡();
+
+        }
+        else
+        {
+            this.GetComponent<怪物動畫>().死亡();
+        }
         if (血條 != null)
         {
-            血條.SetActive(false);
+            Destroy(血條);
         }
     }
 }

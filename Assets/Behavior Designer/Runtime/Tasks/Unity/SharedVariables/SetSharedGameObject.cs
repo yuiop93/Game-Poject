@@ -14,7 +14,14 @@ namespace BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables
 
         public override TaskStatus OnUpdate()
         {
-            targetVariable.Value = ((targetValue.Value != null || valueCanBeNull.Value) ? targetValue.Value : gameObject);
+            // 如果 targetValue.Value 為 null 且不允許空值，返回失敗
+            if (targetValue.Value == null && !valueCanBeNull.Value)
+            {
+                return TaskStatus.Failure;
+            }
+
+            // 設置 targetVariable 的值
+            targetVariable.Value = targetValue.Value != null ? targetValue.Value : gameObject;
 
             return TaskStatus.Success;
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-public class BossHealthBarAnimation : MonoBehaviour
+public class HealthBarAnimation : MonoBehaviour
 {
     [SerializeField]
     private RectTransform backgroundBar; // 背景血条

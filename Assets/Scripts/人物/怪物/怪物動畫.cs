@@ -22,10 +22,21 @@ public class 怪物動畫 : MonoBehaviour
         _animator.SetBool("Floating", false); // 設置被控制為 false
     }
     public void 死亡()
-    {
+    {this.GetComponent<NavMeshAgent>().isStopped = true; // 停止移動
+        var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
+        BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
+        foreach (var bt in behaviorTrees)
+        {
+            bt.enabled = false;
+        }
         _animator.SetBool("Dead", true); // 設置死亡為 true
+        
     }
     public void _死亡()
+    {
+        Destroy(gameObject); // 刪除物件
+    }
+    public void 冰凍死亡()
     {
         Destroy(gameObject); // 刪除物件
     }
@@ -45,7 +56,7 @@ public class 怪物動畫 : MonoBehaviour
     public GameObject bulletPrefab; // 子彈Prefab
     public Transform spawnPoint; // 子彈生成位置
     public GameObject _collider; // 碰撞器
-    
+
     // 動畫事件觸發的方法
     public void SpawnBullet()
     {
@@ -69,7 +80,32 @@ public class 怪物動畫 : MonoBehaviour
     }
     public void AttackEnd()
     {
-        if(_collider.GetComponent<Collider>().enabled)
+        if (_collider.GetComponent<Collider>().enabled)
             _collider.GetComponent<Collider>().enabled = false; // 禁用碰撞器
+    }
+    public void 冰凍(bool 是否冰凍)
+    {
+        if (是否冰凍)
+        {
+            _animator.speed = 0;
+            var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
+            BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
+            foreach (var bt in behaviorTrees)
+            {
+                bt.enabled = false;
+            }
+        }
+        else
+        {
+            _animator.speed = 1;
+            var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
+            BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
+            foreach (var bt in behaviorTrees)
+            {
+                bt.enabled = true;
+            }
+
+        }
+
     }
 }

@@ -1,23 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossHealthBar : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
     [SerializeField]
     private Image redBar;  // 红色血条
     [SerializeField]
     private Image whiteBar; // 白色延迟血条
     [SerializeField]
-    private Text bossName; // Boss 名称
+    private Text Name; // Boss 名称
     [SerializeField]
     private float whiteBarFollowSpeed = 2f; // 白色血条跟随速度
     private float maxHealth;
     private float currentHealth;
     private float targetHealth;
-    public void ReSetHealth(string name,float BOSSHealth)
+    public void ReSetHealth(string name, float Health)
     {
-        maxHealth = BOSSHealth;
-        bossName.text = name;
+        maxHealth = Health;
+        if (Name != null)
+        {
+            Name.text = name;
+        }
         currentHealth = maxHealth;
         UpdateHealthBar();
     }

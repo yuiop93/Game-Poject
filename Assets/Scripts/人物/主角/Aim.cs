@@ -10,21 +10,15 @@ public class WeaponComponent
 {
     public enum HoldStyle
     {
-        Style1 = 1, // 持枪方式1
-        Style2 = 2  // 持枪方式2
+        Style1 = 1,
+        Style2 = 2
     }
 
     public HoldStyle holdStyle = HoldStyle.Style1;
     public string gunName;
-    public GameObject BulletPrefab;
     public GameObject gunObject;
     public Sprite gunSprite;
-    public int gunDamage;
-    public int BulletConsumption = 1;
-    public bool 後座力 = false;
     public MonoBehaviour Script;
-    public Transform gunMuzzle;
-    public AudioClip gunSound;
 }
 
 public class Aim : MonoBehaviour
@@ -52,6 +46,11 @@ public class Aim : MonoBehaviour
         SetObjectsActive(false);
         _previousAimState = _input.aim;
     }
+    void Start()
+    {
+        currentWeaponIndex = 0;
+        SwitchWeapon(0);
+    }
 
     private void Update()
     {
@@ -68,18 +67,6 @@ public class Aim : MonoBehaviour
         {
             SetObjectsActive(_input.aim);
             _previousAimState = _input.aim;
-        }
-
-        if (_input.aim && currentWeaponIndex > 0)
-        {
-            if (玩家狀態.能量 >= weaponComponents[currentWeaponIndex].BulletConsumption)
-            {
-                animator.SetBool("Shoot", _input.fire);
-            }
-            else
-            {
-                animator.SetBool("Shoot", false);
-            }
         }
     }
 
@@ -117,6 +104,8 @@ public class Aim : MonoBehaviour
         {
             fixedDistance = 10f;
             return;
+        }else{
+            fixedDistance = 5f;
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && fixedDistance < 7f)
@@ -129,7 +118,6 @@ public class Aim : MonoBehaviour
     private void HandleRaycastTarget()
     {
         if (!_input.aim) return;
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 targetPosition = ray.origin + ray.direction.normalized * fixedDistance;
         targetObject.transform.position = targetPosition;
@@ -137,9 +125,11 @@ public class Aim : MonoBehaviour
 
     private void SwitchWeapon(int direction)
     {
-        weaponComponents[currentWeaponIndex].gunObject.SetActive(false);
-        weaponComponents[currentWeaponIndex].Script.enabled = false;
-
+        foreach (var item in weaponComponents)
+        {
+            item.gunObject.SetActive(false);
+            item.Script.enabled = false;
+        }
         currentWeaponIndex += direction;
         if (currentWeaponIndex < 0) currentWeaponIndex = weaponComponents.Count - 1;
         else if (currentWeaponIndex >= weaponComponents.Count) currentWeaponIndex = 0;
@@ -158,15 +148,5 @@ public class Aim : MonoBehaviour
             if (item != null) item.SetActive(isActive);
         }
         玩家狀態.狀態 = isActive ? 玩家狀態.Statetype.瞄準 : 玩家狀態.Statetype.正常;
-    }
-
-    public void Shoot()
-    {
-        var currentWeapon = weaponComponents[currentWeaponIndex];
-        GameObject bullet = Instantiate(currentWeapon.BulletPrefab, currentWeapon.gunMuzzle.position, currentWeapon.gunMuzzle.rotation);
-        bullet.GetComponent<Bullet>().Initialize(targetObject.transform.position);
-
-        AudioSource.PlayClipAtPoint(currentWeapon.gunSound, currentWeapon.gunMuzzle.position, 1f);
-        玩家狀態.能量 -= currentWeapon.BulletConsumption;
     }
 }
