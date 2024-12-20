@@ -1224,6 +1224,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1132494288584079232, guid: 7a3ac728acd1ee7439aabf21a434f07d, type: 3}
   spawnPoint: {fileID: 7806650932430908387}
   _collider: {fileID: 6525199025789109621}
+  IceMaterial: {fileID: 2100000, guid: 9cb345c494131044e9ae970898ba8d32, type: 2}
 --- !u!114 &101751317925457312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1392,7 +1393,8 @@ SkinnedMeshRenderer:
   - {fileID: 1329006351578243195}
   - {fileID: 2196239787420659044}
   - {fileID: 2457595171366136877}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
   m_RootBone: {fileID: 2247104366747898058}
   m_AABB:
     m_Center: {x: 0.00009250641, y: 2.3615036, z: 4.792603}

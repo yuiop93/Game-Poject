@@ -33,6 +33,7 @@ public class 怪物狀態 : MonoBehaviour
     private bool 是否冰凍 = false;
     public int 當前冰凍條;
     public bool 小怪物 = false;
+
     void Start()
     {
         當前血量 = 怪物血量;
@@ -66,7 +67,7 @@ public class 怪物狀態 : MonoBehaviour
     private Coroutine 冰凍協程;
     public void 冰凍值(int 冰凍點數)
     {
-
+        if (是否死亡) return;
         當前冰凍條 += 冰凍點數;
         冰凍條.fillAmount = (float)當前冰凍條 / (float)冰凍條上限;
         if (當前冰凍條 >= 冰凍條上限)
@@ -124,7 +125,6 @@ public class 怪物狀態 : MonoBehaviour
     {
         if (血條 != null)
             血條.SetActive(true);
-        if (是否死亡) return;
         傷害 = 是否冰凍 ? (int)(傷害 * 冰凍傷害倍率) : 傷害;
         當前血量 -= 傷害;
         if (當前血量 <= 0)

@@ -9,8 +9,17 @@ public class 冰凍組件 : MonoBehaviour
     private int _傷害;
     private int _射程;
     public bool 受擊效果 = false;
+    public GameObject 特效;
     public void 步槍(int 射程,int 傷害)
     {
+        if(this.GetComponent<可以攻擊>().CanAttack == false)
+        {
+            return;
+        }
+        if(特效!=null)
+        {
+            GameObject obj = Instantiate(特效, GunMuzzle.position, GunMuzzle.rotation);
+        }
         _傷害 =(int) (傷害*冰凍組件參數.傷害);
         _射程 = (int)(射程*冰凍組件參數.射程);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

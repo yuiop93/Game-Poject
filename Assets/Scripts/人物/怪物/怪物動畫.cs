@@ -8,9 +8,10 @@ public class 怪物動畫 : MonoBehaviour
 {
     private Animator _animator; // 動畫控制器
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _animator = GetComponent<Animator>(); // 獲取動畫控制器
+        originalMaterials = new Dictionary<Renderer, Material[]>(); // 初始化字典
     }
     public void 被控制()
     {
@@ -83,6 +84,7 @@ public class 怪物動畫 : MonoBehaviour
         if (_collider.GetComponent<Collider>().enabled)
             _collider.GetComponent<Collider>().enabled = false; // 禁用碰撞器
     }
+    
     public void 冰凍(bool 是否冰凍)
     {
         if (是否冰凍)
@@ -94,6 +96,7 @@ public class 怪物動畫 : MonoBehaviour
             {
                 bt.enabled = false;
             }
+            ReplaceAllMaterials(); // 替換材質
         }
         else
         {
@@ -104,8 +107,58 @@ public class 怪物動畫 : MonoBehaviour
             {
                 bt.enabled = true;
             }
-
+            RestoreAllMaterials(); // 恢復材質
         }
 
+    }
+    public Material IceMaterial; // 冰凍材質
+
+    // 保存原始材质的字典
+    private Dictionary<Renderer, Material[]> originalMaterials;
+
+    void Start()
+    {
+        // 初始化字典
+        this.originalMaterials = new Dictionary<Renderer, Material[]>();
+    }
+
+    // 替换所有子物体的材质
+    public void ReplaceAllMaterials()
+    {
+        // 获取当前物体及其所有子物体的 Renderer 组件
+        Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer renderer in renderers)
+        {
+            // 保存原始材质
+            if (!this.originalMaterials.ContainsKey(renderer))
+            {
+                this.originalMaterials[renderer] = renderer.materials;
+            }
+
+            // 替换材质
+            Material[] IceMaterials = new Material[renderer.materials.Length];
+            for (int i = 0; i < IceMaterials.Length; i++)
+            {
+                IceMaterials[i] = this.IceMaterial;
+            }
+            renderer.materials = IceMaterials;
+        }
+    }
+
+    // 恢复所有子物体的原始材质
+    public void RestoreAllMaterials()
+    {
+        // 获取当前物体及其所有子物体的 Renderer 组件
+        Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer renderer in renderers)
+        {
+            // 检查是否保存了原始材质
+            if (this.originalMaterials.ContainsKey(renderer))
+            {
+                renderer.materials = this.originalMaterials[renderer];
+            }
+        }
     }
 }

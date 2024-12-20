@@ -12,6 +12,7 @@ public class WeaponComponent
     {
         Style1 = 1,
         Style2 = 2
+        
     }
 
     public HoldStyle holdStyle = HoldStyle.Style1;
@@ -74,17 +75,27 @@ public class Aim : MonoBehaviour
     {
         float aimWeight = _input.aim ? 1.0f : 0.0f;
         sp = Mathf.Lerp(sp, aimWeight, Time.deltaTime * 10);
-
+        
         if (Mathf.Approximately(aimWeight, 0))
         {
             sp = Mathf.Clamp(sp, 0, 1);
             rig.weight = sp;
             animator.SetLayerWeight(2, 0);
+            animator.SetLayerWeight(3, 0);
         }
         else
         {
             rig.weight = 1;
-            animator.SetLayerWeight(2, sp);
+            if (weaponComponents[currentWeaponIndex].holdStyle == WeaponComponent.HoldStyle.Style1)
+            {
+                animator.SetLayerWeight(3,0 );
+                animator.SetLayerWeight(2, sp);
+            }
+            else if (weaponComponents[currentWeaponIndex].holdStyle == WeaponComponent.HoldStyle.Style2)
+            {
+                animator.SetLayerWeight(2, 0);
+                animator.SetLayerWeight(3, sp);
+            }
         }
 
         animator.SetLayerWeight(1, sp);
