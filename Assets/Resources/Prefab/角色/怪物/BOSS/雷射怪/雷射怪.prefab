@@ -1274,6 +1274,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1132494288584079232, guid: 7a3ac728acd1ee7439aabf21a434f07d, type: 3}
   spawnPoint: {fileID: 7806650932430908387}
   _collider: {fileID: 0}
+  IceAudio: {fileID: 8300000, guid: 4181595fbbaf0f4439e35956c220c79f, type: 3}
+  FireAudio: {fileID: 0}
+  WalkAudio: {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
   IceMaterial: {fileID: 2100000, guid: 9cb345c494131044e9ae970898ba8d32, type: 2}
 --- !u!114 &101751317925457312
 MonoBehaviour:
@@ -1295,8 +1298,8 @@ MonoBehaviour:
   - {fileID: 2963974697640298149}
   - {fileID: 1761069499371859814}
   Canhit: 0
-  "\u51B0\u51CD\u689D\u4E0A\u9650": 1000
-  "\u51B0\u51CD\u50B7\u5BB3\u500D\u7387": 1
+  "\u51B0\u51CD\u689D\u4E0A\u9650": 500
+  "\u51B0\u51CD\u50B7\u5BB3\u500D\u7387": 50
   "\u51B0\u51CD\u4E0B\u964D\u901F\u5EA6": 10000
   "\u7576\u524D\u51B0\u51CD\u689D": 0
   "\u5C0F\u602A\u7269": 0

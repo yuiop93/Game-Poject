@@ -6,12 +6,53 @@ using BehaviorDesigner.Runtime;
 
 public class 怪物動畫 : MonoBehaviour
 {
+
+    public GameObject bulletPrefab; // 子彈Prefab
+    public Transform spawnPoint; // 子彈生成位置
+    public GameObject _collider; // 碰撞器
     private Animator _animator; // 動畫控制器
+    public AudioClip IceAudio;
+    public AudioClip FireAudio;
+    public AudioClip WalkAudio;
+    
+    public Material IceMaterial; // 冰凍材質
+
+    // 保存原始材质的字典
+    private Dictionary<Renderer, Material[]> originalMaterials;
     // Start is called before the first frame update
     void Awake()
     {
         _animator = GetComponent<Animator>(); // 獲取動畫控制器
         originalMaterials = new Dictionary<Renderer, Material[]>(); // 初始化字典
+        
+    }
+    public void 冰凍(bool 是否冰凍)
+    {
+        if (是否冰凍)
+        {
+            if (IceAudio != null)
+            AudioSource.PlayClipAtPoint(IceAudio, transform.position);
+            _animator.speed = 0;
+            var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
+            BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
+            foreach (var bt in behaviorTrees)
+            {
+                bt.enabled = false;
+            }
+            ReplaceAllMaterials(); // 替換材質
+        }
+        else
+        {
+            _animator.speed = 1;
+            var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
+            BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
+            foreach (var bt in behaviorTrees)
+            {
+                bt.enabled = true;
+            }
+            RestoreAllMaterials(); // 恢復材質
+        }
+
     }
     public void 被控制()
     {
@@ -23,7 +64,8 @@ public class 怪物動畫 : MonoBehaviour
         _animator.SetBool("Floating", false); // 設置被控制為 false
     }
     public void 死亡()
-    {this.GetComponent<NavMeshAgent>().isStopped = true; // 停止移動
+    {
+        this.GetComponent<NavMeshAgent>().isStopped = true; // 停止移動
         var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
         BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
         foreach (var bt in behaviorTrees)
@@ -31,7 +73,7 @@ public class 怪物動畫 : MonoBehaviour
             bt.enabled = false;
         }
         _animator.SetBool("Dead", true); // 設置死亡為 true
-        
+
     }
     public void _死亡()
     {
@@ -54,11 +96,6 @@ public class 怪物動畫 : MonoBehaviour
     {
         _animator.SetTrigger("Attack"); // 設置攻擊為 true
     }
-    public GameObject bulletPrefab; // 子彈Prefab
-    public Transform spawnPoint; // 子彈生成位置
-    public GameObject _collider; // 碰撞器
-
-    // 動畫事件觸發的方法
     public void SpawnBullet()
     {
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation); // 生成子彈
@@ -84,45 +121,6 @@ public class 怪物動畫 : MonoBehaviour
         if (_collider.GetComponent<Collider>().enabled)
             _collider.GetComponent<Collider>().enabled = false; // 禁用碰撞器
     }
-    
-    public void 冰凍(bool 是否冰凍)
-    {
-        if (是否冰凍)
-        {
-            _animator.speed = 0;
-            var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
-            BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
-            foreach (var bt in behaviorTrees)
-            {
-                bt.enabled = false;
-            }
-            ReplaceAllMaterials(); // 替換材質
-        }
-        else
-        {
-            _animator.speed = 1;
-            var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
-            BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
-            foreach (var bt in behaviorTrees)
-            {
-                bt.enabled = true;
-            }
-            RestoreAllMaterials(); // 恢復材質
-        }
-
-    }
-    public Material IceMaterial; // 冰凍材質
-
-    // 保存原始材质的字典
-    private Dictionary<Renderer, Material[]> originalMaterials;
-
-    void Start()
-    {
-        // 初始化字典
-        this.originalMaterials = new Dictionary<Renderer, Material[]>();
-    }
-
-    // 替换所有子物体的材质
     public void ReplaceAllMaterials()
     {
         // 获取当前物体及其所有子物体的 Renderer 组件
@@ -145,8 +143,6 @@ public class 怪物動畫 : MonoBehaviour
             renderer.materials = IceMaterials;
         }
     }
-
-    // 恢复所有子物体的原始材质
     public void RestoreAllMaterials()
     {
         // 获取当前物体及其所有子物体的 Renderer 组件
@@ -159,6 +155,13 @@ public class 怪物動畫 : MonoBehaviour
             {
                 renderer.materials = this.originalMaterials[renderer];
             }
+        }
+    }
+    private void OnFootstep()
+    {
+        if (WalkAudio != null)
+        {
+            AudioSource.PlayClipAtPoint(WalkAudio, transform.position);
         }
     }
 }

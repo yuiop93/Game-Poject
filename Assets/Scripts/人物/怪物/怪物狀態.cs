@@ -15,7 +15,7 @@ public class 怪物狀態 : MonoBehaviour
     [SerializeField]
     private GameObject 血條;
     [SerializeField]
-    private Image 冰凍條;
+    private GameObject 冰凍條;
     private int 當前血量;
     private bool 是否死亡 = false;
     [SerializeField]
@@ -46,7 +46,7 @@ public class 怪物狀態 : MonoBehaviour
                 血條.transform.SetParent(GameObject.Find("UI控制/BOSS血條").transform, false);
                 血條.GetComponent<HealthBar>().ReSetHealth(怪物名稱, 怪物血量);
                 血條.GetComponent<HealthBar>().SetHealth(當前血量);
-                冰凍條 = 血條.transform.Find("冰凍條").GetComponent<Image>();
+                冰凍條 = 血條.transform.Find("冰凍條").gameObject;
                 血條.SetActive(true);
             }
             else
@@ -54,6 +54,7 @@ public class 怪物狀態 : MonoBehaviour
                 血條.GetComponent<HealthBar>().ReSetHealth(怪物名稱, 怪物血量);
                 血條.GetComponent<HealthBar>().SetHealth(當前血量);
                 血條.SetActive(false);
+                冰凍條.SetActive(false);
             }
 
         }
@@ -69,7 +70,8 @@ public class 怪物狀態 : MonoBehaviour
     {
         if (是否死亡) return;
         當前冰凍條 += 冰凍點數;
-        冰凍條.fillAmount = (float)當前冰凍條 / (float)冰凍條上限;
+        冰凍條.SetActive(true);
+        冰凍條.GetComponent<Image>().fillAmount = (float)當前冰凍條 / (float)冰凍條上限;
         if (當前冰凍條 >= 冰凍條上限)
         {
             當前冰凍條 = 冰凍條上限;
@@ -80,7 +82,6 @@ public class 怪物狀態 : MonoBehaviour
                 冰凍協程 = StartCoroutine(冰凍回復());
             }
         }
-        Debug.Log("當前冰凍條:" + 當前冰凍條);
     }
     private IEnumerator 冰凍回復()
     {
@@ -89,10 +90,11 @@ public class 怪物狀態 : MonoBehaviour
             if (!是否死亡)
             {
                 當前冰凍條 -= (int)(冰凍下降速度 * Time.deltaTime);
-                冰凍條.fillAmount = (float)當前冰凍條 / (float)冰凍條上限;
+                冰凍條.GetComponent<Image>().fillAmount = (float)當前冰凍條 / (float)冰凍條上限;
                 if (當前冰凍條 <= 0)
                 {
                     當前冰凍條 = 0;
+                    冰凍條.SetActive(false);
                     是否冰凍 = false;
                     冰凍();
                     break;
@@ -145,7 +147,6 @@ public class 怪物狀態 : MonoBehaviour
     }
     public void 死亡()
     {
-        Debug.Log("怪物死亡");
         是否死亡 = true;
         if (是否冰凍)
         {

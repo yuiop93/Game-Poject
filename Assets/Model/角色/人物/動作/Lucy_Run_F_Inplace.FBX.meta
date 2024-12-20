@@ -80,14 +80,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.48708817
+      - time: 0.45253924
         functionName: OnFootstep
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.95013356
+      - time: 0.9059877
         functionName: OnFootstep
         data: 
         objectReferenceParameter: {instanceID: 0}
