@@ -13,6 +13,9 @@ public class 步槍 : MonoBehaviour
     {
         _input = GetComponent<StarterAssetsInputs>();
     }
+    private void OnEnable() {
+        Aim.fixedDistance = 射程;
+    }
     void Update()
     {
         if(_input.fire && fireCoroutine == null)

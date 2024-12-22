@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "冰凍組件", menuName = "Data/冰凍組件參數")]
 public class 冰凍組件_SO : ScriptableObject
 {
-    [Range(0.1f, 1f)]
+    [Range(0.1f, 10f)]
     public float 傷害 = 0.1f;
     [Range(0.1f,2f)]
     public float 射程 = 0.3f;

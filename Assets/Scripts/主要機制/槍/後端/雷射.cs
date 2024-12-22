@@ -25,7 +25,8 @@ public class 雷射 : MonoBehaviour
         laserLineRenderer.endWidth = laserWidth;
         laserLineRenderer.enabled = false; // 初始關閉雷射
     }
-    void  OnDisable(){
+    void  OnDisable()
+    {
         Release();
     }
     void Update()
@@ -83,6 +84,7 @@ public void Fire()
             _currentGrabbable.Release();
             _currentGrabbable = null;
         }
+        if(laserLineRenderer != null)
         laserLineRenderer.enabled = false;
         grabbedObject = null;
     }

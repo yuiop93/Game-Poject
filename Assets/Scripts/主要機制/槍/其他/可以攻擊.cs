@@ -15,6 +15,5 @@ public class 可以攻擊 : MonoBehaviour
         {
             CanAttack = false;
         }
-        Debug.Log("CanAttack: " + CanAttack);
     }
 }

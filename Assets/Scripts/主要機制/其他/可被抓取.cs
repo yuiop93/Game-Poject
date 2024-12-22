@@ -175,7 +175,7 @@ public class 可被抓取 : MonoBehaviour
     {
         if (other.relativeVelocity.magnitude > 10f)
         {
-            if (other.gameObject.CompareTag("Monster"))
+            if (other.gameObject.CompareTag("Mosters"))
             {
                 if (other.gameObject.GetComponent<怪物身體部位>() != null)
                     other.gameObject.GetComponent<怪物身體部位>().受傷(傷害,true);

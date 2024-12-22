@@ -10,6 +10,8 @@ public class 劇情 : MonoBehaviour
     public 劇情_SO 劇情SO;
     [SerializeField]
     private GameObject 劇情UI;
+    [SerializeField]
+    private Image 劇情視窗;
     private int index;
     [SerializeField]
     private Text 名稱;
@@ -60,7 +62,7 @@ public class 劇情 : MonoBehaviour
         歷史紀錄面板.SetActive(false);
         if (是否控制)
         {
-            劇情UI.GetComponent<Image>().enabled = true;
+            劇情視窗.enabled = true;
             自動播放 = false;
             自動按鈕.GetComponentInChildren<Text>().text = "▷";
             互動欄位.gameObject.SetActive(true);
@@ -77,7 +79,7 @@ public class 劇情 : MonoBehaviour
         }
         else
         {
-            劇情UI.GetComponent<Image>().enabled = false;
+            劇情視窗.enabled = false;
             攝影機 = null;
             自動播放 = true;
             互動欄位.gameObject.SetActive(false);

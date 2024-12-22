@@ -10,9 +10,10 @@ public class UIScaleEffectWithClose : MonoBehaviour
 
     [Header("狀態")]
     [SerializeField] private bool disableOnClose = true; // 關閉後是否隱藏物件
+    [SerializeField] private UnityEvent onOpened; // UI 開啟後的回調
     [SerializeField] private UnityEvent onClosed; // UI 關閉後的回調
-
-    private bool isOpen = false; // UI 是否開啟
+    [HideInInspector]
+    public bool isOpen = false; // UI 是否開啟
     private 控制 f1;
     private void Start()
     {
@@ -33,8 +34,11 @@ public class UIScaleEffectWithClose : MonoBehaviour
             if (isOpen) return; // 防止重複執行
             isOpen = true;
             uiTransform.SetActive(true);
+            if (onOpened != null)
+            {
+                onOpened.Invoke();
+            }
             a = StartCoroutine(ScaleUI(Vector3.one));
-            f1.CursorUnLock();
         }
     }
     /// <summary>
