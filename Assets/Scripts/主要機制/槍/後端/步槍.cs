@@ -9,8 +9,10 @@ public class 步槍 : MonoBehaviour
     public float 攻擊速度;
     private StarterAssetsInputs _input;
     public 冰凍組件 冰凍組件;
+    private Aim Aim;
     void Awake()
     {
+        Aim = GetComponent<Aim>();
         _input = GetComponent<StarterAssetsInputs>();
     }
     private void OnEnable() {

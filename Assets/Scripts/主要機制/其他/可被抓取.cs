@@ -15,8 +15,7 @@ public class 可被抓取 : MonoBehaviour
     [SerializeField]
     private float grabSpringForce = 20f;   // SpringJoint 的彈力
     private float grabDrag = 5f;          // 抓取時的阻力
-    [SerializeField]
-    private int 能量消耗 = 10;         // 抓取時消耗的能量
+    public int 能量消耗 = 10;         // 抓取時消耗的能量
     private float _originalDrag;         // 原始阻力
     private RigidbodyConstraints _originalConstraints; // 保存原始剛體約束
     private bool _wasGravityEnabled;     // 是否原本開啟了重力
@@ -71,25 +70,7 @@ public class 可被抓取 : MonoBehaviour
 
         _rigidbody.isKinematic = false;
         onGrabbed.Invoke(); // 觸發抓取事件
-        if (_能量消耗中 == null)
-        {
-            _能量消耗中 = StartCoroutine(能量消耗中());
-        }
-    }
-    private Coroutine _能量消耗中; // 用來存儲協程引用，方便停止
-    private IEnumerator 能量消耗中()
-    {
-        玩家狀態.能量使用中 = true;
-        while (玩家狀態.能量使用中)
-        {
-            玩家狀態.能量 -= 1;
-            yield return new WaitForSeconds(1f / (float)能量消耗);
-            if (玩家狀態.能量 <= 0)
-            {
-                玩家狀態.能量 = 0;
-                Release();
-            }
-        }
+
     }
     /// <summary>
     /// 釋放抓取
@@ -98,17 +79,10 @@ public class 可被抓取 : MonoBehaviour
 
     public void Release()
     {
-        if (_能量消耗中 != null)
-        {
-            StopCoroutine(_能量消耗中);
-            _能量消耗中 = null;
-        }
-
         if (_springJoint != null)
         {
             Destroy(_springJoint);
         }
-
         // 恢復原始阻力
         _rigidbody.drag = _originalDrag;
         // 恢復重力

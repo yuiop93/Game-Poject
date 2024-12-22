@@ -11,7 +11,8 @@ public class WeaponComponent
     public enum HoldStyle
     {
         Style1 = 1,
-        Style2 = 2
+        Style2 = 2,
+        Style3 = 3
 
     }
 
@@ -23,11 +24,10 @@ public class WeaponComponent
 public class Aim : MonoBehaviour
 {
     [Header("配置组件")]
-    [SerializeField] private GameObject[] _gameObject;
+    [SerializeField] private GameObject[] 瞄準物件;
     [SerializeField] private GameObject targetObject;
-    public static float fixedDistance;
-    [SerializeField] private Rig rig;
-    [SerializeField] private Text weaponNameText;
+    public float fixedDistance;
+    [SerializeField] private Rig[] rigs;
 
     [Header("武器配置")]
     public List<WeaponComponent> weaponComponents;
@@ -52,8 +52,12 @@ public class Aim : MonoBehaviour
     }
     private void OnDisable()
     {
-        
+
         SetObjectsActive(false);
+    }
+    private void OnEnable()
+    {
+        SwitchToWeaponByIndex(currentWeaponIndex);
     }
     private void Update()
     {
@@ -72,34 +76,53 @@ public class Aim : MonoBehaviour
             _previousAimState = _input.aim;
         }
     }
-
-    private void HandleRigAndAnimationWeight()
+private void HandleRigAndAnimationWeight()
     {
+        // 获取瞄准权重
         float aimWeight = _input.aim ? 1.0f : 0.0f;
         sp = Mathf.Lerp(sp, aimWeight, Time.deltaTime * 10);
 
+        // 清空所有 Rig 的权重
+        foreach (var rig in rigs)
+        {
+            if(rig != null)
+            rig.weight = 0;
+        }
+
+        // 根据瞄准状态调整动画和 Rig 权重
         if (Mathf.Approximately(aimWeight, 0))
         {
             sp = Mathf.Clamp(sp, 0, 1);
-            rig.weight = sp;
             animator.SetLayerWeight(2, 0);
             animator.SetLayerWeight(3, 0);
         }
         else
         {
-            rig.weight = 1;
-            if (weaponComponents[currentWeaponIndex].holdStyle == WeaponComponent.HoldStyle.Style1)
+            WeaponComponent currentWeapon = weaponComponents[currentWeaponIndex];
+            switch (currentWeapon.holdStyle)
             {
-                animator.SetLayerWeight(3, 0);
-                animator.SetLayerWeight(2, sp);
-            }
-            else if (weaponComponents[currentWeaponIndex].holdStyle == WeaponComponent.HoldStyle.Style2)
-            {
-                animator.SetLayerWeight(2, 0);
-                animator.SetLayerWeight(3, sp);
+                case WeaponComponent.HoldStyle.Style1:
+                    rigs[0].weight = sp;
+                    animator.SetLayerWeight(3, 0);
+                    animator.SetLayerWeight(2, sp);
+                    break;
+                case WeaponComponent.HoldStyle.Style2:
+                    rigs[1].weight = sp;
+                    animator.SetLayerWeight(2, 0);
+                    animator.SetLayerWeight(3, sp);
+                    break;
+                case WeaponComponent.HoldStyle.Style3:
+                    if (rigs.Length > 2)
+                    {
+                        rigs[2].weight = sp;
+                    }
+                    animator.SetLayerWeight(2, sp * 0.5f); // 示例: Style3 动画层的混合效果
+                    animator.SetLayerWeight(3, sp * 0.5f);
+                    break;
             }
         }
 
+        // 更新基础动画层的权重
         animator.SetLayerWeight(1, sp);
     }
 
@@ -208,7 +231,7 @@ public class Aim : MonoBehaviour
             item.Script.enabled = false;
         }
         weaponComponents[currentWeaponIndex].Script.enabled = isActive;
-        foreach (GameObject item in _gameObject)
+        foreach (GameObject item in 瞄準物件)
         {
             if (item != null) item.SetActive(isActive);
         }

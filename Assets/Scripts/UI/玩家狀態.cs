@@ -49,7 +49,7 @@ public class 玩家狀態 : MonoBehaviour
             能量 = 能量上限;
         }
     }
-    public static bool 能量使用中 = false;
+    public bool 能量使用中 = false;
     [SerializeField]
     private int 能量回復速度 = 1;
     private Coroutine 能量回復協程;

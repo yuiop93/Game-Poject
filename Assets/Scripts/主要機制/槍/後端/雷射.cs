@@ -1,18 +1,27 @@
 using UnityEngine;
 using StarterAssets; // 引入 StarterAssets
+using System.Collections;
 public class 雷射 : MonoBehaviour
 {
-    private StarterAssetsInputs _input;
     [SerializeField]
-    private Transform gunMuzzle; // 槍口位置
+    private float grabDistance = 10f; // 抓取距離
+
+    [SerializeField]
+    private float 攻擊速度 = 0.2f; // 攻擊速度
     [SerializeField]
     private LineRenderer laserLineRenderer; // LineRenderer 用於雷射
     [SerializeField]
     private float laserWidth = 0.1f; // 雷射的寬度
     [SerializeField]
     private float laserMaxLength = 100f; // 雷射的最大長度
-    public Rigidbody grabbedObject; // 命中物體
+    [SerializeField]
+    private Transform gunMuzzle; // 槍口位置
+    private Rigidbody grabbedObject; // 命中物體
     private Vector3 aimWorldPos; // 目標世界位置
+    public Transform attachPoint; // 抓取的連接點
+    private 可被抓取 _currentGrabbable;
+    private StarterAssetsInputs _input; // 輸入
+
     void Awake()
     {
         // 確保有 StarterAssetsInputs，否則嘗試獲取
@@ -25,7 +34,7 @@ public class 雷射 : MonoBehaviour
         laserLineRenderer.endWidth = laserWidth;
         laserLineRenderer.enabled = false; // 初始關閉雷射
     }
-    void  OnDisable()
+    void OnDisable()
     {
         Release();
     }
@@ -36,7 +45,10 @@ public class 雷射 : MonoBehaviour
             if (玩家狀態.能量 > 0)
             {
                 Fire();
-                玩家狀態.能量使用中 = true;
+                if (_fireCoroutine == null)
+                {
+                    _fireCoroutine = StartCoroutine(耗能());
+                }
             }
             else
             {
@@ -46,10 +58,9 @@ public class 雷射 : MonoBehaviour
         else
         {
             Release();
-            玩家狀態.能量使用中 = false;
         }
     }
-public void Fire()
+    public void Fire()
     {
         TryGrab();
         laserLineRenderer.enabled = true; // 顯示雷射
@@ -84,14 +95,11 @@ public void Fire()
             _currentGrabbable.Release();
             _currentGrabbable = null;
         }
-        if(laserLineRenderer != null)
-        laserLineRenderer.enabled = false;
+        if (laserLineRenderer != null)
+            laserLineRenderer.enabled = false;
         grabbedObject = null;
     }
-    public Transform attachPoint; // 抓取的連接點
-    private 可被抓取 _currentGrabbable;
-    [SerializeField]
-    private float grabDistance = 10f; // 抓取距離
+
     void TryGrab()
     {
         if (_currentGrabbable == null)
@@ -120,5 +128,30 @@ public void Fire()
             }
         }
     }
+    private Coroutine _fireCoroutine;
 
+    private IEnumerator 耗能()
+    {
+        while (_input.fire)
+        {
+            if (_currentGrabbable != null)
+            {
+                if (玩家狀態.能量 >= _currentGrabbable.能量消耗)
+                {
+                    玩家狀態.能量 -= _currentGrabbable.能量消耗;
+                    yield return new WaitForSeconds(1 / 攻擊速度);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+        Release();
+        _fireCoroutine = null;
+    }
 }
