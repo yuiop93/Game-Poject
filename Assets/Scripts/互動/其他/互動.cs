@@ -9,6 +9,8 @@ public class 互動 : MonoBehaviour
 {
     private Transform 互動UI;
     [SerializeField]
+    private string 互動文字;
+    [SerializeField]
     private GameObject 預置按鈕;
     [HideInInspector]
     public GameObject 按鈕;
@@ -48,11 +50,18 @@ public class 互動 : MonoBehaviour
     {
         if (預置按鈕 == null)
         {
-            預置按鈕 = Resources.Load<GameObject>("Prefab/panel/互動/按鈕");
+            預置按鈕 = Resources.Load<GameObject>("Prefab/UI/互動/按鈕");
         }
         按鈕 = Instantiate(預置按鈕);
         按鈕文字 = 按鈕.transform.GetChild(0).GetComponent<Text>();
-        按鈕文字.text = this.gameObject.name;
+        if (!string.IsNullOrWhiteSpace(互動文字))
+        {
+            按鈕文字.text = 互動文字;
+        }
+        else
+        {
+            按鈕文字.text = this.gameObject.name;
+        }
         按鈕.transform.SetParent(互動UI, false);
     }
 

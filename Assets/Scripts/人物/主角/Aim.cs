@@ -59,7 +59,7 @@ public class Aim : MonoBehaviour
             _previousAimState = _input.aim;
         }
     }
-private void HandleRigAndAnimationWeight()
+    private void HandleRigAndAnimationWeight()
     {
         // 获取瞄准权重
         float aimWeight = _input.aim ? 1.0f : 0.0f;
@@ -68,8 +68,8 @@ private void HandleRigAndAnimationWeight()
         // 清空所有 Rig 的权重
         foreach (var rig in rigs)
         {
-            if(rig != null)
-            rig.weight = 0;
+            if (rig != null)
+                rig.weight = 0;
         }
 
         // 根据瞄准状态调整动画和 Rig 权重
@@ -167,8 +167,16 @@ private void HandleRigAndAnimationWeight()
         if (currentWeaponIndex < 0) currentWeaponIndex = weaponComponents.Count - 1;
         else if (currentWeaponIndex >= weaponComponents.Count) currentWeaponIndex = 0;
 
-        // 啟用新武器
-        ActivateWeaponByIndex(currentWeaponIndex);
+        if (currentWeaponIndex < weaponComponents.Count && GameObject.Find("程式/控制").GetComponent<控制>().武器取得狀態[currentWeaponIndex] == true)
+        {
+            // 啟用新武器
+            ActivateWeaponByIndex(currentWeaponIndex);
+        }
+        else
+        {
+            // 超出範圍或未取得武器則循環
+            SwitchToNextWeapon(direction);
+        }
     }
 
     // 切換到指定索引的武器

@@ -10,6 +10,11 @@ public class 控制 : MonoBehaviour
     private PlayerInput player;
     private GameObject 互動;
     public static bool 互動中 = false;
+    public bool[] 武器取得狀態 = new bool[3];
+    public void 取得武器(int i)
+    {
+        武器取得狀態[i] = true;
+    }
 
     void Start()
     {

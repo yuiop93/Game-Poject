@@ -41,6 +41,7 @@ public class UI視窗控制 : MonoBehaviour
     {
         if (控制.互動中 && !uiTransform[index].GetComponent<UIScaleEffectWithClose>().isOpen)
         {
+            Debug.Log("互動中");
             return;
         }
         // 切换 UI 状态

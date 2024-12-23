@@ -41,7 +41,7 @@ public class 冰凍組件 : MonoBehaviour
             AudioSource.PlayClipAtPoint(射擊音效[0], GunMuzzle.position);
         }
         _傷害 = (int)(傷害 * 冰凍組件參數.傷害);
-        _射程 = (int)(射程*0.5 * 冰凍組件參數.射程);
+        _射程 = (int)(射程 * 冰凍組件參數.射程);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, _射程))
         {

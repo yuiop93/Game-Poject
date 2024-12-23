@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-[System.Serializable]
-public class 武器選擇
-{
-    public GameObject 武器;
-    public bool 是否解鎖;
-    public Button 按鈕;
-}
 
 public class 武器欄位控制 : MonoBehaviour
 {
@@ -16,16 +9,15 @@ public class 武器欄位控制 : MonoBehaviour
     [SerializeField] private List<武器選擇> 武器列表;
     [SerializeField] private GameObject[] 組件;
     private int _currentWeaponIndex;
-
     public void Open()
     {
         foreach (var item in 武器鏡頭)
         {
             item.SetActive(true);
         }
-        foreach (var item in 武器列表)
+        for(int i = 0; i < 武器列表.Count; i++)
         {
-            item.按鈕.interactable = item.是否解鎖;
+            武器列表[i].按鈕.interactable = GameObject.Find("程式/控制").GetComponent<控制>().武器取得狀態[i];
         }
         武器列表[0].按鈕.Select();
         切換到指定索引的武器(0);

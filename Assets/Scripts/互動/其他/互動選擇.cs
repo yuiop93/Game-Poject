@@ -9,9 +9,9 @@ public class 互動選擇 : MonoBehaviour
     private int value = 0;
     private int changeAmount = 1;
     public static bool isSelecting = false;
-    void Start()
+    void Awake()
     {
-        選擇UI = Resources.Load<GameObject>("Prefab/panel/互動/選擇UI");
+        選擇UI = Resources.Load<GameObject>("Prefab/UI/互動/選擇UI");
     }
     void Update()
     {
