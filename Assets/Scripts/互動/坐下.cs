@@ -25,7 +25,7 @@ public class 坐下 : MonoBehaviour
 
     void Start()
     {
-        sitUI = GameObject.Find("UI控制/坐下/坐下UI");
+        sitUI = GameObject.Find("UI控制/提示欄位/坐下/坐下UI");
         if (onSubmitConfirmed != null)
         {
             eventhit = sitUI.transform.GetChild(1).gameObject;

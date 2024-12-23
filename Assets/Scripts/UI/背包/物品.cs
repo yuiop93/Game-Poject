@@ -62,7 +62,7 @@ public class 物品 : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject 資訊;
     public void 內容()
     {
-        資訊 = GameObject.Find("UI控制/彈出視窗/背包/背包介面/下/物品資訊");
+        資訊 = GameObject.Find("UI控制/彈出UI/背包").GetComponent<背包>().物品資訊;
         資訊.GetComponent<物品詳情>().物品內容(物品ID);
     }
 }

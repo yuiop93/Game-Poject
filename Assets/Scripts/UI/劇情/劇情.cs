@@ -48,7 +48,7 @@ public class 劇情 : MonoBehaviour
         劇情UI.SetActive(false);
         控制 = GameObject.Find("程式/控制").GetComponent<控制>();
         自動播放 = false;
-        互動UI = GameObject.Find("UI控制/互動");
+        互動UI = GameObject.Find("UI控制/提示欄位/互動");
     }
 
     public void 顯示劇情(bool 是否控制)

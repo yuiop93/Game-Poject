@@ -19,7 +19,7 @@ public class 撿起 : MonoBehaviour
     // 获取物品
     public void 獲取()
     {
-        位置 = GameObject.Find("獲得").transform; // 获取显示物品的父物体
+        位置 = GameObject.Find("UI控制/提示欄位/獲得").transform; // 获取显示物品的父物体
         物品SO = Resources.Load<item_SO>("ScriptableObjects/道具/背包"); // 加载物品数据
         GameObject 文字Prefab = Resources.Load<GameObject>("Prefab/UI/獲取道具文字"); // 加载文字Prefab
 

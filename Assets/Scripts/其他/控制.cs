@@ -19,7 +19,7 @@ public class 控制 : MonoBehaviour
     void Start()
     {
         inputs = player.GetComponent<StarterAssetsInputs>();
-        互動 = GameObject.Find("UI控制/互動");
+        互動 = GameObject.Find("UI控制/提示欄位/互動");
     }
     public void CursorLock()
     {

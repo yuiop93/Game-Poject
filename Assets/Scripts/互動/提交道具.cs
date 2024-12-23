@@ -30,7 +30,7 @@ public class 提交道具 : MonoBehaviour
 
     void Start()
     {
-        提交畫面 = GameObject.Find("UI控制/彈出視窗/提交").GetComponent<提交畫面>();
+        提交畫面 = GameObject.Find("UI控制/彈出UI/提交").GetComponent<提交畫面>();
         道具ID = new int[提交道具數據.Length];
         道具數量 = new int[提交道具數據.Length];
     }

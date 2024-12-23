@@ -10,6 +10,8 @@ public class 背包 : MonoBehaviour
     private GameObject 背包UI;
     public 分類顯示 狀態;
     private item_SO 物品SO;
+    public Transform 背包欄位;
+    public GameObject 物品資訊;
 
     public void 顯示背包()
     {

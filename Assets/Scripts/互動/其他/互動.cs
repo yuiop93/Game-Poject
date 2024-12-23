@@ -22,11 +22,13 @@ public class 互動 : MonoBehaviour
     [SerializeField] private bool 強制互動 = false;
     void Start()
     {
-        互動UI = GameObject.Find("UI控制/互動").transform;
+        互動UI = GameObject.Find("UI控制/提示欄位/互動").transform;
         player = GameObject.Find("Player");
     }
+    bool 已生成按鈕=false;
 
-    void OnTriggerEnter(Collider other)
+
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
@@ -39,7 +41,7 @@ public class 互動 : MonoBehaviour
                 }
                 return;
             }
-            else
+            else if(已生成按鈕==false)
             {
                 生成按鈕();
             }
@@ -48,6 +50,7 @@ public class 互動 : MonoBehaviour
     }
     void 生成按鈕()
     {
+        已生成按鈕 = true;
         if (預置按鈕 == null)
         {
             預置按鈕 = Resources.Load<GameObject>("Prefab/UI/互動/按鈕");
@@ -76,6 +79,7 @@ public class 互動 : MonoBehaviour
     {
         Destroy(按鈕.gameObject);
         按鈕 = null;
+        已生成按鈕 = false;
     }
     void Update()
     {

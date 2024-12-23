@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Item
@@ -8,7 +9,12 @@ public class Item
     public GameObject itemPrefab; // 3D 道具的模型
     public Sprite itemIcon; // 動態生成的圖片
 }
-
+[System.Serializable]
+public class 組件狀態
+{
+    public bool 是否裝備;
+    public GameObject 裝備位置;
+}
 [System.Serializable]
 public class 冰凍組件參數
 {
@@ -36,7 +42,8 @@ public class WeaponComponent
 [System.Serializable]
 public class 武器選擇
 {
-    public GameObject 武器;
+    public GameObject 槍械;
+    public List<GameObject> 組件;
     public Button 按鈕;
 }
 
