@@ -241,7 +241,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892f71ebbf4c1f049bd8826c0dd785cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "\u51B0\u51CD\u7D44\u4EF6\u53C3\u6578": {fileID: 11400000, guid: b410a98995e4c7140b7550f04cc4638f, type: 2}
+  "\u7269\u54C1":
+    itemName: "\u51B0\u51CD\u7D44\u4EF6"
+    itemPrefab: {fileID: 6506865120522877970}
+    itemIcon: {fileID: 0}
+  "\u51B0\u51CD\u7D44\u4EF6\u53C3\u6578":
+    "\u50B7\u5BB3": 1
+    "\u5C04\u7A0B": 1
+    "\u51B0\u51CD\u6548\u7387": 10
+    "\u80FD\u91CF\u6D88\u8017": 1
   GunMuzzle: {fileID: 7172191275906967846}
   "\u53D7\u64CA\u6548\u679C": 0
   "\u653B\u64CA\u7279\u6548":

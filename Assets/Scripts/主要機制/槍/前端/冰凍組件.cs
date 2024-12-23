@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class 冰凍組件 : MonoBehaviour
 {
-    public 冰凍組件_SO 冰凍組件參數;
+    public Item 物品;
+    [Header("配置參數")]
+    public 冰凍組件參數 冰凍組件參數;
+    [Header("配置组件")]
     public Transform GunMuzzle;
     private int _傷害;
     private int _射程;
     public bool 受擊效果 = false;
+    [Header("配置特效")]
     public GameObject[] 攻擊特效;
     public GameObject[] 擊中特效;
     public AudioClip[] 卡彈音效;
     public AudioClip[] 射擊音效;
     public AudioClip[] 擊中音效;
+    
+    void 生成圖標()
+    {
+        ItemIconGenerator itemIconGenerator = GameObject.Find("程式/控制").GetComponent<ItemIconGenerator>();
+        物品.itemIcon= itemIconGenerator.GenerateIcon(物品);
+    }
     public void 步槍(int 射程, int 傷害)
     {
         if (this.GetComponent<可以攻擊>().CanAttack == false || 玩家狀態.能量 < 冰凍組件參數.能量消耗)

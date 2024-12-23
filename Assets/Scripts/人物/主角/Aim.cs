@@ -4,23 +4,6 @@ using StarterAssets;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
-[System.Serializable]
-public class WeaponComponent
-{
-    public enum HoldStyle
-    {
-        Style1 = 1,
-        Style2 = 2,
-        Style3 = 3
-
-    }
-
-    public HoldStyle holdStyle = HoldStyle.Style1;
-    public GameObject[] gunObject;
-    public MonoBehaviour Script;
-}
-
 public class Aim : MonoBehaviour
 {
     [Header("配置组件")]
@@ -138,7 +121,6 @@ private void HandleRigAndAnimationWeight()
     {
         if (currentWeaponIndex != 0)
         {
-            fixedDistance = 10f;
             return;
         }
         else
