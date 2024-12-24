@@ -15,6 +15,7 @@ public class 組件UI : MonoBehaviour
         _item = item;
         組件名稱.text = item.itemName;
         _組件圖片.sprite = GameObject.Find("程式/控制").GetComponent<ItemIconGenerator>().GenerateIcon(item);
+        _狀態.組件UI = this;
         this.GetComponent<Button>().onClick.AddListener(組件);
     }
     public void 組件()

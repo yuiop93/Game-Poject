@@ -74,6 +74,41 @@ public class 武器欄位控制 : MonoBehaviour
             能量消耗.value = 武器列表[_currentWeaponIndex].槍械描述.能量消耗;
         }
     }
+    public void 裝備()
+    {
+        if (當前組件狀態.裝備位置 == null)
+        {
+            裝備組件();
+        }
+        else
+        {
+            拆卸組件();
+        }
+    }
+
+    public void 判斷裝備是否有組件()
+    {
+        if (_currentWeaponIndex == 1)
+        {
+            if (武器列表[_currentWeaponIndex].組件.Count == 0)
+            {
+                步槍前端.SetActive(true);
+            }
+            else
+            {
+                步槍前端.SetActive(false);
+            }
+        }
+        if (武器列表[_currentWeaponIndex].組件UI == null)
+        {
+            return;
+        }
+        else if (武器列表[_currentWeaponIndex].組件UI != 當前組件狀態.組件UI)
+        {
+            裝備按鈕.interactable = false;
+            裝備按鈕.GetComponentInChildren<Text>().text = "此武器已裝備組件";
+        }
+    }
     public void 判斷組件是否裝備(int index)
     {
         if (index == 0)
@@ -96,29 +131,12 @@ public class 武器欄位控制 : MonoBehaviour
             裝備按鈕.interactable = false;
             裝備按鈕.GetComponentInChildren<Text>().text = "已裝備";
         }
-        if (武器列表[_currentWeaponIndex].組件.Count == 0)
-        {
-            步槍前端.SetActive(true);
-        }
-        else
-        {
-            步槍前端.SetActive(false);
-        }
-    }
-    public void 裝備()
-    {
-        if (當前組件狀態.裝備位置 == null)
-        {
-            裝備組件();
-        }
-        else
-        {
-            拆卸組件();
-        }
+        判斷裝備是否有組件();
     }
 
     void 裝備組件()
     {
+        武器列表[_currentWeaponIndex].組件UI = 當前組件狀態.組件UI;
         當前組件狀態.裝備位置 = 武器列表[_currentWeaponIndex].槍械;
         武器列表[_currentWeaponIndex].組件.Add(Instantiate(當前組件, 玩家裝備位置[_currentWeaponIndex].transform));
         武器列表[_currentWeaponIndex].組件.Add(Instantiate(當前組件, 武器列表[_currentWeaponIndex].槍械.transform));
@@ -126,16 +144,32 @@ public class 武器欄位控制 : MonoBehaviour
         StartCoroutine(MoveToLocalTargetPosition(武器列表[_currentWeaponIndex].組件[1].transform, new Vector3(0, 0, 0), 0.2f));
         判斷組件是否裝備(_currentWeaponIndex);
     }
+    void 拆卸組件()
+    {
+        武器列表[_currentWeaponIndex].組件UI = null;
+        foreach (var item in 武器列表[_currentWeaponIndex].組件)
+        {
+            Destroy(item);
+        }
+        武器列表[_currentWeaponIndex].組件 = null;
+        武器列表[_currentWeaponIndex].組件 = new List<GameObject>();
+        當前組件狀態.裝備位置 = null;
+        判斷組件是否裝備(_currentWeaponIndex);
+    }
     private IEnumerator MoveToLocalTargetPosition(Transform target, Vector3 finalLocalPosition, float duration)
     {
-        武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>().enabled = false;
-        Vector3 startLocalPosition = target.localPosition;
+        if (武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>() != null)
+        {
+            武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>().enabled = false;
+        }
+
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {
             if (武器列表[_currentWeaponIndex].組件[1] != null)
             {
+                Vector3 startLocalPosition = target.localPosition;
                 // 線性插值移動本地位置
                 target.localPosition = Vector3.Lerp(startLocalPosition, finalLocalPosition, elapsedTime / duration);
                 elapsedTime += Time.deltaTime;
@@ -150,20 +184,13 @@ public class 武器欄位控制 : MonoBehaviour
         if (武器列表[_currentWeaponIndex].組件[1] != null)
         {
             target.localPosition = finalLocalPosition;
-            武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>().enabled = true;
+            if (武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>() != null)
+            {
+                武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>().enabled = true;
+            }
         }
     }
-    void 拆卸組件()
-    {
-        foreach (var item in 武器列表[_currentWeaponIndex].組件)
-        {
-            Destroy(item);
-        }
-        武器列表[_currentWeaponIndex].組件 = null;
-        武器列表[_currentWeaponIndex].組件 = new List<GameObject>();
-        當前組件狀態.裝備位置 = null;
-        判斷組件是否裝備(_currentWeaponIndex);
-    }
+
     void Open()
     {
         foreach (var item in 武器鏡頭)

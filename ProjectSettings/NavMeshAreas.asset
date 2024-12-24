@@ -13,7 +13,7 @@ NavMeshProjectSettings:
     cost: 2
   - name: corridor
     cost: 1
-  - name: 
+  - name: "\u5BA2\u5EF3"
     cost: 1
   - name: 
     cost: 1

@@ -55,14 +55,19 @@ public class 玩家狀態 : MonoBehaviour
     private Coroutine 能量回復協程;
     public void 開始能量回復()
     {
-        if (能量回復協程 == null && !能量使用中)
+        if(能量回復協程 != null)
+        {
+            StopCoroutine(能量回復());
+            能量回復協程 = null;
+        }
+        if (能量回復協程 == null )
         {
             能量回復協程 = StartCoroutine(能量回復());
         }
     }
     private IEnumerator 能量回復()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         while (!能量使用中)
         {
             if (能量 < 能量上限)
@@ -72,7 +77,7 @@ public class 玩家狀態 : MonoBehaviour
             }
             else
             {
-                break; // 當能量達到上限時跳出循環
+                break;
             }
         }
         // 協程結束時設置為 null

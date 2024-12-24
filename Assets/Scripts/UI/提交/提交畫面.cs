@@ -70,6 +70,10 @@ public class 提交畫面 : MonoBehaviour
 
         // 根据是否满足条件更新按钮状态
         提交按鈕.interactable = 全部滿足(是否滿足);
+        if(全部滿足(是否滿足))
+        {
+            提交按鈕.enabled = true;
+        }
     }
 
     // 检查是否所有条件都满足

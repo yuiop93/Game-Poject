@@ -11,6 +11,7 @@ public class 冰凍組件 : MonoBehaviour
     public Transform GunMuzzle;
     private int _傷害;
     private int _射程;
+    public int 燃燒傷害;
     public bool 受擊效果 = false;
     [Header("配置特效")]
     public GameObject[] 攻擊特效;
@@ -18,7 +19,6 @@ public class 冰凍組件 : MonoBehaviour
     public AudioClip[] 卡彈音效;
     public AudioClip[] 射擊音效;
     public AudioClip[] 擊中音效;
-
     void 生成圖標()
     {
         ItemIconGenerator itemIconGenerator = GameObject.Find("程式/控制").GetComponent<ItemIconGenerator>();
@@ -35,6 +35,7 @@ public class 冰凍組件 : MonoBehaviour
         if (攻擊特效[0] != null)
         {
             GameObject obj = Instantiate(攻擊特效[0], GunMuzzle.position, GunMuzzle.rotation);
+            Destroy(obj, 1f);
         }
         if (射擊音效[0] != null)
         {
@@ -52,7 +53,7 @@ public class 冰凍組件 : MonoBehaviour
                     if (hit.collider.tag == "Mosters")
                     {
                         hit.collider.GetComponent<怪物身體部位>().受傷(_傷害, 受擊效果);
-                        hit.collider.GetComponent<怪物身體部位>().冰凍(冰凍組件參數.冰凍效率);
+                        hit.collider.GetComponent<怪物身體部位>().冰凍(冰凍組件參數.冰凍效率, 燃燒傷害);
                     }
                     if (hit.collider.tag == "Untagged")
                     {
@@ -61,6 +62,13 @@ public class 冰凍組件 : MonoBehaviour
                     if (擊中特效 != null)
                     {
                         GameObject obj = Instantiate(擊中特效[0], hit.point, Quaternion.identity);
+                        Vector3 cameraPosition = Camera.main.transform.position;
+
+                        // 計算從特效到攝像機的方向
+                        Vector3 directionToCamera = cameraPosition - obj.transform.position;
+
+                        // 保持 Y 軸朝向攝像機
+                        obj.transform.rotation = Quaternion.LookRotation(Vector3.up, directionToCamera);
                         Destroy(obj, 1f);
                     }
                     if (擊中音效 != null)
@@ -74,10 +82,11 @@ public class 冰凍組件 : MonoBehaviour
                 }
 
             }
-            玩家狀態.能量 -= 冰凍組件參數.能量消耗;
+
         }
 
     }
+    
     public void 狙擊槍()
     {
 

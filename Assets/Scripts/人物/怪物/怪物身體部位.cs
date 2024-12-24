@@ -13,9 +13,9 @@ public class 怪物身體部位 : MonoBehaviour
     {
         怪物狀態.受傷((int)(傷害 * 傷害倍率), 受擊效果);
     }
-    public void 冰凍(float 冰凍點數)
+    public void 冰凍(int 冰凍點數,int 燃燒傷害)
     {
-        怪物狀態.冰凍值((int)冰凍點數);
+        怪物狀態.冰凍值(冰凍點數,燃燒傷害);
     }
     
 }

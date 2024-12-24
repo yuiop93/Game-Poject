@@ -98,6 +98,7 @@ public class 雷射 : MonoBehaviour
         if (laserLineRenderer != null)
             laserLineRenderer.enabled = false;
         grabbedObject = null;
+        this.GetComponent<玩家狀態>().開始能量回復();
     }
 
     void TryGrab()

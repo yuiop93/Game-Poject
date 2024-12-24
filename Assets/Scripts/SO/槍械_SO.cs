@@ -14,6 +14,6 @@ public class 槍械_SO : ScriptableObject
     public int 射速;
     [Range(10, 30)]
     public int 射程;
-    [Range(0, 100)]
+    [Range(1, 20)]
     public int 能量消耗;
 }
