@@ -45,6 +45,7 @@ public class 武器選擇
     public GameObject 槍械;
     public List<GameObject> 組件;
     public Button 按鈕;
+    public 槍械_SO 槍械描述;
 }
 
 [System.Serializable]

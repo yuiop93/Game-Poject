@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,3 +14,4 @@ public class 劇情s
     public string 文字內容;
     public int 攝影機位置;
 }
+

@@ -16,6 +16,13 @@ public class 武器欄位控制 : MonoBehaviour
     public Sprite 當前組件Image;
     public 組件狀態 當前組件狀態;
     [SerializeField] private Image 組件圖片;
+    public GameObject 步槍前端;
+    [Header("槍械資訊")]
+    public Text 槍械名稱;
+    public Text 槍械描述;
+    public Slider 傷害;
+    public Slider 射程;
+    public Slider 能量消耗;
 
     public void 介面開關(bool 開關)
     {
@@ -43,6 +50,7 @@ public class 武器欄位控制 : MonoBehaviour
         武器列表[index].槍械.SetActive(true);
         _currentWeaponIndex = index;
         資訊欄.SetActive(false);
+        槍械資訊欄更新();
     }
     public void 資訊欄更新()
     {
@@ -55,9 +63,25 @@ public class 武器欄位控制 : MonoBehaviour
         組件圖片.sprite = 當前組件Image;
         判斷組件是否裝備(_currentWeaponIndex);
     }
+    void 槍械資訊欄更新()
+    {
+        if (武器列表[_currentWeaponIndex].槍械描述 != null)
+        {
+            槍械名稱.text = 武器列表[_currentWeaponIndex].槍械描述.槍械名稱;
+            槍械描述.text = 武器列表[_currentWeaponIndex].槍械描述.槍械描述;
+            傷害.value = 武器列表[_currentWeaponIndex].槍械描述.傷害;
+            射程.value = 武器列表[_currentWeaponIndex].槍械描述.射程;
+            能量消耗.value = 武器列表[_currentWeaponIndex].槍械描述.能量消耗;
+        }
+    }
     public void 判斷組件是否裝備(int index)
     {
-        if (當前組件狀態.裝備位置 == null && index != 0)
+        if (index == 0)
+        {
+            裝備按鈕.interactable = false;
+            裝備按鈕.GetComponentInChildren<Text>().text = "無法使用";
+        }
+        else if (當前組件狀態.裝備位置 == null)
         {
             裝備按鈕.interactable = true;
             裝備按鈕.GetComponentInChildren<Text>().text = "裝備";
@@ -71,6 +95,14 @@ public class 武器欄位控制 : MonoBehaviour
         {
             裝備按鈕.interactable = false;
             裝備按鈕.GetComponentInChildren<Text>().text = "已裝備";
+        }
+        if (武器列表[_currentWeaponIndex].組件.Count == 0)
+        {
+            步槍前端.SetActive(true);
+        }
+        else
+        {
+            步槍前端.SetActive(false);
         }
     }
     public void 裝備()
@@ -90,17 +122,45 @@ public class 武器欄位控制 : MonoBehaviour
         當前組件狀態.裝備位置 = 武器列表[_currentWeaponIndex].槍械;
         武器列表[_currentWeaponIndex].組件.Add(Instantiate(當前組件, 玩家裝備位置[_currentWeaponIndex].transform));
         武器列表[_currentWeaponIndex].組件.Add(Instantiate(當前組件, 武器列表[_currentWeaponIndex].槍械.transform));
+        武器列表[_currentWeaponIndex].組件[1].transform.localPosition = new Vector3(0, 0, 1);
+        StartCoroutine(MoveToLocalTargetPosition(武器列表[_currentWeaponIndex].組件[1].transform, new Vector3(0, 0, 0), 0.2f));
         判斷組件是否裝備(_currentWeaponIndex);
+    }
+    private IEnumerator MoveToLocalTargetPosition(Transform target, Vector3 finalLocalPosition, float duration)
+    {
+        武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>().enabled = false;
+        Vector3 startLocalPosition = target.localPosition;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            if (武器列表[_currentWeaponIndex].組件[1] != null)
+            {
+                // 線性插值移動本地位置
+                target.localPosition = Vector3.Lerp(startLocalPosition, finalLocalPosition, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            else
+            {
+                break;
+            }
+        }
+        // 確保最終本地位置正確
+        if (武器列表[_currentWeaponIndex].組件[1] != null)
+        {
+            target.localPosition = finalLocalPosition;
+            武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>().enabled = true;
+        }
     }
     void 拆卸組件()
     {
-        foreach (var 組件 in 武器列表[_currentWeaponIndex].組件)
+        foreach (var item in 武器列表[_currentWeaponIndex].組件)
         {
-            if (組件 != null) // 確保組件存在
-            {
-                Destroy(組件); // 銷毀組件
-            }
+            Destroy(item);
         }
+        武器列表[_currentWeaponIndex].組件 = null;
+        武器列表[_currentWeaponIndex].組件 = new List<GameObject>();
         當前組件狀態.裝備位置 = null;
         判斷組件是否裝備(_currentWeaponIndex);
     }

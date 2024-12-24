@@ -13,6 +13,7 @@ public class 怪物窗 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Camera.main.transform.rotation;
+        if(Camera.main != null)
+            transform.rotation = Camera.main.transform.rotation;
     }
 }

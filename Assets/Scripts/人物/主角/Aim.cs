@@ -20,7 +20,7 @@ public class Aim : MonoBehaviour
     private int currentWeaponIndex;
     private bool _previousAimState;
     private float sp;
-
+    
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -35,7 +35,11 @@ public class Aim : MonoBehaviour
     }
     private void OnDisable()
     {
-
+        _input.fire = false;
+        foreach (var item in weaponComponents)
+        {
+            item.Script.enabled = false;
+        }
         SetObjectsActive(false);
     }
     private void OnEnable()
@@ -57,6 +61,10 @@ public class Aim : MonoBehaviour
         {
             SetObjectsActive(_input.aim);
             _previousAimState = _input.aim;
+            if(_previousAimState ==true)
+            {
+                ActivateWeaponByIndex(currentWeaponIndex);
+            }
         }
     }
     private void HandleRigAndAnimationWeight()
@@ -187,7 +195,7 @@ public class Aim : MonoBehaviour
             Debug.LogWarning("索引超出範圍！");
             return;
         }
-
+        
         // 禁用當前武器
         foreach (var item in weaponComponents)
         {
@@ -197,10 +205,9 @@ public class Aim : MonoBehaviour
             }
             item.Script.enabled = false;
         }
-
+        weaponComponents[index].gunObject[1].SetActive(true);
         // 更新索引並啟用對應武器
         currentWeaponIndex = index;
-        ActivateWeaponByIndex(currentWeaponIndex);
     }
 
     // 啟用指定索引的武器

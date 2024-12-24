@@ -16,7 +16,7 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1001
     "\u540D\u7A31": "\u623F\u5361"
     "\u5716\u7247": {fileID: 21300000, guid: 907c58bca2728c849a295ec4d1d8c978, type: 3}
-    "\u6578\u91CF": 1
+    "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u7528\u4F86\u89E3\u9396\u4E00\u4E9B\u623F\u9580"
     CanUse: 0
     "\u6D88\u8017\u54C1":
@@ -26,7 +26,7 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1002
     "\u540D\u7A31": "\u6587\u4EF6"
     "\u5716\u7247": {fileID: 21300000, guid: 474b90c5ed7332b46a508e262886af67, type: 3}
-    "\u6578\u91CF": 1
+    "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u6587\u4EF6\u88E1\u6C92\u6709\u5167\u5BB9"
     CanUse: 0
     "\u6D88\u8017\u54C1":
@@ -36,7 +36,7 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1003
     "\u540D\u7A31": "\u4E00\u4E9B\u66F8"
     "\u5716\u7247": {fileID: 21300000, guid: 05c94e5c03404dc44822719b4816d04e, type: 3}
-    "\u6578\u91CF": 1
+    "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u4E0D\u77E5\u9053\u88E1\u9762\u5BEB\u8457\u751A\u9EBC\u5167\u5BB9"
     CanUse: 0
     "\u6D88\u8017\u54C1":
@@ -46,7 +46,7 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1101
     "\u540D\u7A31": "\u624B\u96FB\u7B52"
     "\u5716\u7247": {fileID: 21300000, guid: 6796b6db7d0d5f84ea4e052651765561, type: 3}
-    "\u6578\u91CF": 1
+    "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u5F88\u666E\u901A\u7684\u7167\u660E\u7CFB\u7D71"
     CanUse: 1
     "\u6D88\u8017\u54C1":
@@ -56,7 +56,7 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1102
     "\u540D\u7A31": "\u76F8\u6A5F"
     "\u5716\u7247": {fileID: 21300000, guid: f5cedb851fc524941bc487a184291411, type: 3}
-    "\u6578\u91CF": 1
+    "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u5927\u6982\u662F\u7528\u4F86\u62CD\u7167\u4E0D\u904E\u597D\u50CF\u6C92\u6709\u4F5C\u7528"
     CanUse: 1
     "\u6D88\u8017\u54C1":
