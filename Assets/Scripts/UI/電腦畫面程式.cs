@@ -5,10 +5,9 @@ using UnityEngine;
 public class 電腦畫面程式 : MonoBehaviour
 {
     private GameObject 攝影機1;
-    private GameObject situi;
+    public GameObject situi;
     void Start()
     {
-        situi = GameObject.Find("UI控制/坐下/坐下UI");
     }
     public void 開啟(GameObject 攝影機)
     {
