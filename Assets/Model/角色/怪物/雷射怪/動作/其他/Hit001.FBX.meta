@@ -80,7 +80,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
+      - time: 0.9668874
         functionName: "\u53D7\u64CA\u7D50\u675F"
         data: 
         objectReferenceParameter: {instanceID: 0}

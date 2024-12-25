@@ -15,6 +15,7 @@ public class 撿起 : MonoBehaviour
     private int 次數 = 1; // 剩余拾取次数
     private item_SO 物品SO; // 物品脚本able对象
     private Transform 位置; // 文本位置
+    [SerializeField] private bool 是否刪除 = true; // 是否删除物品
 
     // 获取物品
     public void 獲取()
@@ -44,7 +45,7 @@ public class 撿起 : MonoBehaviour
                 字.GetComponent<Text>().text = $"{物品SO.物品[i].名稱} X {count}";
 
                 // 如果次数为0，则销毁物体
-                if (次數 <= 0)
+                if (次數 <= 0 ||是否刪除)
                 {
                     if (this.GetComponent<互動>() != null)
                     {

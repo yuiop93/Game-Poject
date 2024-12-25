@@ -21,7 +21,7 @@ public class 怪物狀態 : MonoBehaviour
     private int 當前血量;
     private bool 是否死亡 = false;
     [SerializeField]
-    private GameObject[] 身體部位;
+    private Transform 骨架;
     public bool Canhit = true; // 是否受擊效果
 
     [SerializeField]
@@ -68,11 +68,23 @@ public class 怪物狀態 : MonoBehaviour
             }
 
         }
-
-        for (int i = 0; i < 身體部位.Length; i++)
+        if (骨架 == null)
         {
-            if (身體部位[i] == null) continue;
-            身體部位[i].GetComponent<怪物身體部位>().怪物狀態 = this;
+            骨架 = this.transform;
+        }
+        搜尋所有子物件(骨架);
+
+    }
+    void 搜尋所有子物件(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            var 身體部位Component = child.GetComponent<怪物身體部位>();
+            if (身體部位Component != null)
+            {
+                身體部位Component.怪物狀態 = this;
+            }
+            搜尋所有子物件(child);
         }
     }
     public void 燃燒(bool 是否燃燒)
@@ -146,10 +158,10 @@ public class 怪物狀態 : MonoBehaviour
                 當前冰凍條 = 0;
                 break;
             }
-            else if (當前冰凍條 <= -冰凍條上限*0.9f)
+            else if (當前冰凍條 <= -冰凍條上限 * 0.9f)
             {
                 當前冰凍條 = -冰凍條上限 / 2;
-                燃燒(true)  ;
+                燃燒(true);
                 受傷((int)(燃燒傷害倍率 * 冰凍條上限), false);
             }
 
@@ -237,9 +249,7 @@ public class 怪物狀態 : MonoBehaviour
         {
             Destroy(血條);
         }
-    }
-    private void OnDestroy() {
-        if(this.GetComponent<撿起>() != null)
+        if (this.GetComponent<撿起>() != null)
         {
             this.GetComponent<撿起>().獲取();
         }

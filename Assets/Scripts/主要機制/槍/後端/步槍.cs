@@ -51,7 +51,6 @@ public class 步槍 : MonoBehaviour
         if (_input.fire && fireCoroutine == null)
         {
             fireCoroutine = StartCoroutine(Fire());
-
         }
 
     }

@@ -88,7 +88,6 @@ public class 怪物動畫 : MonoBehaviour
         _animator.SetTrigger("Hit"); // 設置受擊為 true
         this.GetComponent<NavMeshAgent>().isStopped = true; // 停止移動
     }
-
     public void 受擊結束()
     {
         this.GetComponent<NavMeshAgent>().isStopped = false; // 開始移動
