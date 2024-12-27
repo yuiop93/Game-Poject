@@ -78,9 +78,8 @@ public class 冰凍組件 : MonoBehaviour
                 }
                 else
                 {
-
+                    return;
                 }
-
             }
 
         }

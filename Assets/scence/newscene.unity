@@ -409,6 +409,7 @@ GameObject:
   - component: {fileID: 42649355}
   - component: {fileID: 42649353}
   - component: {fileID: 42649352}
+  - component: {fileID: 42649356}
   m_Layer: 8
   m_Name: "\u6B66\u5668\u4ECB\u9762\u93E1\u982D"
   m_TagString: Untagged
@@ -546,6 +547,40 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &42649356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42649350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 0
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &53951086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9011,6 +9046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598004144}
   - component: {fileID: 1598004143}
+  - component: {fileID: 1598004145}
   m_Layer: 0
   m_Name: PlayerAimCamera
   m_TagString: Untagged
@@ -9072,6 +9108,29 @@ Transform:
   m_Father: {fileID: 8944336656349189700}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1598004145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598004142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 1
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1667831100
 GameObject:
   m_ObjectHideFlags: 0
@@ -14882,6 +14941,7 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1005
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!1 &1914403828
 GameObject:
   m_ObjectHideFlags: 0
@@ -16975,6 +17035,7 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1101
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!4 &62559952395382661
 Transform:
   m_ObjectHideFlags: 0
@@ -27712,6 +27773,7 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1001
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!4 &1189038428761879143
 Transform:
   m_ObjectHideFlags: 0
@@ -45365,6 +45427,7 @@ GameObject:
   - component: {fileID: 8026601006319047704}
   - component: {fileID: 8026601006319047705}
   - component: {fileID: 8026601006319047706}
+  - component: {fileID: 8026601006319047707}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -52976,6 +53039,7 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1003
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!33 &7247370783573025795
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -53588,6 +53652,7 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1002
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!4 &7390532745894195059
 Transform:
   m_ObjectHideFlags: 0
@@ -54500,6 +54565,7 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 2002
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!4 &7685347063718556085
 Transform:
   m_ObjectHideFlags: 0
@@ -54664,6 +54730,7 @@ MonoBehaviour:
   count: 3
   "\u7269\u54C1ID": 2001
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!4 &7685347063780065371
 Transform:
   m_ObjectHideFlags: 0
@@ -54804,6 +54871,7 @@ MonoBehaviour:
   count: 1
   "\u7269\u54C1ID": 1102
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!23 &7685347064897386678
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -55008,6 +55076,7 @@ MonoBehaviour:
   count: 5
   "\u7269\u54C1ID": 2003
   "\u6B21\u6578": 1
+  "\u662F\u5426\u522A\u9664": 1
 --- !u!4 &7685347065563264959
 Transform:
   m_ObjectHideFlags: 0
@@ -55914,6 +55983,7 @@ MonoBehaviour:
   "\u7D44\u4EF6\u78BA\u8A8D": {fileID: 8922486794007077221}
   "\u69CD\u68B0\u63CF\u8FF0": {fileID: 11400000, guid: 6047502a34a06374f99b5edc5f1d6364, type: 2}
   "\u5F8C\u5EA7\u529B\u5EA6": 0.2
+  "\u80FD\u91CF\u6D88\u8017": 0
 --- !u!114 &8026601006319047706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55926,6 +55996,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21bd6dc7b959db24886016ec95deae39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8026601006319047707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360326923770038616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 4
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: 0.1, z: 0.1}
 --- !u!23 &8030851475088600733
 MeshRenderer:
   m_ObjectHideFlags: 0

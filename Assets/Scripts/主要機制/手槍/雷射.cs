@@ -34,6 +34,10 @@ public class 雷射 : MonoBehaviour
         laserLineRenderer.endWidth = laserWidth;
         laserLineRenderer.enabled = false; // 初始關閉雷射
     }
+    void OnEnable()
+    {
+        _input.fire = false;
+    }
     void OnDisable()
     {
         Release();
@@ -98,6 +102,7 @@ public class 雷射 : MonoBehaviour
         if (laserLineRenderer != null)
             laserLineRenderer.enabled = false;
         grabbedObject = null;
+        this.GetComponent<玩家狀態>().能量使用中 = false;
         this.GetComponent<玩家狀態>().開始能量回復();
     }
 
@@ -133,6 +138,7 @@ public class 雷射 : MonoBehaviour
 
     private IEnumerator 耗能()
     {
+        this.GetComponent<玩家狀態>().能量使用中 = true;
         while (_input.fire)
         {
             if (_currentGrabbable != null)

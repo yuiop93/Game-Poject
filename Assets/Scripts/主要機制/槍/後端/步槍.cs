@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using StarterAssets;
+using Cinemachine;
 public class 步槍 : MonoBehaviour
 {
     public int 射程;
@@ -25,6 +26,7 @@ public class 步槍 : MonoBehaviour
     }
     private void OnEnable()
     {
+        _input.fire = false;
         Aim.fixedDistance = 槍械描述.射程;
         組件確認.確認();
         if (組件確認.組件類型.冰凍 != null)
@@ -42,10 +44,11 @@ public class 步槍 : MonoBehaviour
         {
             有無組件 = false;
             步槍前端.SetActive(true);
+            能量消耗 = 0;
         }
 
     }
-    private int 能量消耗;
+    public int 能量消耗;
     void Update()
     {
         if (_input.fire && fireCoroutine == null)
@@ -55,39 +58,36 @@ public class 步槍 : MonoBehaviour
 
     }
     private Coroutine fireCoroutine;
-    private IEnumerator 後座力()
-    {
-        while (_input.fire)
-        {
-            _input.look.y = -後座力度;
-            yield return new WaitForSeconds(1 / 攻擊速度);
-            _input.look.y = 後座力度 * 0.9f;
-            yield return new WaitForSeconds(1 / 攻擊速度);
-        }
-    }
 
     private IEnumerator Fire()
     {
-        StartCoroutine(後座力());
+        CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
+        impulseSource.GenerateImpulse();
         while (_input.fire)
         {
-            if (有無組件)
+            this.GetComponent<玩家狀態>().能量使用中 = true;
+            if (能量消耗 <= 玩家狀態.能量)
             {
-                if (能量消耗 <= 玩家狀態.能量)
+                impulseSource.GenerateImpulse();
+                if (有無組件)
                 {
                     玩家狀態.能量 -= 能量消耗;
-                    this.GetComponent<玩家狀態>().開始能量回復();
                     組件攻擊();
+                }
+                else
+                {
+                    普通攻擊();
                 }
             }
             else
             {
-                普通攻擊();
+                break;
             }
             yield return new WaitForSeconds(1 / 攻擊速度);
         }
-        _input.look.y = 0;
         fireCoroutine = null;
+        this.GetComponent<玩家狀態>().能量使用中 = false;
+        this.GetComponent<玩家狀態>().開始能量回復();
     }
 
     void 組件攻擊()
@@ -106,7 +106,7 @@ public class 步槍 : MonoBehaviour
         if (射擊特效與音效.射擊特效[0] != null)
         {
             GameObject obj1 = Instantiate(射擊特效與音效.射擊特效[0], GunMuzzle.transform.position, GunMuzzle.transform.rotation);
-            Destroy(obj1, 0.5f);
+            Destroy(obj1, 0.1f);
         }
         AudioSource.PlayClipAtPoint(射擊音效, GunMuzzle.transform.position);
         if (Camera.main != null)

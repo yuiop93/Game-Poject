@@ -138,7 +138,7 @@ public class Aim : MonoBehaviour
                 if (Input.GetAxis("Mouse ScrollWheel") > 0 && fixedDistance < 7f)
                     fixedDistance += 0.5f;
 
-                if (Input.GetAxis("Mouse ScrollWheel") < 0 && fixedDistance > 5f)
+                if (Input.GetAxis("Mouse ScrollWheel") < 0 && fixedDistance > 3f)
                     fixedDistance -= 0.5f;
             }
             else
