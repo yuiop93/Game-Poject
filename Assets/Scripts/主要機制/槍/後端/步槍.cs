@@ -61,13 +61,13 @@ public class 步槍 : MonoBehaviour
 
     private IEnumerator Fire()
     {
-        CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
-        impulseSource.GenerateImpulse();
+
         while (_input.fire)
         {
             this.GetComponent<玩家狀態>().能量使用中 = true;
             if (能量消耗 <= 玩家狀態.能量)
             {
+                CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
                 impulseSource.GenerateImpulse();
                 if (有無組件)
                 {

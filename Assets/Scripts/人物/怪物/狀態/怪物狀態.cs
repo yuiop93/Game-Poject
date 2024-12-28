@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using BehaviorDesigner.Runtime;
 public class 怪物狀態 : MonoBehaviour
 {
     [SerializeField]
@@ -41,6 +42,8 @@ public class 怪物狀態 : MonoBehaviour
 
     public GameObject[] FireEffect; // 火焰特效
     public GameObject CombustionEffect; // 燃燒特效
+    [HideInInspector]
+    public 怪物區塊 怪物區域;
 
     void Start()
     {
@@ -156,6 +159,7 @@ public class 怪物狀態 : MonoBehaviour
             if (當前冰凍條 >= 0)
             {
                 當前冰凍條 = 0;
+                燃燒條.SetActive(false);
                 break;
             }
             else if (當前冰凍條 <= -冰凍條上限 * 0.9f)
@@ -214,10 +218,15 @@ public class 怪物狀態 : MonoBehaviour
     }
     public void 受傷(int 傷害, bool 受擊效果)
     {
+        鎖定敵人();
         if (血條 != null)
+        {
             血條.SetActive(true);
+        }
+
         傷害 = 是否冰凍 ? (int)(傷害 * 冰凍傷害倍率) : 傷害;
         當前血量 -= 傷害;
+
         if (當前血量 <= 0)
         {
             死亡();
@@ -226,15 +235,24 @@ public class 怪物狀態 : MonoBehaviour
         {
             if (血條 != null)
             {
-                血條.GetComponent<HealthBar>().SetHealth(當前血量);
+                血條.GetComponent<HealthBar>()?.SetHealth(當前血量);
             }
+
             if (Canhit && !是否冰凍 && 受擊效果)
             {
-                this.GetComponent<怪物動畫>().受擊();
+                GetComponent<怪物動畫>()?.受擊();
             }
         }
     }
-    public void 死亡()
+
+    void 鎖定敵人()
+    {
+        if (怪物區域 != null)
+        {
+            怪物區域.鎖定敵人();
+        }
+    }
+    void 死亡()
     {
         是否死亡 = true;
         if (是否冰凍)

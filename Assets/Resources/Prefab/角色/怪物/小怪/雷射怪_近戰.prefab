@@ -5796,7 +5796,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls: []
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1761069499371859814
 GameObject:
   m_ObjectHideFlags: 0
@@ -5858,7 +5866,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 1
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 10
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls: []
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1936354874795642737
 GameObject:
   m_ObjectHideFlags: 0
@@ -5943,7 +5959,7 @@ GameObject:
   - component: {fileID: 101751317925457312}
   m_Layer: 0
   m_Name: "\u96F7\u5C04\u602A_\u8FD1\u6230"
-  m_TagString: Untagged
+  m_TagString: Mosters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6252,6 +6268,7 @@ MonoBehaviour:
   FireEffect:
   - {fileID: 4802785302450325875}
   CombustionEffect: {fileID: 1222256134079717026, guid: afc2475a79699e64e8dd2ad667cbf180, type: 3}
+  "\u602A\u7269\u5340\u57DF": {fileID: 0}
 --- !u!1 &2534033501615523833
 GameObject:
   m_ObjectHideFlags: 0
@@ -6549,7 +6566,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls: []
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1259941865982529287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6624,7 +6649,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 1
-  "\u50B7\u5BB3\u500D\u7387": 10
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 1
+  "\u50B7\u5BB3\u500D\u7387": 50
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6606803177250393700}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3708237504886505419
 GameObject:
   m_ObjectHideFlags: 0
@@ -6873,7 +6918,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls: []
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4214522579486966105
 GameObject:
   m_ObjectHideFlags: 0
@@ -6935,7 +6988,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls: []
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4258404991429347416
 GameObject:
   m_ObjectHideFlags: 0
@@ -41534,7 +41595,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls: []
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5867153653543977688
 GameObject:
   m_ObjectHideFlags: 0
@@ -42359,7 +42428,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls: []
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1910481330995609078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42938,7 +43015,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "\u602A\u7269\u72C0\u614B": {fileID: 0}
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
+  "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
+  "\u56DE\u5FA9\u6642\u9593": 1
+  "\u88AB\u64CA\u7834":
+    m_PersistentCalls:
+      m_Calls: []
+  "\u56DE\u5FA9":
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8629505030886499928
 GameObject:
   m_ObjectHideFlags: 0

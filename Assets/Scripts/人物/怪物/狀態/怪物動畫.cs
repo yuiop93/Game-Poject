@@ -14,7 +14,7 @@ public class 怪物動畫 : MonoBehaviour
     public AudioClip IceAudio;
     public AudioClip FireAudio;
     public AudioClip WalkAudio;
-    
+
     public Material IceMaterial; // 冰凍材質
 
     // 保存原始材质的字典
@@ -24,14 +24,14 @@ public class 怪物動畫 : MonoBehaviour
     {
         _animator = GetComponent<Animator>(); // 獲取動畫控制器
         originalMaterials = new Dictionary<Renderer, Material[]>(); // 初始化字典
-        
+
     }
     public void 冰凍(bool 是否冰凍)
     {
         if (是否冰凍)
         {
             if (IceAudio != null)
-            AudioSource.PlayClipAtPoint(IceAudio, transform.position);
+                AudioSource.PlayClipAtPoint(IceAudio, transform.position);
             _animator.speed = 0;
             var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
             BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
@@ -65,32 +65,54 @@ public class 怪物動畫 : MonoBehaviour
     }
     public void 死亡()
     {
-        this.GetComponent<NavMeshAgent>().isStopped = true; // 停止移動
+
+        var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
+        BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
+        foreach (var bt in behaviorTrees)
+        {
+            Destroy(bt); // 刪除行為樹
+        }
+        var navMeshAgent = gameObject.GetComponent<NavMeshAgent>(); // 獲取導航代理
+        Destroy(navMeshAgent); // 刪除導航代理
+        _animator.SetBool("Dead", true); // 設置死亡為 true
+        Destroy(gameObject, 3); // 3秒後刪除物件
+    }
+    public void 冰凍死亡()
+    {
+        Destroy(gameObject,2); // 刪除物件
+    }
+    public void 禁止移動()
+    {
         var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
         BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
         foreach (var bt in behaviorTrees)
         {
             bt.enabled = false;
         }
-        _animator.SetBool("Dead", true); // 設置死亡為 true
-
+        var navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        if (navMeshAgent != null)
+        navMeshAgent.enabled = false;
     }
-    public void _死亡()
+    public void 允許移動()
     {
-        Destroy(gameObject); // 刪除物件
-    }
-    public void 冰凍死亡()
-    {
-        Destroy(gameObject); // 刪除物件
+        var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
+        BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
+        foreach (var bt in behaviorTrees)
+        {
+            bt.enabled = true;
+        }
+        var navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        if (navMeshAgent != null)
+        navMeshAgent.enabled = true;
     }
     public void 受擊()
     {
         _animator.SetTrigger("Hit"); // 設置受擊為 true
-        this.GetComponent<NavMeshAgent>().isStopped = true; // 停止移動
+        禁止移動();
     }
     public void 受擊結束()
     {
-        this.GetComponent<NavMeshAgent>().isStopped = false; // 開始移動
+        允許移動();
     }
     public void 攻擊()
     {
