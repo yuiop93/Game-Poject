@@ -26,7 +26,7 @@ public class 冰凍組件 : MonoBehaviour
     }
     public void 步槍(int 射程, int 傷害)
     {
-        if (this.GetComponent<可以攻擊>().CanAttack == false || 玩家狀態.能量 < 冰凍組件參數.能量消耗)
+        if (this.GetComponent<可以攻擊>().CanAttack == false)
         {
             if (卡彈音效[0] != null)
                 AudioSource.PlayClipAtPoint(卡彈音效[0], GunMuzzle.position);

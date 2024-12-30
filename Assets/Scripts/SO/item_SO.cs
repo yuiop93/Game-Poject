@@ -28,6 +28,7 @@ public class item
     public string 名稱;
     public Sprite 圖片;
     public int 數量;
+    [TextArea]
     public string 描述;
     public bool CanUse = false;
     public 消耗品參數 消耗品;

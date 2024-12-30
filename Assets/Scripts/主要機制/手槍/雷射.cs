@@ -21,9 +21,11 @@ public class 雷射 : MonoBehaviour
     public Transform attachPoint; // 抓取的連接點
     private 可被抓取 _currentGrabbable;
     private StarterAssetsInputs _input; // 輸入
+    private 玩家狀態 玩家狀態;
 
     void Awake()
     {
+        玩家狀態 = GetComponent<玩家狀態>();
         // 確保有 StarterAssetsInputs，否則嘗試獲取
         _input = GetComponent<StarterAssetsInputs>();
         if (_input == null)
@@ -102,8 +104,8 @@ public class 雷射 : MonoBehaviour
         if (laserLineRenderer != null)
             laserLineRenderer.enabled = false;
         grabbedObject = null;
-        this.GetComponent<玩家狀態>().能量使用中 = false;
-        this.GetComponent<玩家狀態>().開始能量回復();
+        玩家狀態.能量使用中 = false;
+        玩家狀態.開始能量回復();
     }
 
     void TryGrab()
@@ -138,14 +140,14 @@ public class 雷射 : MonoBehaviour
 
     private IEnumerator 耗能()
     {
-        this.GetComponent<玩家狀態>().能量使用中 = true;
+        玩家狀態.能量使用中 = true;
         while (_input.fire)
         {
             if (_currentGrabbable != null)
             {
                 if (玩家狀態.能量 >= _currentGrabbable.能量消耗)
                 {
-                    玩家狀態.能量 -= _currentGrabbable.能量消耗;
+                    玩家狀態.能量使用(_currentGrabbable.能量消耗);
                     yield return new WaitForSeconds(1 / 攻擊速度);
                 }
                 else

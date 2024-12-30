@@ -11,6 +11,7 @@ public class 劇情_SO : ScriptableObject
 public class 劇情s
 {
     public string 名稱;
+    [TextArea]
     public string 文字內容;
     public int 攝影機位置;
 }

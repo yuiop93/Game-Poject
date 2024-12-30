@@ -36,6 +36,7 @@ namespace StarterAssets
 			cursorInputForLook = false;
 			SetCursorState(false);
 			aim = false;
+			fire = false;
 		}
 		public void Cursorlock()
 		{
@@ -43,6 +44,7 @@ namespace StarterAssets
 			cursorInputForLook = true;
 			SetCursorState(true);
 			aim = false;
+			fire = false;
 		}
 		public void OnMove(InputValue value)
 		{

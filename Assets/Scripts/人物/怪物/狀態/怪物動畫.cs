@@ -183,7 +183,7 @@ public class 怪物動畫 : MonoBehaviour
     {
         if (WalkAudio != null)
         {
-            AudioSource.PlayClipAtPoint(WalkAudio, transform.position);
+            AudioSource.PlayClipAtPoint(WalkAudio, transform.position, 0.5f);
         }
     }
 }

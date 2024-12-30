@@ -18,11 +18,17 @@ public class 步槍 : MonoBehaviour
     public 組件確認 組件確認;
     public 槍械_SO 槍械描述;
     [SerializeField] private float 後座力度;
+    private 玩家狀態 玩家狀態;
 
     void Awake()
     {
+        玩家狀態 = GetComponent<玩家狀態>();
         Aim = GetComponent<Aim>();
         _input = GetComponent<StarterAssetsInputs>();
+    }
+    private void OnDisable()
+    {
+        _input.fire = false;
     }
     private void OnEnable()
     {
@@ -61,35 +67,41 @@ public class 步槍 : MonoBehaviour
 
     private IEnumerator Fire()
     {
-
         while (_input.fire)
         {
-            this.GetComponent<玩家狀態>().能量使用中 = true;
-            if (能量消耗 <= 玩家狀態.能量)
+            if (能量消耗 <= 玩家狀態.能量) // 確認是否有足夠的能量
             {
+                玩家狀態.能量使用中 = true;
                 CinemachineImpulseSource impulseSource = GetComponent<CinemachineImpulseSource>();
                 impulseSource.GenerateImpulse();
+
                 if (有無組件)
                 {
-                    玩家狀態.能量 -= 能量消耗;
-                    組件攻擊();
+                    玩家狀態.能量使用(能量消耗);  // 使用能量
+                    組件攻擊();  // 執行特殊攻擊
                 }
                 else
                 {
-                    普通攻擊();
+                    普通攻擊();  // 執行普通攻擊
                 }
             }
             else
             {
+                // 如果能量不足，停止射擊並開始能量回復
+                玩家狀態.能量使用中 = false;
+                玩家狀態.開始能量回復();
                 break;
             }
+
+            // 控制射擊頻率
             yield return new WaitForSeconds(1 / 攻擊速度);
         }
-        fireCoroutine = null;
-        this.GetComponent<玩家狀態>().能量使用中 = false;
-        this.GetComponent<玩家狀態>().開始能量回復();
-    }
 
+        // 結束射擊後重設狀態
+        fireCoroutine = null;
+        玩家狀態.能量使用中 = false;
+        玩家狀態.開始能量回復();
+    }
     void 組件攻擊()
     {
         if (組件確認.組件類型.冰凍 != null)

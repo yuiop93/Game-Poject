@@ -16,10 +16,11 @@ public class 消耗品 : MonoBehaviour
     [SerializeField] private float 冷卻時間 = 1.0f; // 冷卻時間（秒）
     private bool 是否冷卻中 = false; // 紀錄冷卻狀態
     [SerializeField] private Image 冷卻進度條; // 冷卻進度條 UI
+    玩家狀態 玩家狀態;
 
     void Start()
     {
-
+        玩家狀態 = GameObject.Find("Player").GetComponent<玩家狀態>();
         道具顯示(0);
         冷卻進度條.fillAmount = 0; // 初始化進度條
 

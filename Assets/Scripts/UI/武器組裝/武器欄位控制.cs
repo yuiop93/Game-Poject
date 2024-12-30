@@ -134,6 +134,8 @@ public class 武器欄位控制 : MonoBehaviour
         判斷裝備是否有組件();
     }
 
+    private Coroutine currentMoveCoroutine;
+
     void 裝備組件()
     {
         武器列表[_currentWeaponIndex].組件UI = 當前組件狀態.組件UI;
@@ -141,55 +143,89 @@ public class 武器欄位控制 : MonoBehaviour
         武器列表[_currentWeaponIndex].組件.Add(Instantiate(當前組件, 玩家裝備位置[_currentWeaponIndex].transform));
         武器列表[_currentWeaponIndex].組件.Add(Instantiate(當前組件, 武器列表[_currentWeaponIndex].槍械.transform));
         武器列表[_currentWeaponIndex].組件[1].transform.localPosition = new Vector3(0, 0, 1);
-        StartCoroutine(MoveToLocalTargetPosition(武器列表[_currentWeaponIndex].組件[1].transform, new Vector3(0, 0, 0), 0.2f));
+
+        // 如果有未完成的协程，先停止
+        if (currentMoveCoroutine != null)
+        {
+            StopCoroutine(currentMoveCoroutine);
+        }
+
+        // 启动新协程并保存句柄
+        currentMoveCoroutine = StartCoroutine(MoveToLocalTargetPosition(武器列表[_currentWeaponIndex].組件[1].transform, new Vector3(0, 0, 0), 0.2f));
         判斷組件是否裝備(_currentWeaponIndex);
     }
+
     void 拆卸組件()
     {
+        // 停止协程
+        if (currentMoveCoroutine != null)
+        {
+            StopCoroutine(currentMoveCoroutine);
+            currentMoveCoroutine = null;
+        }
+
         武器列表[_currentWeaponIndex].組件UI = null;
+
         foreach (var item in 武器列表[_currentWeaponIndex].組件)
         {
             Destroy(item);
         }
-        武器列表[_currentWeaponIndex].組件 = null;
         武器列表[_currentWeaponIndex].組件 = new List<GameObject>();
         當前組件狀態.裝備位置 = null;
+
         判斷組件是否裝備(_currentWeaponIndex);
     }
+
     private IEnumerator MoveToLocalTargetPosition(Transform target, Vector3 finalLocalPosition, float duration)
     {
-        if (武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>() != null)
+        // 检查当前武器是否有组件
+        if (武器列表[_currentWeaponIndex].組件.Count <= 1 || 武器列表[_currentWeaponIndex].組件[1] == null)
         {
-            武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>().enabled = false;
+            yield break;
+        }
+
+        var component = 武器列表[_currentWeaponIndex].組件[1];
+
+        // 如果组件有 Animator，先禁用
+        Animator animator = component.GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.enabled = false;
         }
 
         float elapsedTime = 0f;
+        Vector3 startLocalPosition = target.localPosition;
 
         while (elapsedTime < duration)
         {
-            if (武器列表[_currentWeaponIndex].組件[1] != null)
+            // 如果组件或目标已被销毁，则终止
+            if (component == null || target == null)
             {
-                Vector3 startLocalPosition = target.localPosition;
-                // 線性插值移動本地位置
-                target.localPosition = Vector3.Lerp(startLocalPosition, finalLocalPosition, elapsedTime / duration);
-                elapsedTime += Time.deltaTime;
-                yield return null;
+                yield break;
             }
-            else
-            {
-                break;
-            }
+
+            target.localPosition = Vector3.Lerp(startLocalPosition, finalLocalPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
         }
-        // 確保最終本地位置正確
-        if (武器列表[_currentWeaponIndex].組件[1] != null)
+
+        // 确保最终位置正确
+        if (target != null)
         {
             target.localPosition = finalLocalPosition;
-            if (武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>() != null)
-            {
-                武器列表[_currentWeaponIndex].組件[1].GetComponent<Animator>().enabled = true;
-            }
         }
+
+        // 恢复 Animator
+        if (component != null && animator != null)
+        {
+            animator.enabled = true;
+        }
+
+        // 清除协程句柄
+        currentMoveCoroutine = null;
     }
+
 
     void Open()
     {

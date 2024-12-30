@@ -16,8 +16,8 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1001
     "\u540D\u7A31": "\u623F\u5361"
     "\u5716\u7247": {fileID: 21300000, guid: 907c58bca2728c849a295ec4d1d8c978, type: 3}
-    "\u6578\u91CF": 1
-    "\u63CF\u8FF0": "\u7528\u4F86\u89E3\u9396\u4E00\u4E9B\u623F\u9580"
+    "\u6578\u91CF": 0
+    "\u63CF\u8FF0": "\u53EA\u80FD\u5920\u7528\u4F86\u89E3\u9396\u623F\u9593\u7684\u9580"
     CanUse: 0
     "\u6D88\u8017\u54C1":
       "\u6062\u5FA9\u8840\u91CF": 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   - "\u7269\u54C1ID": 1005
     "\u540D\u7A31": "\u9470\u5319"
     "\u5716\u7247": {fileID: 21300000, guid: 9703ec4398101214e80025d886377cae, type: 3}
-    "\u6578\u91CF": 1
+    "\u6578\u91CF": 0
     "\u63CF\u8FF0": "\u7DCA\u6025\u51FA\u53E3\u7684\u9470\u5319\uFF0C\u4E0D\u77E5\u9053\u662F\u54EA\u500B\u5C0F\u53EF\u611B\u9396\u4E0A\u7684\u3002"
     CanUse: 0
     "\u6D88\u8017\u54C1":
