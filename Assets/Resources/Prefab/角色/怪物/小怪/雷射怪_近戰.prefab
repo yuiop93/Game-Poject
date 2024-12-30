@@ -16056,6 +16056,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1132494288584079232, guid: 7a3ac728acd1ee7439aabf21a434f07d, type: 3}
   spawnPoint: {fileID: 7806650932430908387}
   _collider: {fileID: 6525199025789109621}
+  laserAudio: {fileID: 0}
   IceAudio: {fileID: 8300000, guid: 4181595fbbaf0f4439e35956c220c79f, type: 3}
   FireAudio: {fileID: 0}
   WalkAudio: {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
@@ -16089,7 +16090,7 @@ MonoBehaviour:
   FireEffect:
   - {fileID: 7077528947069459483}
   - {fileID: 4802785302450325875}
-  CombustionEffect: {fileID: 1222256134079717026, guid: afc2475a79699e64e8dd2ad667cbf180, type: 3}
+  CombustionEffect: {fileID: 8286042570237981385, guid: afc2475a79699e64e8dd2ad667cbf180, type: 3}
   "\u602A\u7269\u5340\u57DF": {fileID: 0}
 --- !u!1 &2534033501615523833
 GameObject:

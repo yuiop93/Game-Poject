@@ -16049,6 +16049,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1132494288584079232, guid: 7a3ac728acd1ee7439aabf21a434f07d, type: 3}
   spawnPoint: {fileID: 7806650932430908387}
   _collider: {fileID: 6525199025789109621}
+  laserAudio: {fileID: 8300000, guid: beed5e37feec5804c9b27d90767dbfc3, type: 3}
   IceAudio: {fileID: 8300000, guid: 4181595fbbaf0f4439e35956c220c79f, type: 3}
   FireAudio: {fileID: 0}
   WalkAudio: {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}

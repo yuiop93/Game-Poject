@@ -92,8 +92,8 @@ public class 怪物狀態 : MonoBehaviour
     }
     public void 燃燒(bool 是否燃燒)
     {
-        FireEffect[0].SetActive(false); // 啟用或禁用燃燒特效
-        FireEffect[1].SetActive(是否燃燒); // 啟用或禁用燃燒特效
+        FireEffect[0].SetActive(false);
+        FireEffect[1].SetActive(是否燃燒);
     }
     public void 爆炸()
     {
@@ -148,7 +148,7 @@ public class 怪物狀態 : MonoBehaviour
 
         int 燃燒傷害 = (int)(燃燒傷害倍率 * _燃燒傷害);
         燃燒條.SetActive(true);
-
+        
         while (當前冰凍條 < 0)
         {
             if (是否死亡) break;
@@ -165,6 +165,7 @@ public class 怪物狀態 : MonoBehaviour
             }
             else if (當前冰凍條 <= -冰凍條上限 * 0.9f)
             {
+                爆炸();
                 當前冰凍條 = -冰凍條上限 / 2;
                 燃燒(true);
                 受傷((int)(燃燒傷害倍率 * 冰凍條上限), false);

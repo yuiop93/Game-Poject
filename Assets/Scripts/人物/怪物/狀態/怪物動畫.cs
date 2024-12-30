@@ -11,10 +11,10 @@ public class 怪物動畫 : MonoBehaviour
     public Transform spawnPoint; // 子彈生成位置
     public GameObject _collider; // 碰撞器
     private Animator _animator; // 動畫控制器
+    public AudioClip laserAudio;
     public AudioClip IceAudio;
     public AudioClip FireAudio;
     public AudioClip WalkAudio;
-
     public Material IceMaterial; // 冰凍材質
 
     // 保存原始材质的字典
@@ -111,6 +111,9 @@ public class 怪物動畫 : MonoBehaviour
     }
     public void SpawnBullet()
     {
+        if (laserAudio != null){
+            AudioSource.PlayClipAtPoint(laserAudio, spawnPoint.position);
+        }
         GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation); // 生成子彈
         var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
         BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
