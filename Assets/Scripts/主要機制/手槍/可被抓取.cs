@@ -23,6 +23,11 @@ public class 可被抓取 : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     [SerializeField]
     private int 傷害 = 10;
+    [SerializeField]
+    private bool 是否爆炸 = false;
+    [SerializeField]
+    private GameObject 預置爆炸物件;
+
     private void Awake()
     {
         // 確保物件上有 Rigidbody
@@ -145,15 +150,27 @@ public class 可被抓取 : MonoBehaviour
             _checkCoroutine = null; // 清空引用
         }
     }
-    private void OnCollisionEnter (Collision other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.relativeVelocity.magnitude > 10f)
+        if (other.gameObject.CompareTag("Mosters"))
         {
-            if (other.gameObject.CompareTag("Mosters"))
+            if (other.relativeVelocity.magnitude > 10f)
             {
                 if (other.gameObject.GetComponent<怪物身體部位>() != null)
-                    other.gameObject.GetComponent<怪物身體部位>().受傷(傷害,true);
+                    other.gameObject.GetComponent<怪物身體部位>().受傷(傷害, true);
+                    if(是否爆炸)
+                    {
+                        爆炸();
+                    }
             }
         }
+    }
+    void 爆炸()
+    {
+        if (預置爆炸物件 != null)
+        {
+            Instantiate(預置爆炸物件, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
     }
 }
