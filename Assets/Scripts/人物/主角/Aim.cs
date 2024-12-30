@@ -20,7 +20,10 @@ public class Aim : MonoBehaviour
     private int currentWeaponIndex;
     private bool _previousAimState;
     private float sp;
-    
+    [SerializeField]
+    private Transform _GunHandle;
+    public Transform[] GunHandle;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -61,7 +64,7 @@ public class Aim : MonoBehaviour
         {
             SetObjectsActive(_input.aim);
             _previousAimState = _input.aim;
-            if(_previousAimState ==true)
+            if (_previousAimState == true)
             {
                 ActivateWeaponByIndex(currentWeaponIndex);
             }
@@ -93,26 +96,24 @@ public class Aim : MonoBehaviour
             switch (currentWeapon.holdStyle)
             {
                 case WeaponComponent.HoldStyle.Style1:
-                    rigs[0].weight = sp;
+                    rigs[1].weight = sp;
                     animator.SetLayerWeight(3, 0);
                     animator.SetLayerWeight(2, sp);
                     break;
                 case WeaponComponent.HoldStyle.Style2:
-                    rigs[1].weight = sp;
+                    rigs[0].weight = sp;
+                    rigs[2].weight = sp;
                     animator.SetLayerWeight(2, 0);
                     animator.SetLayerWeight(3, sp);
                     break;
                 case WeaponComponent.HoldStyle.Style3:
-                    if (rigs.Length > 2)
-                    {
-                        rigs[2].weight = sp;
-                    }
+                    rigs[0].weight = sp;
+                    rigs[3].weight = sp;
                     animator.SetLayerWeight(2, sp * 0.5f); // 示例: Style3 动画层的混合效果
                     animator.SetLayerWeight(3, sp * 0.5f);
                     break;
             }
         }
-
         // 更新基础动画层的权重
         animator.SetLayerWeight(1, sp);
     }
@@ -149,6 +150,14 @@ public class Aim : MonoBehaviour
         }
 
     }
+    void GunHandlePosition()
+    {
+        if (GunHandle[currentWeaponIndex] != null)
+        {
+            Debug.Log("Handle");
+            _GunHandle.position = GunHandle[currentWeaponIndex].position;
+        }
+    }
 
     private void HandleRaycastTarget()
     {
@@ -169,7 +178,6 @@ public class Aim : MonoBehaviour
             }
             item.Script.enabled = false;
         }
-
         // 計算下一個武器的索引
         currentWeaponIndex += direction;
         if (currentWeaponIndex < 0) currentWeaponIndex = weaponComponents.Count - 1;
@@ -195,7 +203,7 @@ public class Aim : MonoBehaviour
             Debug.LogWarning("索引超出範圍！");
             return;
         }
-        
+
         // 禁用當前武器
         foreach (var item in weaponComponents)
         {
@@ -219,6 +227,7 @@ public class Aim : MonoBehaviour
             gun.SetActive(true);
         }
         currentWeapon.Script.enabled = true;
+        GunHandlePosition();
     }
 
     private void SetObjectsActive(bool isActive)

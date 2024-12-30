@@ -12,6 +12,9 @@ public class 步槍 : MonoBehaviour
     public bool 有無組件;
     private Aim Aim;
     public Transform GunMuzzle;
+    [SerializeField]
+    private Transform GunHandle;
+    private Transform _GunHandle;
     public GameObject 步槍前端;
     public AudioClip 射擊音效;
     public 槍械音效與特效 射擊特效與音效;
@@ -37,6 +40,8 @@ public class 步槍 : MonoBehaviour
         組件確認.確認();
         if (組件確認.組件類型.冰凍 != null)
         {
+            _GunHandle =組件確認.組件類型.冰凍.GunHandle;
+            Aim.GunHandle[1] = _GunHandle;
             有無組件 = true;
             能量消耗 = (int)(組件確認.組件類型.冰凍.冰凍組件參數.能量消耗 * 槍械描述.能量消耗);
             步槍前端.SetActive(false);
@@ -48,6 +53,8 @@ public class 步槍 : MonoBehaviour
         }
         else
         {
+            _GunHandle = GunHandle;
+            Aim.GunHandle[1] = _GunHandle;
             有無組件 = false;
             步槍前端.SetActive(true);
             能量消耗 = 0;

@@ -9,6 +9,7 @@ public class 冰凍組件 : MonoBehaviour
     public 冰凍組件參數 冰凍組件參數;
     [Header("配置组件")]
     public Transform GunMuzzle;
+    public Transform GunHandle;
     private int _傷害;
     private int _射程;
     public int 燃燒傷害;

@@ -97,6 +97,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2819063723430587530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8353605281008692638}
+  m_Layer: 9
+  m_Name: GunHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8353605281008692638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2819063723430587530}
+  m_LocalRotation: {x: -0.00000016391266, y: 0.00000020861611, z: -0, w: 1}
+  m_LocalPosition: {x: -0.42927796, y: -0.59298706, z: 0.23671587}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6902464245046158577}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3809917359899542436
 GameObject:
   m_ObjectHideFlags: 0
@@ -5191,6 +5222,7 @@ Transform:
   - {fileID: 6530437074581625570}
   - {fileID: 729243202569476626}
   - {fileID: 1603401062421906804}
+  - {fileID: 8353605281008692638}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5216,6 +5248,7 @@ MonoBehaviour:
     "\u51B0\u51CD\u6548\u7387": -10
     "\u80FD\u91CF\u6D88\u8017": 1
   GunMuzzle: {fileID: 1603401062421906804}
+  GunHandle: {fileID: 8353605281008692638}
   "\u71C3\u71D2\u50B7\u5BB3": 10
   "\u53D7\u64CA\u6548\u679C": 0
   "\u653B\u64CA\u7279\u6548":
