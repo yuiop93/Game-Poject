@@ -7,6 +7,7 @@ public class 獲取組件 : MonoBehaviour
     [SerializeField]private Item item;
     private GameObject 組件UIPrefab;
     private Transform 組件背包;
+    [HideInInspector]
     public 武器欄位控制 武器欄位控制;
     void Start()
     {

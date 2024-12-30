@@ -7,6 +7,7 @@ public class Item
 {
     public string itemName;
     public GameObject itemPrefab; // 3D 道具的模型
+    [HideInInspector]
     public Sprite itemIcon; // 動態生成的圖片
 }
 [System.Serializable]

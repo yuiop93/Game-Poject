@@ -154,7 +154,6 @@ public class Aim : MonoBehaviour
     {
         if (GunHandle[currentWeaponIndex] != null)
         {
-            Debug.Log("Handle");
             _GunHandle.position = GunHandle[currentWeaponIndex].position;
         }
     }
