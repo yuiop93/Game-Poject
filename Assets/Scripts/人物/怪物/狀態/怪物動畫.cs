@@ -33,23 +33,13 @@ public class 怪物動畫 : MonoBehaviour
             if (IceAudio != null)
                 AudioSource.PlayClipAtPoint(IceAudio, transform.position);
             _animator.speed = 0;
-            var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
-            BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
-            foreach (var bt in behaviorTrees)
-            {
-                bt.enabled = false;
-            }
+            禁止移動();
             ReplaceAllMaterials(); // 替換材質
         }
         else
         {
             _animator.speed = 1;
-            var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
-            BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
-            foreach (var bt in behaviorTrees)
-            {
-                bt.enabled = true;
-            }
+            允許移動();
             RestoreAllMaterials(); // 恢復材質
         }
 
@@ -79,7 +69,7 @@ public class 怪物動畫 : MonoBehaviour
     }
     public void 冰凍死亡()
     {
-        Destroy(gameObject,2); // 刪除物件
+        Destroy(gameObject, 2); // 刪除物件
     }
     public void 禁止移動()
     {
@@ -91,19 +81,20 @@ public class 怪物動畫 : MonoBehaviour
         }
         var navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         if (navMeshAgent != null)
-        navMeshAgent.enabled = false;
+            navMeshAgent.enabled = false;
     }
     public void 允許移動()
     {
+        var navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        if (navMeshAgent != null)
+            navMeshAgent.enabled = true;
         var behaviorTree = gameObject.GetComponent<BehaviorTree>(); // 獲取行為樹
         BehaviorTree[] behaviorTrees = GetComponents<BehaviorTree>();
         foreach (var bt in behaviorTrees)
         {
             bt.enabled = true;
         }
-        var navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
-        if (navMeshAgent != null)
-        navMeshAgent.enabled = true;
+
     }
     public void 受擊()
     {
