@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class 互動選擇 : MonoBehaviour
 {
+    public StarterAssetsInputs _input;
     private GameObject 選擇UI;
     private GameObject instance;
     private int value = 0;

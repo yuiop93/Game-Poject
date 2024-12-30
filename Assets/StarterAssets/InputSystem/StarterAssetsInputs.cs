@@ -16,6 +16,11 @@ namespace StarterAssets
 		public bool fire;
 		public bool aim;
 		public bool walk;
+		public bool fKey;
+		public bool bKey;
+		public bool cKey;
+		public bool qKey;
+		public bool eKey;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -25,7 +30,7 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM
-public void CursorUnLock()
+		public void CursorUnLock()
 		{
 			cursorLocked = false;
 			cursorInputForLook = false;
@@ -51,12 +56,30 @@ public void CursorUnLock()
 				LookInput(value.Get<Vector2>());
 			}
 		}
-
+		public void OnFKey(InputValue value)
+		{
+			FKeyInput(value.isPressed);
+		}
+		public void OnBKey(InputValue value)
+		{
+			BKeyInput(value.isPressed);
+		}
+		public void OnCKey(InputValue value)
+		{
+			CKeyInput(value.isPressed);
+		}
+		public void OnQKey(InputValue value)
+		{
+			QKeyInput(value.isPressed);
+		}
+		public void OnEKey(InputValue value)
+		{
+			EKeyInput(value.isPressed);
+		}
 		public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
 		}
-
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
@@ -94,21 +117,43 @@ public void CursorUnLock()
 		{
 			walk = !walk;
 		}
+
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
 			walk = false;
 		}
+		public void FKeyInput(bool newFKeyState)
+		{
+			fKey = newFKeyState;
+		}
+
+		public void BKeyInput(bool newBKeyState)
+		{
+			bKey = newBKeyState;
+		}
+		public void CKeyInput(bool newCKeyState)
+		{
+			cKey = newCKeyState;
+		}
+		public void QKeyInput(bool newQKeyState)
+		{
+			qKey = newQKeyState;
+		}
+		public void EKeyInput(bool newEKeyState)
+		{
+			eKey = newEKeyState;
+		}
 		public void AimInput(bool newAimState)
 		{
-			if(!坐下.isSitting)
-			aim = !aim;
+			if (!坐下.isSitting)
+				aim = !aim;
 			fire = false;
 		}
 		public void FireInput(bool newFireState)
 		{
-			if(aim)
-			fire = newFireState;
+			if (aim)
+				fire = newFireState;
 		}
 		private void OnApplicationFocus(bool hasFocus)
 		{
@@ -119,7 +164,5 @@ public void CursorUnLock()
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
-
 	}
-
 }

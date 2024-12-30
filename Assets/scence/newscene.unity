@@ -159,6 +159,11 @@ MonoBehaviour:
   fire: 0
   aim: 0
   walk: 0
+  fKey: 0
+  bKey: 0
+  cKey: 0
+  qKey: 0
+  eKey: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -23419,6 +23424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c068be95b216668448ffad5b9f67257b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _input: {fileID: 29230978}
 --- !u!224 &94847495682475043
 RectTransform:
   m_ObjectHideFlags: 0

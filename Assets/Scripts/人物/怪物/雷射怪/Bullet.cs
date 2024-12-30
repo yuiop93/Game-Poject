@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<玩家狀態>().受傷(damage); // 玩家受傷
+            other.GetComponent<玩家狀態>().受傷(damage,true); // 玩家受傷
         }
         if (other.CompareTag("Mosters"))
         {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using StarterAssets;
 public class 玩家狀態 : MonoBehaviour
 {
     public static Statetype 狀態;
@@ -12,7 +12,7 @@ public class 玩家狀態 : MonoBehaviour
         瞄準,
         死亡,
     }
-
+    private StarterAssetsInputs _input;
     public static int 血量;
     public static int 體力;
     public static int 能量;
@@ -27,9 +27,11 @@ public class 玩家狀態 : MonoBehaviour
     [SerializeField] private GameObject 血條UI;
     [SerializeField] private GameObject 體力條UI;
     [SerializeField] private GameObject 能量條UI;
+    
 
     void Awake()
     {
+        _input = GetComponent<StarterAssetsInputs>();
         血量 = 血量上限;
         體力 = 體力上限;
         能量 = 能量上限;
@@ -55,7 +57,7 @@ public class 玩家狀態 : MonoBehaviour
     private Coroutine 能量回復協程;
     public void 開始能量回復()
     {
-        if(能量回復協程 == null)
+        if (能量回復協程 == null)
         {
             能量回復協程 = StartCoroutine(能量回復());
         }
@@ -78,9 +80,16 @@ public class 玩家狀態 : MonoBehaviour
         // 協程結束時設置為 null
         能量回復協程 = null;
     }
-    public void 受傷(int 傷害)
+    public void 受傷(int 傷害, bool 是否被控制)
     {
+        if (是否被控制)
+        {
+            _input.move = Vector2.zero;
+        }
         血量 -= 傷害;
+    }
+    public void 恢復狀態()
+    {
     }
     void Update()
     {

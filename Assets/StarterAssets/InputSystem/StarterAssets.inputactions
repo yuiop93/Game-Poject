@@ -51,15 +51,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fkey",
-                    "type": "Button",
-                    "id": "a79726d9-62cb-4352-995b-7dd84b165e71",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Aim",
                     "type": "Button",
                     "id": "9d38895b-a5e8-49c1-81df-b6052d66b31f",
@@ -73,6 +64,51 @@
                     "type": "PassThrough",
                     "id": "30ecf0d4-e7af-4034-8ab6-6872ed684213",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FKey",
+                    "type": "Button",
+                    "id": "a79726d9-62cb-4352-995b-7dd84b165e71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BKey",
+                    "type": "Button",
+                    "id": "71edeb84-1527-4b9a-94cb-30c57e81ce7b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CKey",
+                    "type": "Button",
+                    "id": "be45c29a-9b4d-4bd5-b29e-ed6d88eb4e71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QKey",
+                    "type": "Button",
+                    "id": "ff4300b1-05dc-4710-88f5-2d46f1498515",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EKey",
+                    "type": "Button",
+                    "id": "d72cbe20-663e-43b8-999c-b9ef72194866",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -257,28 +293,6 @@
                 },
                 {
                     "name": "",
-                    "id": "59484d0d-b565-435e-9c38-ee16c8f63ffe",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Fkey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4d724bc0-e32b-49ef-b9a5-c1e92a7a2e8e",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "fdf7e158-039b-4044-b1dd-4b2da2c810f8",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -296,6 +310,72 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59484d0d-b565-435e-9c38-ee16c8f63ffe",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "FKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d724bc0-e32b-49ef-b9a5-c1e92a7a2e8e",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae1666e1-d484-4fdf-bc17-de80e6ce0d04",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "BKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "983c5295-69b5-4330-bc66-4ed2ca5efae7",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "CKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ec3ae438-4edb-4dfb-929f-a3bdbfa9455e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "QKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b0d0c5e-c624-492c-8cde-ed99588a94f7",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

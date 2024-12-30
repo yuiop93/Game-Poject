@@ -11,7 +11,7 @@ public class 近戰攻擊 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<玩家狀態>().受傷(attackDamage); // 玩家受傷
+            other.GetComponent<玩家狀態>().受傷(attackDamage,false); // 玩家受傷
             this.GetComponent<Collider>().enabled = false; // 禁用碰撞器
         }
     }
