@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12b24f9c5c0670c4b947152beec3ee1b, type: 3}
-  m_Name: "\u9580"
+  m_Name: BOSS
   m_EditorClassIdentifier: 
   "\u5287\u60C5":
-  - "\u540D\u7A31": "\u9580"
-    "\u6587\u5B57\u5167\u5BB9": "\u9700\u8981\u89E3\u9664\u9580\u7981\u624D\u53EF\u4EE5\u958B\u9580"
-    "\u651D\u5F71\u6A5F\u4F4D\u7F6E": -1
-  - "\u540D\u7A31": "\u9580"
-    "\u6587\u5B57\u5167\u5BB9": "\u9580\u7981\u5361\u5C31\u5728\u66F8\u67B6\u4E0A\u5C64"
-    "\u651D\u5F71\u6A5F\u4F4D\u7F6E": -1
+  - "\u540D\u7A31": 
+    "\u6587\u5B57\u5167\u5BB9": '                                                                                                             '
+    "\u651D\u5F71\u6A5F\u4F4D\u7F6E": 0

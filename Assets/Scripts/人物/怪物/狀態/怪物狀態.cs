@@ -95,17 +95,21 @@ public class 怪物狀態 : MonoBehaviour
         FireEffect[0].SetActive(false);
         FireEffect[1].SetActive(是否燃燒);
     }
-    public void 爆炸()
+    public void 爆炸(int 爆炸傷害)
     {
         GameObject obj = Instantiate(CombustionEffect, transform.position, Quaternion.identity);
-        Destroy(obj, 1f);
+        if (obj.GetComponent<爆炸物件>() != null)
+        {
+            obj.GetComponent<爆炸物件>().爆炸傷害 = 爆炸傷害;
+        }
     }
     private bool 是否燃燒中 = false;
     private bool 是否冰凍中 = false;
     private float 狀態更新間隔 = 1f;
     private Coroutine 狀態協程;
-    public void 冰凍值(int 冰凍點數, int _燃燒傷害)
+    public void 冰凍值(int 冰凍點數, int 引爆傷害)
     {
+        int _燃燒傷害 = 怪物血量 / 100;
         if (是否死亡) return;
         當前冰凍條 += 冰凍點數;
         當前冰凍條 = Mathf.Clamp(當前冰凍條, -冰凍條上限, 冰凍條上限); // 限制範圍
@@ -131,7 +135,12 @@ public class 怪物狀態 : MonoBehaviour
         {
             if (!燃燒條.activeSelf) 燃燒條.SetActive(true);
             if (冰凍條.activeSelf) 冰凍條.SetActive(false);
-
+            if (當前冰凍條 <= -冰凍條上限)
+            {
+                爆炸(引爆傷害);
+                當前冰凍條 = -冰凍條上限 / 2;
+                燃燒(true);
+            }
             float 燃燒條比例 = Mathf.Abs((float)當前冰凍條 / 冰凍條上限);
             燃燒條.GetComponent<Image>().fillAmount = 燃燒條比例;
             FireEffect[0].SetActive(true); // 啟用或禁用燃燒特效
@@ -148,7 +157,7 @@ public class 怪物狀態 : MonoBehaviour
 
         int 燃燒傷害 = (int)(燃燒傷害倍率 * _燃燒傷害);
         燃燒條.SetActive(true);
-        
+
         while (當前冰凍條 < 0)
         {
             if (是否死亡) break;
@@ -163,14 +172,6 @@ public class 怪物狀態 : MonoBehaviour
                 燃燒條.SetActive(false);
                 break;
             }
-            else if (當前冰凍條 <= -冰凍條上限 * 0.9f)
-            {
-                爆炸();
-                當前冰凍條 = -冰凍條上限 / 2;
-                燃燒(true);
-                受傷((int)(燃燒傷害倍率 * 冰凍條上限), false);
-            }
-
             yield return new WaitForSeconds(狀態更新間隔);
         }
 
@@ -231,6 +232,7 @@ public class 怪物狀態 : MonoBehaviour
 
         if (當前血量 <= 0)
         {
+            if (是否死亡) return;
             死亡();
         }
         else

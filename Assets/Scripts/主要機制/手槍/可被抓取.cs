@@ -24,6 +24,8 @@ public class 可被抓取 : MonoBehaviour
     [SerializeField]
     private int 傷害 = 10;
     [SerializeField]
+    private int 爆炸傷害 = 1000;
+    [SerializeField]
     private bool 是否爆炸 = false;
     [SerializeField]
     private GameObject 預置爆炸物件;
@@ -169,7 +171,9 @@ public class 可被抓取 : MonoBehaviour
     {
         if (預置爆炸物件 != null)
         {
-            Instantiate(預置爆炸物件, transform.position, Quaternion.identity);
+            Debug.Log("爆炸");
+            GameObject gameObject =Instantiate(預置爆炸物件, transform.position, Quaternion.identity);
+            gameObject.GetComponent<爆炸物件>().爆炸傷害 = 爆炸傷害;
         }
         Destroy(gameObject);
     }

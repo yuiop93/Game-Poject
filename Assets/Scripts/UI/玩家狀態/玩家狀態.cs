@@ -16,6 +16,7 @@ public class 玩家狀態 : MonoBehaviour
     public static int 血量;
     public static int 體力;
     public int 能量;
+    [SerializeField] private AudioClip 受傷音效;
 
     [SerializeField] private int 血量上限 = 100;
     [SerializeField] private int 體力上限 = 100;
@@ -149,6 +150,7 @@ public class 玩家狀態 : MonoBehaviour
             StopCoroutine(FadeOutEffect());
             StartCoroutine(FadeOutEffect());
         }
+        AudioSource.PlayClipAtPoint(受傷音效, transform.position);
     }
 
     private IEnumerator FadeOutEffect()

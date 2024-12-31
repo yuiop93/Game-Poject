@@ -12,7 +12,7 @@ public class 冰凍組件 : MonoBehaviour
     public Transform GunHandle;
     private int _傷害;
     private int _射程;
-    public int 燃燒傷害;
+    public int 引爆傷害;
     public bool 受擊效果 = false;
     [Header("配置特效")]
     public GameObject[] 攻擊特效;
@@ -54,7 +54,7 @@ public class 冰凍組件 : MonoBehaviour
                     if (hit.collider.tag == "Mosters")
                     {
                         hit.collider.GetComponent<怪物身體部位>().受傷(_傷害, 受擊效果);
-                        hit.collider.GetComponent<怪物身體部位>().冰凍(冰凍組件參數.冰凍效率, 燃燒傷害);
+                        hit.collider.GetComponent<怪物身體部位>().冰凍(冰凍組件參數.冰凍效率,引爆傷害);
                     }
                     if (hit.collider.tag == "Untagged")
                     {

@@ -73161,6 +73161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66602b4cad394d4458a295b8d2459c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "\u7206\u70B8\u50B7\u5BB3": 1000
+  "\u7206\u70B8\u6642\u9593": 1
+  "\u7206\u70B8\u7BC4\u570D": 5
+  "\u7206\u70B8\u97F3\u6548": {fileID: 8300000, guid: 8ffce0566295c86438955d9fede5edaa, type: 3}
 --- !u!1 &8641511487972905338
 GameObject:
   m_ObjectHideFlags: 0

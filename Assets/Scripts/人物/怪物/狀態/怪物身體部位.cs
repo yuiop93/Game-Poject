@@ -40,9 +40,9 @@ public class 怪物身體部位 : MonoBehaviour
         回復.Invoke();
         this.gameObject.GetComponent<Collider>().enabled = true;
     }
-    public void 冰凍(int 冰凍點數, int 燃燒傷害)
+    public void 冰凍(int 冰凍點數,int 引爆傷害)
     {
-        怪物狀態.冰凍值(冰凍點數, 燃燒傷害);
+        怪物狀態.冰凍值(冰凍點數,引爆傷害);
     }
 
 }

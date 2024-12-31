@@ -17,7 +17,6 @@ public class 劇情 : MonoBehaviour
     private Text 名稱;
     [SerializeField]
     private Text 對話內容;
-    [HideInInspector]
     public GameObject[] 攝影機;
     [SerializeField]
     private GameObject 互動欄位;
@@ -53,7 +52,6 @@ public class 劇情 : MonoBehaviour
 
     public void 顯示劇情(bool 是否控制)
     {
-        
         Control = 是否控制;
         foreach (Transform child in 歷史紀錄)
         {
@@ -80,12 +78,12 @@ public class 劇情 : MonoBehaviour
         else
         {
             劇情視窗.enabled = false;
-            攝影機 = null;
             自動播放 = true;
             互動欄位.gameObject.SetActive(false);
             劇情UI.SetActive(true);
             index = 0;
             顯示當前劇情();
+            切換攝影機();
             SetAlignment(TextAnchor.MiddleCenter);
         }
     }
@@ -185,14 +183,42 @@ public class 劇情 : MonoBehaviour
         {
             for (int i = 0; i < 攝影機.Length; i++)
             {
-                攝影機[i].SetActive(false);
+                if (攝影機[i] != null)
+                {
+                    攝影機[i].SetActive(false);
+                }
             }
-            if (劇情SO.劇情[index].攝影機位置 > 攝影機.Length - 1)
+            if (劇情SO.劇情[index].攝影機位置 < 0 || 劇情SO.劇情[index].攝影機位置 > 攝影機.Length - 1)
             {
-                攝影機[0].SetActive(true);
+                if (攝影機.Length != 0)
+                {
+                    if (攝影機[0] != null)
+                    {
+                        Debug.LogError("已切換至第一個攝影機");
+                        攝影機[0].SetActive(true);
+                    }
+                }
+                else
+                {
+                    return;
+                }
             }
             else
-                攝影機[劇情SO.劇情[index].攝影機位置].SetActive(true);
+            {
+                if (攝影機[劇情SO.劇情[index].攝影機位置] != null)
+                {
+                    攝影機[劇情SO.劇情[index].攝影機位置].SetActive(true);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+        }
+        else
+        {
+            return;
         }
     }
 

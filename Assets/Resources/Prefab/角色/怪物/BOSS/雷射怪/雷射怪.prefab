@@ -11278,7 +11278,7 @@ MonoBehaviour:
   FireEffect:
   - {fileID: 396855411686391218}
   - {fileID: 2322989332433380288}
-  CombustionEffect: {fileID: 8286042570237981385, guid: afc2475a79699e64e8dd2ad667cbf180, type: 3}
+  CombustionEffect: {fileID: 8286042570237981385, guid: 12e411546b71ba543a9adbc22f512191, type: 3}
   "\u602A\u7269\u5340\u57DF": {fileID: 0}
 --- !u!1 &2546743987829592596
 GameObject:
