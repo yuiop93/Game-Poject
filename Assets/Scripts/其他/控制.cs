@@ -16,10 +16,11 @@ public class 控制 : MonoBehaviour
         武器取得狀態[i] = true;
     }
 
-    void Start()
+    void Awake()
     {
         inputs = player.GetComponent<StarterAssetsInputs>();
         互動 = GameObject.Find("UI控制/提示欄位/互動");
+        CursorLock();
     }
     public void CursorLock()
     {

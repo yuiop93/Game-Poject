@@ -23,11 +23,14 @@ public class 互動 : MonoBehaviour
     [SerializeField] private bool 強制互動 = false;
     void Start()
     {
-        互動UI = GameObject.Find("UI控制/提示欄位/互動").transform;
-        player = GameObject.Find("Player");
+        if (!強制互動)
+        {
+            互動UI = GameObject.Find("UI控制/提示欄位/互動").transform;
+            player = GameObject.Find("Player");
+        }
     }
     bool 已生成按鈕 = false;
-    void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
@@ -36,15 +39,20 @@ public class 互動 : MonoBehaviour
                 if (onSubmitConfirmed.GetPersistentEventCount() > 0)
                 {
                     onSubmitConfirmed.Invoke();
-                    Destroy(this.GetComponent<Collider>());
+                    Destroy(this.GetComponent<互動>());
                 }
                 return;
             }
-            else if (已生成按鈕 == false)
+        }
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (已生成按鈕 == false)
             {
                 生成按鈕();
             }
-
         }
     }
     void 生成按鈕()
@@ -82,14 +90,15 @@ public class 互動 : MonoBehaviour
         已生成按鈕 = false;
     }
     public void OnFKey(InputValue value)
-		{
-            if (value.isPressed)
-            {
-                Debug.Log("F key pressed");
-            }
+    {
+        if (value.isPressed)
+        {
+            Debug.Log("F key pressed");
         }
+    }
     void Update()
     {
+        if (強制互動) return;
         if (按鈕 != null && 按鈕.activeSelf == true)
         {
             if (!this.GetComponent<Collider>().enabled || 坐下.isSitting)

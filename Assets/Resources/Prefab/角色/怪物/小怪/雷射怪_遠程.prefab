@@ -16085,6 +16085,7 @@ MonoBehaviour:
   - {fileID: 4802785302450325875}
   CombustionEffect: {fileID: 8286042570237981385, guid: 12e411546b71ba543a9adbc22f512191, type: 3}
   "\u602A\u7269\u5340\u57DF": {fileID: 0}
+  "\u662F\u5426\u71C3\u71D2\u4E2D": 0
 --- !u!1 &2534033501615523833
 GameObject:
   m_ObjectHideFlags: 0

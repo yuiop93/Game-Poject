@@ -14,7 +14,10 @@ public class 房間門開關 : MonoBehaviour
 
     private IEnumerator 切換門狀態()
     {
-        ChangeMaterialColor(targetObject, materialIndex, newColor);
+        if(materialIndex >= 0)
+        {
+            ChangeMaterialColor(targetObject, materialIndex, newColor);
+        }
         Vector3 後移目標 = transform.position + transform.TransformDirection(Vector3.back * 前後距離);
         Vector3 左移目標 = 後移目標 + transform.TransformDirection(Vector3.left * 左右距離);
         while (Vector3.Distance(transform.position, 後移目標) > 0.01f)
@@ -47,6 +50,7 @@ public class 房間門開關 : MonoBehaviour
         else
         {
             Debug.LogError("无效的材质索引或缺少 Renderer 组件。");
+            return;
         }
     }
 }

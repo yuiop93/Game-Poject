@@ -64,7 +64,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.6854824
+      - time: 0.72736716
         functionName: OnFootstep
         data: 
         objectReferenceParameter: {instanceID: 0}

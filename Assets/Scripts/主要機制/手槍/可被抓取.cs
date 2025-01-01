@@ -160,7 +160,7 @@ public class 可被抓取 : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<怪物身體部位>() != null)
                     other.gameObject.GetComponent<怪物身體部位>().受傷(傷害, true);
-                    if(是否爆炸)
+                    if(是否爆炸&&other.gameObject.GetComponent<怪物身體部位>().怪物狀態.是否燃燒中)
                     {
                         爆炸();
                     }
