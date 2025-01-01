@@ -7,12 +7,16 @@ public class 主選單 : MonoBehaviour
     public bool 切換場景條件;
     void Start()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 30;
     }
     public void StartGame(int sceneNumber)
     {
         // 顯示加載界面並載入對應編號的場景
         StartCoroutine(LoadGameScene(sceneNumber));
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
     public void 切換場景()
     {
