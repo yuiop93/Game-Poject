@@ -5,6 +5,10 @@ using System.Collections;
 public class 主選單 : MonoBehaviour
 {
     public bool 切換場景條件;
+    void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
     public void StartGame(int sceneNumber)
     {
         // 顯示加載界面並載入對應編號的場景
@@ -35,6 +39,7 @@ public class 主選單 : MonoBehaviour
             {
                 if (切換場景條件)
                 {
+                    Application.targetFrameRate = 90;
                     operation.allowSceneActivation = true;
                 }
             }
