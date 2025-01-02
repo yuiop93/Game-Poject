@@ -94,18 +94,37 @@ public class 玩家狀態 : MonoBehaviour
         能量 -= 能量消耗;  // 減少能量
         能量條.fillAmount = (float)能量 / 能量上限;  // 更新UI顯示
     }
-
+    bool 是否無敵 = false;
     public void 受傷(int 傷害, bool 是否被控制)
     {
+        if (是否無敵)
+        {
+            return;
+        }
+        StartCoroutine(無敵幀());
         if (是否被控制)
         {
-            _input.move = Vector2.zero;
+            StartCoroutine(硬控制());
         }
+        this.GetComponent<Animator>().SetTrigger("Hit");
         ShowDamageEffect();
         血量 -= 傷害;
     }
-    public void 恢復狀態()
+    IEnumerator 無敵幀()
     {
+        是否無敵 = true;
+        yield return new WaitForSeconds(.1f);
+        是否無敵 = false;
+    }
+    IEnumerator 硬控制()
+    {
+        float 時間 = 0;
+        while (時間 < .1f)
+        {
+            _input.move = Vector2.zero;
+            時間 += Time.deltaTime;
+            yield return null;
+        }
     }
     void Update()
     {

@@ -5249,7 +5249,7 @@ MonoBehaviour:
     "\u80FD\u91CF\u6D88\u8017": 1
   GunMuzzle: {fileID: 1603401062421906804}
   GunHandle: {fileID: 8353605281008692638}
-  "\u71C3\u71D2\u50B7\u5BB3": 10
+  "\u5F15\u7206\u50B7\u5BB3": 100
   "\u53D7\u64CA\u6548\u679C": 0
   "\u653B\u64CA\u7279\u6548":
   - {fileID: 0}

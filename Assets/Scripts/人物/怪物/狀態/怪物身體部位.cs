@@ -13,22 +13,34 @@ public class 怪物身體部位 : MonoBehaviour
 
     [SerializeField]
     private float 傷害倍率 = 1;
+    // [SerializeField]
+    // private float 回復時間 = 2;
     [SerializeField]
-    private float 回復時間 = 1;
-    [SerializeField] private UnityEvent 被擊破;
+    int 擊破所需傷害 = 50;
+    int _累計傷害 = 0;
+    [SerializeField] private UnityEvent 擊破;
     [SerializeField] private UnityEvent 回復;
 
-    public void 受傷(float 傷害, bool 受擊效果)
+    public void 受傷(int 傷害, bool 受擊效果)
     {
+        _累計傷害 += 傷害;
         if (是否為致命部位)
         {
             怪物狀態.受傷((int)(傷害 * 傷害倍率 ), true);
-            if (是否可被擊破)
+        }
+        else if (是否可被擊破)
+        {
+            if (_累計傷害 >= 擊破所需傷害)
             {
+                擊破.Invoke();
                 this.gameObject.GetComponent<Collider>().enabled = false;
-                被擊破.Invoke();
-                Invoke("擊破回復", 回復時間);
+                怪物狀態.受傷((int)(傷害 * 傷害倍率 ), true);
             }
+            else
+            {
+                怪物狀態.受傷((int)(傷害), 受擊效果);
+            }
+            
         }
         else
         {

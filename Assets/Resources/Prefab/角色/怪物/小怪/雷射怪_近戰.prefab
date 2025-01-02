@@ -10805,8 +10805,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls: []
   "\u56DE\u5FA9":
@@ -10875,8 +10875,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 1
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 10
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls: []
   "\u56DE\u5FA9":
@@ -16092,6 +16092,7 @@ MonoBehaviour:
   - {fileID: 4802785302450325875}
   CombustionEffect: {fileID: 8286042570237981385, guid: 12e411546b71ba543a9adbc22f512191, type: 3}
   "\u602A\u7269\u5340\u57DF": {fileID: 0}
+  "\u662F\u5426\u71C3\u71D2\u4E2D": 0
 --- !u!1 &2534033501615523833
 GameObject:
   m_ObjectHideFlags: 0
@@ -16391,8 +16392,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls: []
   "\u56DE\u5FA9":
@@ -16420,11 +16421,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4813852468368805337}
-  - component: {fileID: 1552461453997277569}
   - component: {fileID: 6515736248141448234}
+  - component: {fileID: 1552461453997277569}
   m_Layer: 0
   m_Name: mixamorig:Spine1
-  m_TagString: Untagged
+  m_TagString: Mosters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16445,19 +16446,6 @@ Transform:
   m_Father: {fileID: 4495449653388663122}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1552461453997277569
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3305703824364426460}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7738845, y: 0.6751286, z: 0.36553422}
-  m_Center: {x: -0.4145281, y: 0.2475539, z: 0.63875204}
 --- !u!114 &6515736248141448234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16474,8 +16462,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 1
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 1
   "\u50B7\u5BB3\u500D\u7387": 50
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6606803177250393700}
@@ -16493,6 +16481,19 @@ MonoBehaviour:
   "\u56DE\u5FA9":
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &1552461453997277569
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305703824364426460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8899637, y: 0.87037927, z: 0.7919463}
+  m_Center: {x: -0.4343173, y: 0.26859298, z: 0.8519268}
 --- !u!1 &3545047840811679864
 GameObject:
   m_ObjectHideFlags: 0
@@ -21555,8 +21556,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls: []
   "\u56DE\u5FA9":
@@ -26437,8 +26438,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls: []
   "\u56DE\u5FA9":
@@ -70726,8 +70727,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls: []
   "\u56DE\u5FA9":
@@ -81282,8 +81283,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls: []
   "\u56DE\u5FA9":
@@ -81984,8 +81985,8 @@ MonoBehaviour:
   "\u662F\u5426\u70BA\u81F4\u547D\u90E8\u4F4D": 0
   "\u662F\u5426\u53EF\u88AB\u64CA\u7834": 0
   "\u50B7\u5BB3\u500D\u7387": 1
-  "\u56DE\u5FA9\u6642\u9593": 1
-  "\u88AB\u64CA\u7834":
+  "\u64CA\u7834\u6240\u9700\u50B7\u5BB3": 50
+  "\u64CA\u7834":
     m_PersistentCalls:
       m_Calls: []
   "\u56DE\u5FA9":

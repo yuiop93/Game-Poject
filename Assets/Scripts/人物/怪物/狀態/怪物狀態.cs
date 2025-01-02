@@ -109,11 +109,10 @@ public class 怪物狀態 : MonoBehaviour
     private Coroutine 狀態協程;
     public void 冰凍值(int 冰凍點數, int 引爆傷害)
     {
-        
+
         if (是否死亡) return;
         當前冰凍條 += 冰凍點數;
         當前冰凍條 = Mathf.Clamp(當前冰凍條, -冰凍條上限, 冰凍條上限); // 限制範圍
-
         if (當前冰凍條 > 0)
         {
             if (!冰凍條.activeSelf) 冰凍條.SetActive(true);
@@ -135,7 +134,6 @@ public class 怪物狀態 : MonoBehaviour
         {
             if (!燃燒條.activeSelf) 燃燒條.SetActive(true);
             if (冰凍條.activeSelf) 冰凍條.SetActive(false);
-
             float 燃燒條比例 = Mathf.Abs((float)當前冰凍條 / 冰凍條上限);
             燃燒條.GetComponent<Image>().fillAmount = 燃燒條比例;
             FireEffect[0].SetActive(true); // 啟用或禁用燃燒特效
@@ -150,20 +148,28 @@ public class 怪物狀態 : MonoBehaviour
                 狀態協程 = StartCoroutine(燃燒效果());
             }
         }
+        else
+        {
+            if (冰凍條.activeSelf) 冰凍條.SetActive(false);
+            if (燃燒條.activeSelf) 燃燒條.SetActive(false);
+        }
     }
     private IEnumerator 燃燒效果()
     {
         int _燃燒傷害 = 怪物血量 / 100;
-        if (是否燃燒中) yield break;
         是否燃燒中 = true;
-
+        float 燃燒累計量 = 0;
         int 燃燒傷害 = (int)(燃燒傷害倍率 * _燃燒傷害);
         燃燒條.SetActive(true);
 
         while (當前冰凍條 < 0)
         {
-            if (是否死亡) break;
-            當前冰凍條 += (int)(燃燒下降速度 * Time.deltaTime);
+            if (是否死亡)
+            {
+                燃燒(false);
+                狀態協程 = null;
+                break;
+            }
             更新狀態條(燃燒條, 當前冰凍條, 冰凍條上限);
             受傷(燃燒傷害, false);
             if (當前冰凍條 >= 0)
@@ -171,6 +177,15 @@ public class 怪物狀態 : MonoBehaviour
                 當前冰凍條 = 0;
                 燃燒條.SetActive(false);
                 break;
+            }
+            燃燒累計量 += 燃燒下降速度 * Time.deltaTime;
+
+            // 當累計超過 1 時，將其轉換為整數並更新當前冰凍條
+            if (燃燒累計量 >= 1f)
+            {
+                int 減少值 = (int)燃燒累計量;
+                當前冰凍條 += 減少值;
+                燃燒累計量 -= 減少值;
             }
             yield return new WaitForSeconds(狀態更新間隔);
         }
