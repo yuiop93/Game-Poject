@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public static class GameSettings
 {
@@ -9,38 +10,40 @@ public static class GameSettings
         new Resolution { width = 1280, height = 720 },
     };
 
-    // 當前解析度
     public static Resolution CurrentResolution { get; private set; }
     public static bool IsFullscreen { get; private set; }
     public static int TargetFrameRate { get; private set; }
 
-    // 靈敏度和音量
+    // 音量和靈敏度
     public static float Sensitivity { get; private set; }
     public static float MasterVolume { get; private set; }
     public static float SFXVolume { get; private set; }
     public static float MusicVolume { get; private set; }
 
+    // 陰影品質
+    public static int ShadowQuality { get; private set; }
+
     public static void Initialize()
     {
-        // 載入解析度
+        // 讀取設定
         string savedResolution = PlayerPrefs.GetString("Resolution", $"{AvailableResolutions[0].width}x{AvailableResolutions[0].height}");
         string[] resParts = savedResolution.Split('x');
         CurrentResolution = new Resolution { width = int.Parse(resParts[0]), height = int.Parse(resParts[1]) };
 
-        // 載入全屏模式
         IsFullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
         Screen.SetResolution(CurrentResolution.width, CurrentResolution.height, IsFullscreen);
 
-        // 載入幀數
         TargetFrameRate = PlayerPrefs.GetInt("FrameRate", 60);
         Application.targetFrameRate = TargetFrameRate;
 
-        // 載入靈敏度和音量
         Sensitivity = PlayerPrefs.GetFloat("Sensitivity", 1.0f);
         MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
         SFXVolume = PlayerPrefs.GetFloat("SFXVolume", 1.0f);
         MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1.0f);
         AudioListener.volume = MasterVolume;
+
+        ShadowQuality = PlayerPrefs.GetInt("ShadowQuality", 2);  // Medium by default
+        SetShadowQuality(ShadowQuality);
     }
 
     public static void SetResolution(Resolution resolution)
@@ -95,4 +98,18 @@ public static class GameSettings
         PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
         PlayerPrefs.Save();
     }
+    public static event System.Action<int> OnShadowQualityChanged;
+    public static void SetShadowQuality(int quality)
+    {
+        ShadowQuality = quality;
+
+        QualitySettings.shadowCascades = (quality == 0) ? 0 : 4;
+        QualitySettings.shadowResolution = (quality == 0) ? ShadowResolution.Low : (quality == 1 ? ShadowResolution.Medium : ShadowResolution.High);
+
+        PlayerPrefs.SetInt("ShadowQuality", ShadowQuality);
+        PlayerPrefs.Save();
+
+        OnShadowQualityChanged?.Invoke(quality); // 通知所有訂閱者
+    }
+    
 }

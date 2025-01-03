@@ -10,11 +10,16 @@ public class GameSettingsUI : MonoBehaviour
     public Slider masterVolumeSlider;
     public Slider sfxVolumeSlider;
     public Slider musicVolumeSlider;
+    public Dropdown shadowQualityDropdown;
 
     private void Awake()
     {
         GameSettings.Initialize();
         InitializeUI();
+    }
+    void Start()
+    {
+        gameObject.SetActive(false);
     }
 
     private void InitializeUI()
@@ -42,6 +47,11 @@ public class GameSettingsUI : MonoBehaviour
         frameRateDropdown.AddOptions(new System.Collections.Generic.List<string> { "30", "60", "120" });
         frameRateDropdown.value = GameSettings.TargetFrameRate == 120 ? 2 : GameSettings.TargetFrameRate == 60 ? 1 : 0;
 
+        // 初始化陰影選項
+        shadowQualityDropdown.ClearOptions();
+        shadowQualityDropdown.AddOptions(new System.Collections.Generic.List<string> { "Off", "Low", "Medium", "High" });
+        shadowQualityDropdown.value = GameSettings.ShadowQuality;
+
         // 初始化其他選項
         fullscreenToggle.isOn = GameSettings.IsFullscreen;
         sensitivitySlider.value = GameSettings.Sensitivity;
@@ -57,14 +67,12 @@ public class GameSettingsUI : MonoBehaviour
         masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
         sfxVolumeSlider.onValueChanged.AddListener(OnSFXVolumeChanged);
         musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
+        shadowQualityDropdown.onValueChanged.AddListener(OnShadowQualityChanged);
     }
 
     public void OnResolutionChanged(int index)
     {
         GameSettings.SetResolution(GameSettings.AvailableResolutions[index]);
-
-        // 確保解析度 Dropdown 顯示正確的文字
-        resolutionDropdown.captionText.text = $"{GameSettings.CurrentResolution.width} x {GameSettings.CurrentResolution.height}";
     }
 
     public void OnFrameRateChanged(int index)
@@ -98,6 +106,11 @@ public class GameSettingsUI : MonoBehaviour
         GameSettings.SetMusicVolume(value);
     }
 
+    public void OnShadowQualityChanged(int index)
+    {
+        GameSettings.SetShadowQuality(index);
+    }
+
     public void ResetSettings()
     {
         GameSettings.SetSensitivity(1.0f);
@@ -107,11 +120,10 @@ public class GameSettingsUI : MonoBehaviour
         GameSettings.SetResolution(GameSettings.AvailableResolutions[0]);
         GameSettings.SetFrameRate(60);
         GameSettings.SetFullscreen(true);
+        GameSettings.SetShadowQuality(2);  // Medium quality as default
 
         // 更新 UI
         InitializeUI();
-
-        // 確保解析度 Dropdown 顯示正確的文字
         resolutionDropdown.captionText.text = $"{GameSettings.CurrentResolution.width} x {GameSettings.CurrentResolution.height}";
     }
 }

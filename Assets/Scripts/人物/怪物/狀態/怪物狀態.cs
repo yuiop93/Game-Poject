@@ -175,7 +175,6 @@ public class 怪物狀態 : MonoBehaviour
             if (當前冰凍條 >= 0)
             {
                 當前冰凍條 = 0;
-                燃燒條.SetActive(false);
                 break;
             }
             燃燒累計量 += 燃燒下降速度 * Time.deltaTime;
@@ -189,9 +188,9 @@ public class 怪物狀態 : MonoBehaviour
             }
             yield return new WaitForSeconds(狀態更新間隔);
         }
-
-        燃燒(false);
         是否燃燒中 = false;
+        燃燒條.SetActive(是否燃燒中);
+        燃燒(是否燃燒中);
         狀態協程 = null;
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class 控制 : MonoBehaviour
 {
     private StarterAssetsInputs inputs;
@@ -11,6 +12,22 @@ public class 控制 : MonoBehaviour
     private GameObject 互動;
     public static bool 互動中 = false;
     public bool[] 武器取得狀態 = new bool[3];
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 進入場景時根據設置應用陰影品質
+        Debug.Log("進入場景");  
+        GameSettings.SetShadowQuality(GameSettings.ShadowQuality);
+    }
     public void 取得武器(int i)
     {
         武器取得狀態[i] = true;
