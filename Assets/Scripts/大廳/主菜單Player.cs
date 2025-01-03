@@ -129,6 +129,6 @@ public class 主菜單Player : MonoBehaviour
     }
     public void OnFootstep()
     {
-        AudioSource.PlayClipAtPoint(footstep, transform.position);
+        AudioSource.PlayClipAtPoint(footstep, transform.position,2);
     }
 }

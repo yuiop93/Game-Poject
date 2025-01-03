@@ -7,6 +7,7 @@ public class UI視窗控制 : MonoBehaviour
     [SerializeField]
     private GameObject[] uiTransform;
     private 控制 f1;
+    public bool isUIOpen = false;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class UI視窗控制 : MonoBehaviour
     }
     void ToggleUI(int index)
     {
+        
         if (控制.互動中 && !uiTransform[index].GetComponent<UIScaleEffectWithClose>().isOpen)
         {
             Debug.Log("互動中");
@@ -52,6 +54,7 @@ public class UI視窗控制 : MonoBehaviour
         }
         else
         {
+            isUIOpen = true;
             ui.OpenUI();
         }
     }
@@ -65,5 +68,6 @@ public class UI視窗控制 : MonoBehaviour
                 uiTransform[i].GetComponent<UIScaleEffectWithClose>().CloseUI();
             }
         }
+        isUIOpen = false;
     }
 }
