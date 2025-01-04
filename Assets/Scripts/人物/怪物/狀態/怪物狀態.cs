@@ -189,7 +189,7 @@ public class 怪物狀態 : MonoBehaviour
             yield return new WaitForSeconds(狀態更新間隔);
         }
         是否燃燒中 = false;
-        燃燒條.SetActive(是否燃燒中);
+        if(燃燒條 != null) 燃燒條.SetActive(是否燃燒中);
         燃燒(是否燃燒中);
         狀態協程 = null;
     }
@@ -204,23 +204,24 @@ public class 怪物狀態 : MonoBehaviour
 
         while (當前冰凍條 > 0)
         {
-            if (是否死亡) break;
-
+            if (是否死亡)
+            {
+                狀態協程 = null;
+                break;
+            }
             當前冰凍條 -= (int)(冰凍下降速度 * Time.deltaTime);
             更新狀態條(冰凍條, 當前冰凍條, 冰凍條上限);
 
             if (當前冰凍條 <= 0)
             {
                 當前冰凍條 = 0;
-                冰凍條.SetActive(false);
                 是否冰凍 = false;
                 冰凍();
                 break;
             }
-
             yield return new WaitForSeconds(狀態更新間隔);
         }
-
+        if(冰凍條 != null) 冰凍條.SetActive(是否冰凍);
         是否冰凍中 = false;
         狀態協程 = null;
     }
