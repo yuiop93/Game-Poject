@@ -17,6 +17,7 @@ public class 劇情 : MonoBehaviour
     private Text 名稱;
     [SerializeField]
     private Text 對話內容;
+    [HideInInspector]
     public GameObject[] 攝影機;
     [SerializeField]
     private GameObject 互動欄位;
@@ -24,6 +25,8 @@ public class 劇情 : MonoBehaviour
     private Button 繼續按鈕;
     [SerializeField]
     private Button 自動按鈕;
+    [SerializeField]
+    private GameObject 選項按鈕;
 
     [HideInInspector]
     public bool 自動播放;
@@ -42,6 +45,11 @@ public class 劇情 : MonoBehaviour
     [Range(1, 100)]
     private int 文字速度 = 10;
     bool Control = false;
+    [HideInInspector]
+    public 對話 對話1;
+    [SerializeField]
+    private Transform 選項位置;
+    bool 已選擇 = false;
     void Start()
     {
         劇情UI.SetActive(false);
@@ -97,14 +105,54 @@ public class 劇情 : MonoBehaviour
 
     private void 顯示當前劇情()
     {
-        名稱.text = 劇情SO.劇情[index].名稱;
-        currentDialogue = 劇情SO.劇情[index].文字內容;
-        typingCoroutine = StartCoroutine(TypeDialogue(劇情SO.劇情[index].文字內容));
+        if (Control)
+        {
+            名稱.text = 劇情SO.劇情[index].名稱;
+            currentDialogue = 劇情SO.劇情[index].文字內容;
+            typingCoroutine = StartCoroutine(TypeDialogue(劇情SO.劇情[index].文字內容));
+            繼續按鈕.gameObject.SetActive(true);
+            生成歷史紀錄(劇情SO.劇情[index].名稱, 劇情SO.劇情[index].文字內容);
+        }
+        else
+        {
+            名稱.text = 劇情SO.劇情[index].名稱;
+            currentDialogue = 劇情SO.劇情[index].文字內容;
+            typingCoroutine = StartCoroutine(TypeDialogue(劇情SO.劇情[index].文字內容));
+        }
+    }
+    void 生成歷史紀錄(string 名稱, string 對話)
+    {
         GameObject newObject = Instantiate(歷史紀錄內容, 歷史紀錄);
         newObject.transform.SetParent(歷史紀錄);
-        newObject.transform.GetChild(0).GetComponent<Text>().text = 劇情SO.劇情[index].名稱;
-        newObject.transform.GetChild(1).GetComponent<Text>().text = 劇情SO.劇情[index].文字內容;
-
+        newObject.transform.GetChild(0).GetComponent<Text>().text = 名稱;
+        newObject.transform.GetChild(1).GetComponent<Text>().text = 對話;
+    }
+    void 生成選項按鈕()
+    {
+        繼續按鈕.gameObject.SetActive(false);
+        for (int i = 0; i < 劇情SO.劇情[index].選項.Length; i++)
+        {
+            Debug.Log("生成選項按鈕" + i);
+            GameObject newObject = Instantiate(選項按鈕, 選項位置);
+            newObject.GetComponentInChildren<Text>().text = 劇情SO.劇情[index].選項[i].選項文字;
+            int capturedIndex = i;
+            newObject.GetComponent<Button>().onClick.AddListener(() => 選項設定(capturedIndex));
+        }
+    }
+    void 選項設定(int i)
+    {
+        Debug.Log("選擇了" + 劇情SO.劇情[index].選項[i].選項文字);
+        生成歷史紀錄("選項", 劇情SO.劇情[index].選項[i].選項文字);
+        名稱.text = 劇情SO.劇情[index].選項[i].選擇後內容名稱;
+        currentDialogue = 劇情SO.劇情[index].選項[i].選擇後內容;
+        typingCoroutine = StartCoroutine(TypeDialogue(劇情SO.劇情[index].選項[i].選擇後內容));
+        生成歷史紀錄(劇情SO.劇情[index].選項[i].選擇後內容名稱, 劇情SO.劇情[index].選項[i].選擇後內容);
+        foreach (Transform child in 選項位置)
+        {
+            Destroy(child.gameObject);
+        }
+        已選擇 = true;
+        繼續按鈕.gameObject.SetActive(true);
     }
     private IEnumerator TypeDialogue(string dialogue)
     {
@@ -119,6 +167,7 @@ public class 劇情 : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (自動播放)
         {
+            yield return new WaitForSeconds(劇情SO.劇情[index].停留時間);
             下一個();
         }
     }
@@ -165,7 +214,20 @@ public class 劇情 : MonoBehaviour
 
     private void 下一個()
     {
+        if(對話1.unityEvents.Length > 0 && 劇情SO.劇情[index].事件編號 < 對話1.unityEvents.Length)
+        {
+            if (對話1.unityEvents[劇情SO.劇情[index].事件編號] != null)
+            {
+                對話1.unityEvents[劇情SO.劇情[index].事件編號].Invoke();
+            }
+        }
+        if (劇情SO.劇情[index].選項 != null && 劇情SO.劇情[index].選項.Length > 0 && 已選擇 == false)
+        {
+            生成選項按鈕();
+            return;
+        }
         index++;
+        已選擇 = false;
         if (index >= 劇情SO.劇情.Length)
         {
             結束();
@@ -224,6 +286,10 @@ public class 劇情 : MonoBehaviour
 
     public void 結束()
     {
+        if (對話1.EndEvent != null)
+        {
+            對話1.EndEvent.Invoke();
+        }
         index = 劇情SO.劇情.Length;
         StopCoroutine(typingCoroutine);
         if (攝影機 != null)

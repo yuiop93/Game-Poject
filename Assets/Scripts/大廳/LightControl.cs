@@ -8,7 +8,6 @@ public class LightControl : MonoBehaviour
 
     void Awake()
     {
-        lightRange = 30f;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         lightSource = GetComponent<Light>();
         // 訂閱陰影品質變更事件
