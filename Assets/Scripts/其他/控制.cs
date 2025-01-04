@@ -25,7 +25,6 @@ public class 控制 : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // 進入場景時根據設置應用陰影品質
-        Debug.Log("進入場景");  
         GameSettings.SetShadowQuality(GameSettings.ShadowQuality);
     }
     public void 取得武器(int i)

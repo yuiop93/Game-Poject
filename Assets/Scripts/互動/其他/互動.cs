@@ -85,6 +85,7 @@ public class 互動 : MonoBehaviour
     }
     public void 清除按鈕()
     {
+        if(按鈕 == null) return;
         Destroy(按鈕.gameObject);
         按鈕 = null;
         已生成按鈕 = false;

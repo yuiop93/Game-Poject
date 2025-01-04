@@ -17,13 +17,10 @@ public class GameSettingsUI : MonoBehaviour
         GameSettings.Initialize();
         InitializeUI();
     }
-    void Start()
-    {
-        gameObject.SetActive(false);
-    }
-
     private void InitializeUI()
     {
+        QualitySettings.vSyncCount = 0;
+        QualitySettings.shadowDistance = 50;
         // 初始化解析度選項
         resolutionDropdown.ClearOptions();
         foreach (var res in GameSettings.AvailableResolutions)
@@ -49,8 +46,8 @@ public class GameSettingsUI : MonoBehaviour
 
         // 初始化陰影選項
         shadowQualityDropdown.ClearOptions();
-        shadowQualityDropdown.AddOptions(new System.Collections.Generic.List<string> { "Off", "Low", "Medium", "High" });
-        shadowQualityDropdown.value = GameSettings.ShadowQuality;
+        shadowQualityDropdown.AddOptions(new System.Collections.Generic.List<string> { "關閉", "低", "中", "高" });
+        shadowQualityDropdown.value = GameSettings.ShadowQuality== 0 ? 0 : GameSettings.ShadowQuality == 1 ? 1 : GameSettings.ShadowQuality == 2 ? 2 : 3;
 
         // 初始化其他選項
         fullscreenToggle.isOn = GameSettings.IsFullscreen;
