@@ -8,6 +8,7 @@ TagManager:
   - wink
   - Mosters
   - Gun
+  - UI
   layers:
   - Default
   - TransparentFX

@@ -32,10 +32,6 @@ public class UI視窗控制 : MonoBehaviour
         {
             ToggleUI(1); // 打开或关闭 uiTransform[1]
         }
-        if (Input.GetKeyDown(KeyCode.Escape)) // Escape 键关闭所有打开的 UI
-        {
-            CloseAllUI();
-        }
 
     }
     void ToggleUI(int index)

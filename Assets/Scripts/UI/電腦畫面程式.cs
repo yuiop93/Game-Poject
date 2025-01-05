@@ -8,6 +8,8 @@ public class 電腦畫面程式 : MonoBehaviour
     public GameObject situi;
     void Start()
     {
+        if(situi==null)
+        situi = GameObject.Find("UI控制/提示欄位/坐下/坐下UI");   
     }
     public void 開啟(GameObject 攝影機)
     {

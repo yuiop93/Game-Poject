@@ -51,7 +51,6 @@ public class 主菜單Player : MonoBehaviour
         {
             _槍 = 0;
         }
-         Debug.Log(_槍);
         指定槍(_槍);
     }
     void 指定槍(int i)

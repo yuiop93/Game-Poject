@@ -19,6 +19,7 @@ public class 坐下 : MonoBehaviour
     private bool sittingdown = false;
     private GameObject sitUI;
     private GameObject eventhit;
+    public GameObject VsCamera;
     public UnityEvent onSubmitConfirmed;
     [SerializeField]
     private string eventtext;
@@ -39,7 +40,7 @@ public class 坐下 : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         sittingdown = false;
         sitUI.SetActive(true);
-        if (onSubmitConfirmed.GetPersistentEventCount() > 0)
+        if (onSubmitConfirmed.GetPersistentEventCount() > 0||eventtext!="")
         {
             eventhit.SetActive(true);
             eventhit.GetComponent<Text>().text = "按下空白鍵" + eventtext;
@@ -52,9 +53,9 @@ public class 坐下 : MonoBehaviour
     public void sit()
     {
         if (this.GetComponent<互動>() != null)
-            {
-                this.GetComponent<互動>().清除按鈕();
-            }
+        {
+            this.GetComponent<互動>().清除按鈕();
+        }
         isSitting = true;
         sittingdown = true;
         inputs.Cursorlock();
@@ -73,8 +74,8 @@ public class 坐下 : MonoBehaviour
     {
         inputs.jump = false;
         player.GetComponent<CharacterController>().enabled = true;
-        if(sitpoint != null)
-        player.GetComponent<CharacterMovement>().MoveTo(standpoint);
+        if (sitpoint != null)
+            player.GetComponent<CharacterMovement>().MoveTo(standpoint);
         isSitting = false;
     }
     void Update()
@@ -83,7 +84,11 @@ public class 坐下 : MonoBehaviour
         {
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
-                onSubmitConfirmed.Invoke();
+                GameObject.Find("UI控制/彈出UI/電腦").GetComponent<電腦畫面程式>().開啟(VsCamera);
+                if (onSubmitConfirmed.GetPersistentEventCount() > 0)
+                {
+                    onSubmitConfirmed.Invoke();
+                }
                 sitUI.SetActive(false);
             }
             if (Keyboard.current.fKey.wasPressedThisFrame)

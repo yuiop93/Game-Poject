@@ -139,7 +139,6 @@ public class 互動 : MonoBehaviour
             else
             {
                 清除按鈕();
-                Debug.Log("No event assigned to this button");
             }
         }
 

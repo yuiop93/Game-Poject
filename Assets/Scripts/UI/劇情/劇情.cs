@@ -6,52 +6,49 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 public class 劇情 : MonoBehaviour
 {
-    [HideInInspector]
-    public 劇情_SO 劇情SO;
-    [SerializeField]
-    private GameObject 劇情UI;
-    [SerializeField]
-    private Image 劇情視窗;
-    private int index;
-    [SerializeField]
-    private Text 名稱;
-    [SerializeField]
-    private Text 對話內容;
-    [HideInInspector]
-    public GameObject[] 攝影機;
-    [SerializeField]
-    private GameObject 互動欄位;
-    [SerializeField]
-    private Button 繼續按鈕;
-    [SerializeField]
-    private Button 自動按鈕;
-    [SerializeField]
-    private GameObject 選項按鈕;
+    // 劇情資料
+    [HideInInspector] public 劇情_SO 劇情SO;
+    [HideInInspector] public 對話 對話1;
 
-    [HideInInspector]
-    public bool 自動播放;
+    // UI 元素
+    [SerializeField] private GameObject 劇情UI;
+    [SerializeField] private Image 劇情視窗;
+    [SerializeField] private Text 名稱;
+    [SerializeField] private Text 對話內容;
+    [SerializeField] private GameObject 互動欄位;
+    [SerializeField] private Button 繼續按鈕;
+    [SerializeField] private Button 自動按鈕;
+    [SerializeField] private GameObject 選項按鈕;
+    [SerializeField] private GameObject 歷史紀錄面板;
+    [SerializeField] private Transform 歷史紀錄;
+    [SerializeField] private GameObject 歷史紀錄內容;
+    [SerializeField][Range(1, 100)] private int 文字速度 = 10;
+    [SerializeField] private Transform 選項位置;
+    [SerializeField] private GameObject 狀態欄位;
+    [SerializeField] private Image fadeImage;
+    [SerializeField] private float fadeDuration;
+    [SerializeField] private float waitTime;
+
+    // 攝影機控制
+    [HideInInspector] public GameObject[] 攝影機;
+
+    // 音效
+    private AudioSource audioSource;
+
+    // 劇情控制
+    private int index;
+    private string currentDialogue;
+    private bool 自動播放;
+    private bool 顯示完成 = false;
+    private bool Control = false;
+    private bool 已選擇 = false;
     private 控制 控制;
     private GameObject 互動UI;
-    private string currentDialogue;
     private Coroutine typingCoroutine;
-    private bool 顯示完成 = false;
-    [SerializeField]
-    private GameObject 歷史紀錄面板;
-    [SerializeField]
-    private Transform 歷史紀錄;
-    [SerializeField]
-    private GameObject 歷史紀錄內容;
-    [SerializeField]
-    [Range(1, 100)]
-    private int 文字速度 = 10;
-    bool Control = false;
-    [HideInInspector]
-    public 對話 對話1;
-    [SerializeField]
-    private Transform 選項位置;
-    bool 已選擇 = false;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         劇情UI.SetActive(false);
         控制 = GameObject.Find("程式/控制").GetComponent<控制>();
         自動播放 = false;
@@ -68,6 +65,7 @@ public class 劇情 : MonoBehaviour
         歷史紀錄面板.SetActive(false);
         if (是否控制)
         {
+            狀態欄位.SetActive(false);
             劇情視窗.enabled = true;
             自動播放 = false;
             自動按鈕.GetComponentInChildren<Text>().text = "▷";
@@ -105,6 +103,18 @@ public class 劇情 : MonoBehaviour
 
     private void 顯示當前劇情()
     {
+        if (對話1.unityEvents.Length > 0 && 劇情SO.劇情[index].事件編號 < 對話1.unityEvents.Length && 劇情SO.劇情[index].事件編號 > 0)
+        {
+            if (對話1.unityEvents[劇情SO.劇情[index].事件編號 - 1] != null)
+            {
+                對話1.unityEvents[劇情SO.劇情[index].事件編號 - 1].Invoke();
+            }
+        }
+        if (劇情SO.劇情[index].音效 != null)
+        {
+            audioSource.clip = 劇情SO.劇情[index].音效;
+            audioSource.Play();
+        }
         if (Control)
         {
             名稱.text = 劇情SO.劇情[index].名稱;
@@ -132,7 +142,6 @@ public class 劇情 : MonoBehaviour
         繼續按鈕.gameObject.SetActive(false);
         for (int i = 0; i < 劇情SO.劇情[index].選項.Length; i++)
         {
-            Debug.Log("生成選項按鈕" + i);
             GameObject newObject = Instantiate(選項按鈕, 選項位置);
             newObject.GetComponentInChildren<Text>().text = 劇情SO.劇情[index].選項[i].選項文字;
             int capturedIndex = i;
@@ -141,7 +150,6 @@ public class 劇情 : MonoBehaviour
     }
     void 選項設定(int i)
     {
-        Debug.Log("選擇了" + 劇情SO.劇情[index].選項[i].選項文字);
         生成歷史紀錄("選項", 劇情SO.劇情[index].選項[i].選項文字);
         名稱.text = 劇情SO.劇情[index].選項[i].選擇後內容名稱;
         currentDialogue = 劇情SO.劇情[index].選項[i].選擇後內容;
@@ -214,13 +222,6 @@ public class 劇情 : MonoBehaviour
 
     private void 下一個()
     {
-        if(對話1.unityEvents.Length > 0 && 劇情SO.劇情[index].事件編號 < 對話1.unityEvents.Length)
-        {
-            if (對話1.unityEvents[劇情SO.劇情[index].事件編號] != null)
-            {
-                對話1.unityEvents[劇情SO.劇情[index].事件編號].Invoke();
-            }
-        }
         if (劇情SO.劇情[index].選項 != null && 劇情SO.劇情[index].選項.Length > 0 && 已選擇 == false)
         {
             生成選項按鈕();
@@ -256,7 +257,6 @@ public class 劇情 : MonoBehaviour
                 {
                     if (攝影機[0] != null)
                     {
-                        Debug.LogError("已切換至第一個攝影機");
                         攝影機[0].SetActive(true);
                     }
                 }
@@ -286,10 +286,17 @@ public class 劇情 : MonoBehaviour
 
     public void 結束()
     {
-        if (對話1.EndEvent != null)
+        if (劇情SO.是否黑幕)
         {
-            對話1.EndEvent.Invoke();
+            黑幕();
         }
+        else
+        {
+            關閉劇情();
+        }
+    }
+    void 關閉劇情()
+    {
         index = 劇情SO.劇情.Length;
         StopCoroutine(typingCoroutine);
         if (攝影機 != null)
@@ -306,7 +313,43 @@ public class 劇情 : MonoBehaviour
         }
         劇情UI.SetActive(false);
         if (Control)
+        {
             控制.CursorLock();
+            狀態欄位.SetActive(true);
+        }
+        if (對話1.EndEvent != null)
+        {
+            對話1.EndEvent.Invoke();
+        }
     }
-
+    public void 黑幕()
+    {
+        StartCoroutine(Fade());
+    }
+    private IEnumerator Fade()
+    {
+        fadeImage.gameObject.SetActive(true);
+        float timer = 0f;
+        Color color = fadeImage.color;
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            color.a = Mathf.Lerp(0f, 1f, timer / fadeDuration); // 漸變透明度
+            fadeImage.color = color;
+            yield return null;
+        }
+        yield return new WaitForSeconds(waitTime);
+        關閉劇情();
+        timer = 0f;
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, timer / fadeDuration); // 透明度從1漸變到0
+            fadeImage.color = color;
+            yield return null;
+        }
+        color.a = 1f;
+        fadeImage.color = color;
+        fadeImage.gameObject.SetActive(false);
+    }
 }

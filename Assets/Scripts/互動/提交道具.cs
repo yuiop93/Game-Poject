@@ -45,16 +45,21 @@ public class 提交道具 : MonoBehaviour
     }
     public void 確定提交()
     {
-        if (onSubmitConfirmed != null)
-        {
-            onSubmitConfirmed.Invoke();
-            this.GetComponent<互動>().清除按鈕();
-            Destroy(this.GetComponent<互動>());
-        }
         if (是否消耗)
         {
             提交畫面.消耗道具(道具ID, 道具數量);
         }
-        
+        if (onSubmitConfirmed != null)
+        {
+            this.GetComponent<互動>().清除按鈕();
+            Destroy(this.GetComponent<互動>());
+            StartCoroutine(等待N秒(0.5f));
+
+        }
+    }
+    private IEnumerator 等待N秒(float 秒數)
+    {
+        yield return new WaitForSeconds(秒數);
+        onSubmitConfirmed.Invoke();
     }
 }

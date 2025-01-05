@@ -5,6 +5,7 @@ public class LightControl : MonoBehaviour
     public Transform player; // 玩家角色
     public float lightRange = 20f; // 光源影響距離
     private Light lightSource;
+    [SerializeField] private bool DistanceControl = true;
 
     void Awake()
     {
@@ -16,7 +17,10 @@ public class LightControl : MonoBehaviour
     }
     void Start()
     {
-        InvokeRepeating("Light", 0f, 0.5f);
+        if (DistanceControl)
+        {
+            InvokeRepeating("Light", 0f, 0.5f);
+        }
     }
     void Light()
     {

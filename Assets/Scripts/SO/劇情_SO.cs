@@ -6,6 +6,7 @@ using UnityEngine;
 public class 劇情_SO : ScriptableObject
 {
     public 劇情s[] 劇情;
+    public bool 是否黑幕 = false;
 }
 [System.Serializable]
 public class 選項s
@@ -23,8 +24,10 @@ public class 劇情s
     public int 事件編號;
     [TextArea]
     public string 文字內容;
+    public AudioClip 音效;
     public 選項s[] 選項;
     public int 攝影機位置;
     public float 停留時間;
+
 }
 

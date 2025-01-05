@@ -8,8 +8,6 @@ public class 對話 : MonoBehaviour
     private 劇情 劇情1;
     [SerializeField]
     private 劇情_SO 劇情SO;
-    [SerializeField]
-    private 劇情s[] 劇情;
     private Transform 互動;
     public GameObject[] 攝影機;
     [SerializeField]
