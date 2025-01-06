@@ -4,6 +4,7 @@ using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class 控制 : MonoBehaviour
 {
     private StarterAssetsInputs inputs;
@@ -12,11 +13,61 @@ public class 控制 : MonoBehaviour
     private GameObject 互動;
     public static bool 互動中 = false;
     public bool[] 武器取得狀態 = new bool[3];
+    public static bool 教學 = false;
+    public static bool 背包 = false;
+    public static bool 武器 = false;
+    public GameObject[] 功能UI;
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        判斷功能是否啟用();
     }
+    void 判斷功能是否啟用()
+    {
+        if (教學)
+        {
+            功能UI[0].SetActive(true);
+        }
+        else
+        {
+            功能UI[0].SetActive(false);
+        }
+        if (背包)
+        {
+            功能UI[1].SetActive(true);
+        }
+        else
+        {
+            功能UI[1].SetActive(false);
+        }
+        if (武器)
+        {
+            功能UI[2].SetActive(true);
+        }
+        else
+        {
+            功能UI[2].SetActive(false);
+        }
 
+    }
+    public void 功能開啟(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                功能UI[0].SetActive(true);
+                教學 = true;
+                break;
+            case 1:
+                功能UI[1].SetActive(true);
+                背包 = true;
+                break;
+            case 2:
+                功能UI[2].SetActive(true);
+                武器 = true;
+                break;
+        }
+    }
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;

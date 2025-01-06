@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 [System.Serializable]
 public class 教學
 {
     public Sprite 教學圖片;
+    public VideoClip 教學影片;
     [TextArea]
     public string 教學內容;
 }

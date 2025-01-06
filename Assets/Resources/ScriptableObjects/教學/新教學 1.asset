@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: "\u65B0\u6559\u5B78 1"
   m_EditorClassIdentifier: 
   "\u6559\u5B78\u540D\u7A31": 
-  "\u6559\u5B78\u5217\u8868": []
+  "\u6559\u5B78\u5217\u8868":
+  - "\u6559\u5B78\u5716\u7247": {fileID: 0}
+    "\u6559\u5B78\u5F71\u7247": {fileID: 0}
+    "\u6559\u5B78\u5167\u5BB9": aasdasd

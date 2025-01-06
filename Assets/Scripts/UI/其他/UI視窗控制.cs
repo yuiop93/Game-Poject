@@ -23,14 +23,19 @@ public class UI視窗控制 : MonoBehaviour
                 break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.B)) // B 键打开第一个 UI
+        if (Input.GetKeyDown(KeyCode.B)&&控制.背包)
         {
             ToggleUI(0); // 打开或关闭 uiTransform[0]
         }
 
-        if (Input.GetKeyDown(KeyCode.C)) // C 键打开第二个 UI
+        if (Input.GetKeyDown(KeyCode.C)&&控制.武器)
         {
             ToggleUI(1); // 打开或关闭 uiTransform[1]
+        }
+
+        if (Input.GetKeyDown(KeyCode.G)&&控制.教學) 
+        {
+            ToggleUI(2); // 打开或关闭 uiTransform[2]
         }
 
     }
